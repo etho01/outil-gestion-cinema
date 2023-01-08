@@ -6,10 +6,13 @@
         <div class="w-50 vh-100 image_menu_cinema">
 
         </div>
-        <div class="w-50 position-relative p-5">
-            <div class="top-50 align-items-center ">
+        <div class="w-50 d-flex justify-content-center align-items-center">
+            <div class="w-75">
                 <form action="{{route('login') }}" method="POST">
                     @csrf
+                    <div class="fs-2">
+                        {{ __('login') }}
+                    </div>
                     <div class="mt-3">
                         <label for="email" class="form-label">Mail</label>
                         <div class="input-group ">
@@ -22,7 +25,7 @@
                         @enderror
                     </div>
                     <div class="mt-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">{{__('password')}}</label>
                         <input class="form-control" type="password" name="password" id="password" placeholder="Password">
                         @error('password')
                             <div class="px-5 text-danger">
@@ -39,7 +42,3 @@
     </div>
 </div>
 @endsection
-<script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-</script>
