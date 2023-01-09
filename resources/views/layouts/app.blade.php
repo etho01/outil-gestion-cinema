@@ -19,18 +19,10 @@
 </head>
 <body class="vh-100 vh-100 d-flex flex-row">
 
-    <div class="w-25 bg-dark">
-        <div class="d-flex flex-column ">
-            <div></div>
-        </div>
-    </div>
+    <x-liste-page />
     <div class="w-100">
-        <header class="container-fluid menu d-flex justify-element-boder">
-            <div class="d-flex flex-row justify-content-between mx-2">
-                <div>
-                    {{ config('APP_NAME', 'Laravel') }}
-                </div>
-                <x-liste-page />
+        <header class="container-fluid menu d-flex w-100">
+            <div class="d-flex flex-row justify-content-between me-2 ms-auto">
                     <div>
                     @auth
                     <div class="dropdown">

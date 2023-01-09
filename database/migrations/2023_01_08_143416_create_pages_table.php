@@ -16,9 +16,10 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_page');
-            $table->integer('pos_page')->nullable();
-            $table->integer('pageParent')->nullable();
+            $table->string('nom');
+            $table->string('route')->unique();
+            $table->integer('pos')->nullable();
+            $table->integer('page_parent')->nullable();
             $table->foreignIdFor(CategoriePage::class)->constrained();;
             $table->timestamps();
         });

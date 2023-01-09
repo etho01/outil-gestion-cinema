@@ -25,7 +25,7 @@ return new class extends Migration
         Role::insert([
             'id' => 1,
             'nom' => 'administrateur',
-            'is_admin' => false,
+            'is_admin' => true,
             'client_id' => 1
         ]);
         User::insert([

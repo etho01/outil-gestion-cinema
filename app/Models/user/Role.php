@@ -15,4 +15,8 @@ class Role extends Model
         'is_admin',
         'client_id',
     ];
+
+    public function pages(){
+        return $this->morphToMany(Page::class, 'paggable');
+    }
 }

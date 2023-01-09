@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\page\CategoriePage;
 
 class ListePage extends Component
 {
@@ -23,6 +24,9 @@ class ListePage extends Component
      */
     public function render()
     {
-        return view('components.liste-page');
+
+        return view('components.liste-page', [
+            'TAB_CATEGORIES_PAGES' => CategoriePage::getInfosPagesListePage()
+        ]);
     }
 }
