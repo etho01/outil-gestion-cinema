@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_role');
+            $table->string('nom');
             $table->boolean('is_admin');
             $table->foreignId('client_id')->constrained();
 

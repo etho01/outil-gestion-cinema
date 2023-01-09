@@ -16,7 +16,7 @@
                     <div class="mt-3">
                         <label for="email" class="form-label">Mail</label>
                         <div class="input-group ">
-                            <input class="form-control" type="text" name="email" id="email" placeholder="mail">
+                            <input class="form-control" type="text" name="email" id="email" autocomplete="email" value="{{ old('email') }}" required placeholder="mail">
                         </div>
                         @error('password')
                             <div class="px-5 text-danger">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="mt-3">
                         <label for="password" class="form-label">{{__('password')}}</label>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                        <input class="form-control" type="password" name="password" id="password" required placeholder="Password">
                         @error('password')
                             <div class="px-5 text-danger">
                                 <strong>{{ $message }}</strong>
