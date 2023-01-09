@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Kdm extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'nom',
-        'logo',
-    ];
+        'combinaison_option_id',
+        'date_debut',
+        'date_fin'
+   ];
 }

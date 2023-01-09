@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Client;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,13 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('cinemas', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_role');
-            $table->boolean('is_admin');
-            $table->foreignId('client_id')->constrained();
-
-
+            $table->string('nom');
+            $table->ForeignIdFor(Client::class)->constrained();;
             $table->timestamps();
         });
     }
@@ -31,7 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('cinemas');
     }
 };

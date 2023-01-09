@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Film extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'nom',
-        'logo',
-    ];
+        'distributeur_id',
+        'durree',
+   ];
 }

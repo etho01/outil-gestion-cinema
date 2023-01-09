@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class CombinaisonOptions_stockageElement extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'nom',
-        'logo',
-    ];
+        'stockage_element_id',
+        'combinaison_option_id',
+   ];
+
+   protected $table = 'combinaison_stockage_elements';
 }
