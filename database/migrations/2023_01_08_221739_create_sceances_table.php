@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Salle;
-use App\Models\CombinaisonOption;
+use App\Models\cinema\Salle;
+use App\Models\film\CombinaisonOption;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

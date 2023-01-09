@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\cinema;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Distributeur extends Model
+class Cinema extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
         'nom',
-        'mail',
-   ];
+        'client_id',
+    ];
 }

@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\film;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StockageElement extends Model
+class Kdm extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'combinaison_option_id',
-        'stockage_element_id',
-        'type',
-    ];
+        'date_debut',
+        'date_fin'
+   ];
 }

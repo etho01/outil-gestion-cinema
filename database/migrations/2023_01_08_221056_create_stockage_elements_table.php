@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Salle;
-use App\Models\StockageElement;
-use App\Models\CombinaisonOption;
+use App\Models\cinema\Salle;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +17,7 @@ return new class extends Migration
         Schema::create('stockage_elements', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Salle::class)->constrained();
+            $table->integer('type');
             $table->timestamps();
         });
     }

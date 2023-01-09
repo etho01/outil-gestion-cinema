@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\film;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class CombinaisonOption extends Model
 {
     use HasFactory;
 
-    
     protected $fillable = [
         'id',
-        'nom_role',
-        'is_admin',
-        'client_id',
-    ];
+        'film_id',
+        'option_id',
+   ];
 }

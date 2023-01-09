@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Cinema;
+use App\Models\cinema\Cinema;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

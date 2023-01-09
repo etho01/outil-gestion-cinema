@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\client;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DcpCinema extends Model
+class Client extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'cinema_id',
-        'combinaison_option_id',
-   ];
+        'nom',
+        'logo',
+    ];
 }

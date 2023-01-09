@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Page;
-use App\Models\TypesClient;
+use App\Models\page\Page;
+use App\Models\client\TypesClient;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

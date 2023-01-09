@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\cinema;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoriePage extends Model
+class Salle extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
         'nom',
-        'icone',
+        'cinema_id'
     ];
-
 }

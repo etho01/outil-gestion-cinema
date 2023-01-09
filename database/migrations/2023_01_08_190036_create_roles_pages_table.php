@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Page;
-use App\Models\Role;
-use App\Models\Salle;
+use App\Models\page\Page;
+use App\Models\user\Role;
+use App\Models\cinema\Salle;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\CombinaisonOption;
+use App\Models\film\CombinaisonOption;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

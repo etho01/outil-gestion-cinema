@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Film;
-use App\Models\Option;
+use App\Models\film\Film;
+use App\Models\film\Option;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

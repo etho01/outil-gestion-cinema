@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\film;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Option extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'nom',
-        'logo',
-    ];
+        'nom'
+   ];
 }
