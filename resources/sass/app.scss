@@ -54,3 +54,9 @@ body{
         color: $gray-400;
     }
 }
+
+.dropdown-menu{
+    .dropdown-item{
+        cursor: pointer;
+    }
+}
