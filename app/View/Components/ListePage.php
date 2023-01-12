@@ -7,14 +7,16 @@ use App\Models\page\CategoriePage;
 
 class ListePage extends Component
 {
+
+    public $infosPage;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($infosPage)
     {
-        //
+        $this->infosPage = $infosPage;
     }
 
     /**
@@ -24,9 +26,9 @@ class ListePage extends Component
      */
     public function render()
     {
-
         return view('components.liste-page', [
-            'TAB_CATEGORIES_PAGES' => CategoriePage::getInfosPagesListePage()
+            'TAB_CATEGORIES_PAGES' => CategoriePage::getInfosPagesListePage(),
+            'infosPage' => $this->infosPage
         ]);
     }
 }

@@ -7,7 +7,7 @@
         @foreach($TAB_CATEGORIES_PAGES as $key => $CATEGORIES_PAGES)
             @if ($CATEGORIES_PAGES['nb'] == 1)
                 <li >
-                    <a class="nav-link text-white p-3" href="#{{$CATEGORIES_PAGES['pages']->get(0)->route}}">
+                    <a class="nav-link text-white p-3" href="{{$infosPage->getRoute($CATEGORIES_PAGES['pages']->get(0)->route) }}">
                         <i class="{{ $CATEGORIES_PAGES['icone'] }}">
                             {{ $CATEGORIES_PAGES['nom'] }}
                         </i>
@@ -24,7 +24,7 @@
                         <ul class="nav nav-pills flex-column mb-auto">
                             @foreach($CATEGORIES_PAGES['pages'] as $PAGE)
                                 <li class="w-100">
-                                    <a class="nav-link text-white w-100" href="{{ $PAGE->route }}">
+                                    <a class="nav-link text-white w-100" href="{{ $infosPage->getRoute( $PAGE->route) }}">
                                         {{ $PAGE->nom }}
                                     </a>
                                 </li>

@@ -58,105 +58,105 @@ return new class extends Migration
         Page::insert([
             'id' => 1,
             'nom' => 'Liste film',
-            'route' => 'listeFilm',
+            'route' => 'Film.list',
             'pos' => 1,
             'categorie_page_id' => 1,
         ]);
         Page::insert([
             'id' => 2,
             'nom' => 'Film',
-            'route' => 'Film',
+            'route' => 'Film.show',
             'page_parent' => 1,
             'categorie_page_id' => 1
         ]);
         Page::insert([
             'id' => 3,
             'nom' => 'Liste KDM',
-            'route' => 'listeKdm',
+            'route' => 'Kdm.list',
             'pos' => 1,
             'categorie_page_id' => 2
         ]);
         Page::insert([
             'id' => 4,
             'nom' => 'Liste Film Serveur',
-            'route' => 'listeServ',
+            'route' => 'Serveur.list',
             'pos' => 1,
             'categorie_page_id' => 3
         ]);
         Page::insert([
             'id' => 5,
             'nom' => 'Liste Film Globecast',
-            'route' => 'listeGlobecast',
+            'route' => 'Globecast.list',
             'pos' => 1,
             'categorie_page_id' => 4
         ]);
         Page::insert([
             'id' => 6,
             'nom' => 'liste DCP',
-            'route' => 'listeDcp',
+            'route' => 'Dcp.list',
             'pos' => 1,
             'categorie_page_id' => 5
         ]);
         Page::insert([
             'id' => 7,
             'nom' => 'liste NAS',
-            'route' => 'listeNas',
+            'route' => 'Nas.list',
             'pos' => 1,
             'categorie_page_id' => 6
         ]);
         Page::insert([
             'id' => 8,
             'nom' => 'liste User',
-            'route' => 'listeUser',
+            'route' => 'User.list',
             'pos' => 1,
             'categorie_page_id' => 7
         ]);
         Page::insert([
             'id' => 9,
             'nom' => 'User',
-            'route' => 'User',
+            'route' => 'User.show',
             'page_parent' => 9,
             'categorie_page_id' => 7
         ]);
         Page::insert([
             'id' => 10,
             'nom' => 'Liste Role',
-            'route' => 'listRole',
+            'route' => 'Role.list',
             'pos' => 1,
             'categorie_page_id' => 8
         ]);
         Page::insert([
             'id' => 11,
             'nom' => 'Role',
-            'route' => 'Role',
+            'route' => 'Role.show',
             'page_parent' => 10,
             'categorie_page_id' => 8
         ]);
         Page::insert([
             'id' => 12,
             'nom' => 'Liste Client',
-            'route' => 'listClient',
+            'route' => 'Client.list',
             'pos' => 2,
             'categorie_page_id' => 8
         ]);
         Page::insert([
             'id' => 13,
             'nom' => 'Client',
-            'route' => 'Client',
+            'route' => 'Client.show',
             'page_parent' => 12,
             'categorie_page_id' => 8
         ]);
         Page::insert([
             'id' => 14,
             'nom' => 'Liste type client',
-            'route' => 'ListeTypeClient',
+            'route' => 'TypeClient.list',
             'pos' => 3,
             'categorie_page_id' => 8
         ]);
         Page::insert([
             'id' => 15,
             'nom' => 'Type Client',
-            'route' => 'TypeCLient',
+            'route' => 'TypeClient.show',
             'page_parent' => 14,
             'categorie_page_id' => 8
         ]);

@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\gestion\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,14 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
+});
+
+Route::get('/{cinema}/parametre/client', [ClientController::class, 'list']);
+
+Route::prefix('{cinema}')->group(base_path('routes/routeApp.php'));
+
+Route::prefix('{cinema}')->group(function (){
+    Route::prefix('{salle}')->name('Salle.')->group(base_path('routes/routeApp.php'));
 });
 
 Route::middleware('auth')->group(function () {
