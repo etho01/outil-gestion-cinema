@@ -20,7 +20,8 @@ return new class extends Migration
         Client::insert([
             'id' => 1,
             'nom' => 'gestionnaire',
-            'logo' => 'logo'
+            'logo' => 'logo',
+            'email'=> 'barbeynicolas.basly@gmail.com'
         ]);
         Role::insert([
             'id' => 1,

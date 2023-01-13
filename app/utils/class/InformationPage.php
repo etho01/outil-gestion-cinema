@@ -6,11 +6,13 @@ class InformationPage {
     private $request;
     private $cinema;
     private $salle;
+    private $Page;
 
-    function __construct ($request, $cinema, $salle){
+    function __construct ($page ,$request, $cinema, $salle){
         $this->request = $request;
         $this->cinema = $cinema;
         $this->salle = $salle;
+        $this->Page = $page;
     }
 
     public function pageIsSet(){

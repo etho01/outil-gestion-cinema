@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\user\User;
+use App\Models\client\Client;
 use Illuminate\Database\Seeder;
+use Database\Factories\client\ClientFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +23,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Client::factory()->count(10)
+        ->has(User::factory()->count(3))->create();
     }
 }

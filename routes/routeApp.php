@@ -19,7 +19,7 @@ Route::prefix('parametre')->group(function (){
     });
     Route::prefix('type-client')->name('TypeClient.')->controller(TypeClientController::class)->group(function(){
         Route::get('/', 'list')->name('list');
-        Route::get('/{type_client_slug}')->name('show');
+        Route::get('/{type_client_slug}', 'show')->name('show');
     });
     Route::prefix('role')->name('Role.')->controller(RoleController::class)->group(function(){
         Route::get('/', 'list')->name('list');
