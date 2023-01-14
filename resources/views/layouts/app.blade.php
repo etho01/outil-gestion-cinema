@@ -16,6 +16,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
+
+    @livewireStyles
 </head>
 <body class="vh-100 vh-100 d-flex flex-row">
 
@@ -51,5 +53,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

@@ -14,12 +14,11 @@ class table extends Component
      *
      * @return void
      */
-    public function __construct($typesclient, $route, $infostable, $infosPage)
+    public function __construct($typesclient, $route, $infostable)
     {
         $this->typesclient = $typesclient;
         $this->route = $route;
         $this->infostable = $infostable;
-        $this->infosPage = $infosPage;
     }
 
     /**
@@ -33,7 +32,6 @@ class table extends Component
             'typesclient' => $this->typesclient,
             'route' => $this->route,
             'infostable' => $this->infostable,
-            'infosPage' => $this->infosPage
         ]);
     }
 }

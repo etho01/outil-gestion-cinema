@@ -21,9 +21,9 @@ class TypeClientController extends Controller
         ]);
     }
 
-    public function show(Request $request, $cinema, $salle, $type_client_slug){
-        $infosPage = new informationPageFormulaire(Page::find(15), $request, $cinema, $salle, TypesClient::class, $type_client_slug);
-        if ($type_client_slug == 'new'){
+    public function show(Request $request, $cinema, $salle, $slug){
+        $infosPage = new informationPageFormulaire(Page::find(15), $request, $cinema, $salle, TypesClient::class, $slug);
+        if ($slug == 'new'){
             $listPagesEnable = collect();
         } else {
             $listPagesEnable = $infosPage->getInstanceWork()->pages()->get()->pluck('id');

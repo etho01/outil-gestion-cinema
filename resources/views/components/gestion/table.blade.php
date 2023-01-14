@@ -8,7 +8,7 @@
                     </td>
                 @endforeach
                 <td class="w-auto d-flex flex-row justify-content-end">
-                    <a class="btn btn-secondary" href="{{ $infosPage->getRoute($route, ['type_client_slug' => 'new']) }}">
+                    <a class="btn btn-secondary" href="{{ $route.'/new' }}">
                         Crée un nouvel element
                     </a>
                 </td>
@@ -23,7 +23,7 @@
                         </td>
                     @endforeach
                     <td class="w-auto d-flex flex-row justify-content-end">
-                        <a class="btn btn-secondary" href="{{ $infosPage->getRoute($route, ['type_client_slug' => $typeclient->slug]) }}">
+                        <a class="btn btn-secondary" href="{{ $route.'/'.$typeclient->slug }}">
                             Modier
                         </a>
                     </td>

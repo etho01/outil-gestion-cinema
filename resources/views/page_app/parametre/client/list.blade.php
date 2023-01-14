@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    test
+    <livewire:parametre.client.liste :infosPage="$infosPage"/>
 @endsection

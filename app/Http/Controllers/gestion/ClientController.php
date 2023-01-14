@@ -10,7 +10,7 @@ use App\utils\class\InformationPage;
 class ClientController extends Controller
 {
 
-    public function list(Request $request, $cinema, $salle = null){
+    public function list(Request $request, $cinema, $salle){
         $infosPage = new InformationPage(Page::find(12),$request, $cinema, $salle);
 
         return view('page_app.parametre.client.list', [
@@ -18,7 +18,7 @@ class ClientController extends Controller
         ]);
     }
 
-    public function show(Request $request){
+    public function show(Request $request, $cinema, $salle, $slug){
         return '';
     }
 }
