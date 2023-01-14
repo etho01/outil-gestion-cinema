@@ -1,3 +1,3 @@
-<h4 class="ms-3">
+<h4 class="p-3">
     {{ $title }}
 </h4>

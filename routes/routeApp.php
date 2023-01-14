@@ -16,6 +16,7 @@ Route::prefix('parametre')->group(function (){
     Route::prefix('client')->name('Client.')->controller(ClientController::class)->group(function (){
         Route::get('/', 'list')->name('list');
         Route::get('/{slug}', 'show')->name('show');
+        Route::post('/create', 'store')->name('create');
     });
     Route::prefix('type-client')->name('TypeClient.')->controller(TypeClientController::class)->group(function(){
         Route::get('/', 'list')->name('list');

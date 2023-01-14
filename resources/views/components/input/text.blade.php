@@ -2,9 +2,13 @@
     @if (isset($label))
         <label for="{{ $name }}" class="form-check-label">{{ $label }}</label>
     @endif
-    <input type="text" class="form-control" 
-        name="{{$name}}" id="{{ $name }}"
-        @isset($placeholder) placeholder="{{ $placeholder }}" @endisset
-        @isset($champLivewire) wire:model="{{ $champLivewire }}" @endisset
-        @isset($value) {{ $value }} @endisset>
+    <div class="input-group">
+        @isset($inputGroupBefore) {{ $inputGroupBefore }} @endisset
+        <input type="text" class="form-control" 
+            name="{{$name}}" id="{{ $name }}"
+            @isset($placeholder) placeholder="{{ $placeholder }}" @endisset
+            @isset($champLivewire) wire:model="{{ $champLivewire }}" @endisset
+            @isset($value) value="{{$value }}" @endisset>
+        @isset($inputGroupAfter) {{ $inputGroupAfter }} @endisset
+    </div>
 </div>

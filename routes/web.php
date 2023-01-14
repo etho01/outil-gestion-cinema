@@ -25,9 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/{cinema}/parametre/client', [ClientController::class, 'list']);
 
-Route::prefix('{cinema}')->group(function (){
-    Route::prefix('{salle}')->name('Salle.')->group(base_path('routes/routeApp.php'));
-});
+Route::prefix('{cinema}')->group(base_path('routes/routeApp.php'));
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -9,8 +9,8 @@ class informationPageFormulaire extends InformationPage{
     private $slug;
     private $instanceClass;
 
-    function __construct ($page ,$request, $cinema, $salle, $classWork, $slug){
-        parent::__construct($page, $request, $cinema, $salle);
+    function __construct ($page ,$request, $cinema, $classWork, $slug){
+        parent::__construct($page, $request, $cinema);
         $this->slug = $slug;
         $this->classWork = $classWork;
         if (!$this->isNewElement()){
