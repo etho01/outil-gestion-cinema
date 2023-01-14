@@ -4,8 +4,7 @@
     @endif
     <input type="text" class="form-control" 
         name="{{$name}}" id="{{ $name }}"
-         placeholder="{{ isset($placeholder) ? $placeholder : '' }}"
-         @isset($champLivewire)
-            wire:model="{{ $champLivewire }}"
-         @endisset>
+        @isset($placeholder) placeholder="{{ $placeholder }}" @endisset
+        @isset($champLivewire) wire:model="{{ $champLivewire }}" @endisset
+        @isset($value) {{ $value }} @endisset>
 </div>

@@ -4,7 +4,8 @@
                 @if ($filtre['type'] == 'text')
                     <x-input.text :placeholder="$filtre['placeholder']" :label="$filtre['label']" :name="$filtre['name']" :class="$filtre['class']" :champLivewire="$filtre['champLivewire']"/>
                 @elseif($filtre['type'] == 'select')
-                    <x-input.select :filtre="$filtre"/>
+                    <x-input.select :class="$filtre['class']" :champLivewire="$filtre['champLivewire']"
+                     :label="$filtre['label']" :name="$filtre['name']" :elements="$filtre['elements']" :defaultValue="$filtre['defaultValue']"/>
                 @endif
         @endforeach
     </div>

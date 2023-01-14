@@ -20,7 +20,8 @@ class Liste extends Component
             ],
             'filtre' => [
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-10'],
-                ['type' => 'select', 'datas' => 'filtreTypeClient', 'element' => TypesClient::all(), 'nom' => 'type de client', 'with' => 2]
+                ['type' => 'select', 'champLivewire' => 'filtreTypeClient', 'elements' => TypesClient::all(), 'label' => 'type de client', 'class' => 'col-2', 'name' => 'type_client',
+                'defaultValue' => 0]
             ]
         ]);
     }
