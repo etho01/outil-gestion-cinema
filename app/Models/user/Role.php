@@ -14,6 +14,7 @@ class Role extends Model
         'nom',
         'is_admin',
         'client_id',
+        'slug'
     ];
 
     public function pages(){

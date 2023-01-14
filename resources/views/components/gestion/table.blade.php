@@ -8,7 +8,7 @@
                     </td>
                 @endforeach
                 <td class="w-auto d-flex flex-row justify-content-end">
-                    <a class="btn btn-secondary" href="type-client/new">
+                    <a class="btn btn-secondary" href="{{ $infosPage->getRoute($route, ['type_client_slug' => 'new']) }}">
                         Crée un nouvel element
                     </a>
                 </td>
@@ -18,13 +18,13 @@
             @foreach ($typesclient as $typeclient)
                 <tr>
                     @foreach($infostable as $nom => $infos)
-                        <td>
+                        <td class="">
                             {{ $typeclient->{$nom} }}
                         </td>
                     @endforeach
                     <td class="w-auto d-flex flex-row justify-content-end">
-                        <a class="btn btn-secondary" href="type-client/{{ $typeclient->slug }}">
-                            Crée un nouvel element
+                        <a class="btn btn-secondary" href="{{ $infosPage->getRoute($route, ['type_client_slug' => $typeclient->slug]) }}">
+                            Modier
                         </a>
                     </td>
                 </tr>

@@ -13,5 +13,6 @@ class Film extends Model
         'id',
         'distributeur_id',
         'durree',
+        'slug'
    ];
 }

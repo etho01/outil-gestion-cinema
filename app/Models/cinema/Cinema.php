@@ -13,5 +13,6 @@ class Cinema extends Model
         'id',
         'nom',
         'client_id',
+        'slug'
     ];
 }

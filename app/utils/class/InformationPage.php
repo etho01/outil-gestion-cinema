@@ -19,11 +19,19 @@ class InformationPage {
         return $this->salle != null;
     }
 
-    public function getRoute($nameRoute){
+    public function getRoute($nameRoute, $paramSup = array()){
         if ($this->pageIsSet()){
-            return route('Salle.'.$nameRoute, ['cinema' => $this->cinema, 'salle' => $this->salle]);
+            return route('Salle.'.$nameRoute, ['cinema' => $this->cinema, 'salle' => $this->salle] + $paramSup);
         } else {
-            return route($nameRoute, ['cinema' => $this->cinema]);
+            return route($nameRoute, ['cinema' => $this->cinema] + $paramSup);
+        }
+    }
+
+    public function getinfosRoute(){
+        if ($this->pageIsSet()){
+            return ['cinema' => $this->cinema, 'salle' => $this->salle];
+        } else {
+            return ['cinema' => $this->cinema];
         }
     }
 

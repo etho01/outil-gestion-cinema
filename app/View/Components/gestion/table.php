@@ -8,16 +8,18 @@ class table extends Component
 {
     public $typeclient;
     public $route;
+    public $infosPage;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($typesclient, $route, $infostable)
+    public function __construct($typesclient, $route, $infostable, $infosPage)
     {
         $this->typesclient = $typesclient;
         $this->route = $route;
         $this->infostable = $infostable;
+        $this->infosPage = $infosPage;
     }
 
     /**
@@ -30,7 +32,8 @@ class table extends Component
         return view('components.gestion.table',[
             'typesclient' => $this->typesclient,
             'route' => $this->route,
-            'infostable' => $this->infostable
+            'infostable' => $this->infostable,
+            'infosPage' => $this->infosPage
         ]);
     }
 }

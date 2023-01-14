@@ -12,6 +12,7 @@ class Salle extends Model
     protected $fillable = [
         'id',
         'nom',
-        'cinema_id'
+        'cinema_id',
+        'slug'
     ];
 }
