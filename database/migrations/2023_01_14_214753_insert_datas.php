@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\User;
 use App\Models\page\Page;
+use App\Models\user\Role;
+use App\Models\user\Users_role;
+use App\Models\client\Client;
+use App\Models\client\TypesClient;
 use App\Models\page\CategoriePage;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +20,37 @@ return new class extends Migration
      */
     public function up()
     {
+        TypesClient::insert([
+            'id' => 1,
+            'nom' => 'admin',
+            'slug' => 'admin'
+        ]);
+        Client::insert([
+            'id' => 1,
+            'nom' => 'gestionnaire',
+            'logo' => 'logo',
+            'email'=> 'barbeynicolas.basly@gmail.com',
+            'slug' => 'gestionnaire',
+            'types_client_id' => 1
+        ]);
+        Role::insert([
+            'id' => 1,
+            'nom' => 'administrateur',
+            'is_admin' => true,
+            'client_id' => 1
+        ]);
+        User::insert([
+            'id' => 1,
+            'name' => 'test',
+            'email' => 'test@test.fr',
+            'client_id' => 1,
+            'password' => Hash::make('testtest'),
+            'slug' => 'test',
+        ]);
+        Users_role::insert([
+            'user_id' => 1,
+            'role_id' => 1
+        ]);
         CategoriePage::insert([
             'id' => 1,
             'icone' => 'fa-solid fa-film',
@@ -160,7 +196,6 @@ return new class extends Migration
             'page_parent' => 14,
             'categorie_page_id' => 8
         ]);
-
     }
 
     /**
@@ -170,6 +205,6 @@ return new class extends Migration
      */
     public function down()
     {
-        
+        //
     }
 };

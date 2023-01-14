@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\page\Page;
 use Illuminate\View\Component;
 use App\Models\page\CategoriePage;
 
@@ -27,7 +28,7 @@ class ListePage extends Component
     public function render()
     {
         return view('components.liste-page', [
-            'TAB_CATEGORIES_PAGES' => CategoriePage::getInfosPagesListePage(),
+            'TAB_CATEGORIES_PAGES' => Page::getPageAndCategorieWherePageIn(Page::whereNull('page_parent')->pluck('id')),
             'infosPage' => $this->infosPage
         ]);
     }

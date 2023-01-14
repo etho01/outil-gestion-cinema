@@ -21,7 +21,7 @@ class Page extends Model
 
     public static function getPageAndCategorieWherePageIn($array_pages){
         return Page::join('categorie_pages', 'pages.categorie_page_id', '=', 'categorie_pages.id')->
-        select('pages.*', 'categorie_pages.nom as nom_categorie')->wherein('pages.id', $array_pages)->
+        select('pages.*', 'categorie_pages.nom as nom_categorie', "categorie_pages.icone as icone_categorie")->wherein('pages.id', $array_pages)->
         orderby('categorie_pages.id')->get()->groupBy('nom_categorie');
     }
 }
