@@ -43,7 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
-        return $this->belongsTo(Role::class);
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'users_roles');
+    }
+
+    public function del(){
+        $this->roles()->detach();
+        $this->delete(); 
     }
 }

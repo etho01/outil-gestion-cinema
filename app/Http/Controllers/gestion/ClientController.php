@@ -42,7 +42,7 @@ class ClientController extends Controller
             'nom' => ['required',
                     Rule::unique('clients')->ignore($CLIENT),
                     'max:255',
-                    Rule::notIn(['new', 'create', 'update'])],
+                    Rule::notIn(['new', 'create', 'update', 'delete'])],
             'type_client' => ['required', 'exists:types_clients,id'],
             'email' => ['required', 'email']
         ]); 
@@ -79,6 +79,13 @@ class ClientController extends Controller
         }
         $CLIENT->updateCinemaClient($tab_liste_cinema);
 
+        return redirect()->route('Client.list', $infosPage->getinfosRoute())->withInput();
+    }
+
+    public function delete(Request $request, $cinema, $slug){
+        $infosPage = new InformationPage(Page::find(15), $request, $cinema);
+        $CLIENT = Client::getBySlug($slug);
+        if ($CLIENT != null) $CLIENT->del();
         return redirect()->route('Client.list', $infosPage->getinfosRoute())->withInput();
     }
 }

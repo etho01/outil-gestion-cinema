@@ -172,23 +172,24 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types_clients');
-        Schema::dropIfExists('clients');
-        Schema::dropIfExists('roles');
-        Schema::dropIfExists('categorie_pages');
-        Schema::dropIfExists('pages');
-        Schema::dropIfExists('types_clients_pages');
-        Schema::dropIfExists('cinemas');
-        Schema::dropIfExists('salles');
-        Schema::dropIfExists('roles_pages');
-        Schema::dropIfExists('distributeurs');
-        Schema::dropIfExists('films');
-        Schema::dropIfExists('options');
-        Schema::dropIfExists('combinaison_options');
-        Schema::dropIfExists('dcp_cinemas');
-        Schema::dropIfExists('stockage_elements');
-        Schema::dropIfExists('combinaison_stockage_elements');
-        Schema::dropIfExists('sceances');
+
         Schema::dropIfExists('kdm');
+        Schema::dropIfExists('sceances');
+        Schema::dropIfExists('combinaison_stockage_elements');
+        Schema::dropIfExists('stockage_elements');
+        Schema::dropIfExists('dcp_cinemas');
+        Schema::dropIfExists('combinaison_options');
+        Schema::dropIfExists('options');
+        Schema::dropIfExists('films');
+        Schema::dropIfExists('distributeurs');
+        Schema::dropIfExists('roles_pages');
+        Schema::dropIfExists('salles');
+        Schema::dropIfExists('cinemas');
+        Schema::dropIfExists('types_clients_pages');
+        Schema::dropIfExists('pages');
+        Schema::dropIfExists('categorie_pages');
+        Schema::dropIfExists('roles');
+        Schema::dropIfExists('clients');
+        Schema::dropIfExists('types_clients');
     }
 };

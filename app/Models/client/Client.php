@@ -2,6 +2,8 @@
 
 namespace App\Models\client;
 
+use App\Models\User;
+use App\Models\user\Role;
 use Illuminate\Support\Str;
 use App\Models\cinema\Salle;
 use App\Models\cinema\Cinema;
@@ -18,6 +20,33 @@ class Client extends Model
         'logo',
         'email'
     ];
+
+    public function cinemas(){
+        return $this->hasMany(Cinema::class);
+    }
+
+    public function roles(){
+        return $this->hasMany(Role::class);
+    }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
+    public static function getBySlug($slug){
+        return Client::where('slug', $slug)->first();
+    } 
+
+    public function del(){
+        $cinemas = $this->cinemas()->get();
+        foreach ($cinemas as $cinema) $cinema->del();
+        $roles = $this->roles()->get();
+        foreach ($roles as $role) $role->del();
+        $users = $this->users()->get();
+        foreach ($users as $user) $user->del();
+        $this->delete();
+
+    }
 
     //sous la forme collecion => lise de cinemas => [infos cinema] => liste salle
     public function updateCinemaClient($ListeCinema){

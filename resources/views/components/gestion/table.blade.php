@@ -26,6 +26,9 @@
                         <a class="btn btn-secondary" href="{{ $route.'/'.$typeclient->slug }}">
                             Modier
                         </a>
+                        <a class="btn btn-secondary ms-3" href="{{ $route.'/delete/'.$typeclient->slug }}">
+                            Supprimer
+                        </a>
                     </td>
                 </tr>
             @endforeach

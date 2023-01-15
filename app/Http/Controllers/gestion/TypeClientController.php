@@ -44,7 +44,7 @@ class TypeClientController extends Controller
             'nom' => ['required',
                     Rule::unique('types_clients')->ignore($TYPE_CLIENT),
                     'max:255',
-                    Rule::notIn(['new', 'create', 'update']),]
+                    Rule::notIn(['new', 'create', 'update', 'delete']),]
         ]);
         $infosPage = new InformationPage(Page::find(15), $request, $cinema);
         if ($request->input('id') == 0){ // si c'est un nouvel element
@@ -63,5 +63,12 @@ class TypeClientController extends Controller
         }
         return redirect()->route('TypeClient.list', $infosPage->getinfosRoute())->withInput();
 
+    }
+
+    public function delete(Request $request, $cinema, $slug){
+        $infosPage = new InformationPage(Page::find(15), $request, $cinema);
+        $TYPE_CLIENT = TypesClient::getBySlug($slug);
+        if ($TYPE_CLIENT != null) $TYPE_CLIENT->del();
+        return redirect()->route('TypeClient.list', $infosPage->getinfosRoute())->withInput();
     }
 }

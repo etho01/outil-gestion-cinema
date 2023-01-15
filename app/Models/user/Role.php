@@ -2,8 +2,10 @@
 
 namespace App\Models\user;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\page\Page;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
 {
@@ -18,6 +20,16 @@ class Role extends Model
     ];
 
     public function pages(){
-        return $this->morphToMany(Page::class, 'paggable');
+        return $this->morphToMany(Page::class, 'role', 'roles_pages');
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'users_roles');
+    }
+
+    public function del(){
+        Roles_page::where('role_id', $this->id)->delete();
+        $this->users()->detach();
+        $this->delete();
     }
 }
