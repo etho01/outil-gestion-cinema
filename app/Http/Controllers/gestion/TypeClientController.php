@@ -53,14 +53,12 @@ class TypeClientController extends Controller
                 'slug' => Str::of($request->input('nom'))->slug('-')
             ]);
         }
+        $TYPE_CLIENT->pages()->detach();
         $tab_liste_query = $request->all();
         $tab_liste_page = array();
         foreach($tab_liste_query as $key => $query){
             if (str_contains($key, 'page_')){
-                TypesClients_page::insert([
-                    'types_client_id' => $TYPE_CLIENT->id,
-                    'page_id' => str_replace('page_', '', $key)
-                ]);
+                $TYPE_CLIENT->pages()->attach(str_replace('page_', '', $key));
             }
         }
         return redirect()->route('TypeClient.list', $infosPage->getinfosRoute())->withInput();

@@ -13,7 +13,7 @@
                 <x-layout.sub-title title="Information generaux" />
                 <div class="d-flex row">
                     <x-input.text label="Nom du client" name="nom" class="col-8" placeholder="Nom du Client" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}"/>
-                    <x-input.select class="col-4" name="type_client" :elements="$typeClient" label="Type du client"/>
+                    <x-input.select class="col-4" name="type_client" :elements="$typeClient" label="Type du client" defaultValue="{{old('type_client') ?? $infosPage->getInfosInstance('types_client_id')}}"/>
                     <x-input.text label="Email" name="email" class="col-12" placeholder="Email" value="{{ old('email') ?? $infosPage->getInfosInstance('email') }}"/>
                 </div>
                 @error('nom')

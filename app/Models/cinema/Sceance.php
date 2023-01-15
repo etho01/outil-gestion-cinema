@@ -15,4 +15,5 @@ class Sceance extends Model
         'combinaison_option_id',
         'date'
     ];
+
 }

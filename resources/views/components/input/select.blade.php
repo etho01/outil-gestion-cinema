@@ -6,7 +6,7 @@
         <option value="0" selected>---</option>
         @foreach ($elements as $element)
             <option value="{{$element->id}}" 
-                @isset($record)   @if ($element->id == $defaultValue) selected @endif @endisset>{{$element->nom}}</option>
+                @isset($defaultValue)   @if ($element->id == $defaultValue) selected @endif @endisset>{{$element->nom}}</option>
         @endforeach
     </select>
 </div>
