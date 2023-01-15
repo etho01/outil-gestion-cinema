@@ -13,18 +13,6 @@ use App\Http\Controllers\cinema\GlobecastController;
 use App\Http\Controllers\gestion\TypeClientController;
 
 Route::prefix('parametre')->group(function (){
-    Route::prefix('client')->name('Client.')->controller(ClientController::class)->group(function (){
-        Route::get('/', 'list')->name('list');
-        Route::get('/{slug}', 'show')->name('show');
-        Route::post('/create', 'store')->name('create');
-        Route::get('/delete/{slug}', 'delete')->name('delete');
-    });
-    Route::prefix('type-client')->name('TypeClient.')->controller(TypeClientController::class)->group(function(){
-        Route::get('/', 'list')->name('list');
-        Route::get('/{slug}', 'show')->name('show');
-        Route::post('/create', 'store')->name('create');
-        Route::get('/delete/{slug}', 'delete')->name('delete');
-    });
     Route::prefix('role')->name('Role.')->controller(RoleController::class)->group(function(){
         Route::get('/', 'list')->name('list');
         Route::get('/{slug}')->name('show');

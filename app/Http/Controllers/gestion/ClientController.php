@@ -17,16 +17,16 @@ use App\utils\class\informationPageFormulaire;
 class ClientController extends Controller
 {
 
-    public function list(Request $request, $cinema){
-        $infosPage = new InformationPage(Page::find(12),$request, $cinema);
+    public function list(Request $request){
+        $infosPage = new InformationPage(Page::find(12),$request, null);
 
         return view('page_app.parametre.client.list', [
             'infosPage' => $infosPage
         ]);
     }
 
-    public function show(Request $request, $cinema, $slug){
-        $infosPage = new informationPageFormulaire(Page::find(13),$request, $cinema,Client::class ,$slug);
+    public function show(Request $request, $slug){
+        $infosPage = new informationPageFormulaire(Page::find(13),$request, null ,Client::class ,$slug);
 
         
         return view('page_app.parametre.client.show', [
@@ -35,9 +35,10 @@ class ClientController extends Controller
         ]);
     }
 
-    public function store(Request $request, $cinema){
-        $infosPage = new InformationPage(Page::find(12),$request, $cinema);
+    public function store(Request $request){
+        $infosPage = new InformationPage(Page::find(12),$request, null);
         $CLIENT = Client::find($request->input('id'));
+
         $request->validate([
             'nom' => ['required',
                     Rule::unique('clients')->ignore($CLIENT),
@@ -50,7 +51,7 @@ class ClientController extends Controller
         if ($request->input('id') == 0){ // si c'est un nouvel element
             $CLIENT = Client::create([
                 'nom' => $request->input('nom'),
-                'slug' => Str::of($request->input('nom'))->slug('-'),
+                'slug' => Str::of($request->input('nom'))->slug('-')->value(),
                 'logo' => '1',
                 'email' => $request->input('email'),
                 'types_client_id' => $request->input('type_client')
@@ -82,8 +83,8 @@ class ClientController extends Controller
         return redirect()->route('Client.list', $infosPage->getinfosRoute())->withInput();
     }
 
-    public function delete(Request $request, $cinema, $slug){
-        $infosPage = new InformationPage(Page::find(15), $request, $cinema);
+    public function delete(Request $request, $slug){
+        $infosPage = new InformationPage(Page::find(15), $request, null);
         $CLIENT = Client::getBySlug($slug);
         if ($CLIENT != null) $CLIENT->del();
         return redirect()->route('Client.list', $infosPage->getinfosRoute())->withInput();

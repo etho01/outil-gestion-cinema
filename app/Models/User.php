@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'client_id'
     ];
 
     /**
@@ -42,6 +43,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin(){
+        $roles = $this->roles()->get();
+        foreach ($roles as $role){
+            if ($role->is_admin) return true;
+        }
+        return false;
+    }
+
+    public function getPageAutorized($idClient){
+        if ($this->isAdmin()){
+            $Client = Client::find($idClient);
+            return Typesclient::find($Client->types_client_id)->pages();
+        } else {
+
+        }
+    }
 
     public function roles(){
         return $this->belongsToMany(Role::class, 'users_roles');

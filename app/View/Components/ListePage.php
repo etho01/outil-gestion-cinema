@@ -3,8 +3,10 @@
 namespace App\View\Components;
 
 use App\Models\page\Page;
+use App\Models\cinema\Cinema;
 use Illuminate\View\Component;
 use App\Models\page\CategoriePage;
+use Illuminate\Support\Facades\Auth;
 
 class ListePage extends Component
 {
@@ -27,9 +29,11 @@ class ListePage extends Component
      */
     public function render()
     {
+        $listCinema = Cinema::getCinemaByClientName(Auth::user()->isAdmin());
         return view('components.liste-page', [
-            'TAB_CATEGORIES_PAGES' => Page::getPageAndCategorieWherePageIn(Page::whereNull('page_parent')->pluck('id')),
-            'infosPage' => $this->infosPage
+            'TAB_CATEGORIES_PAGES' => Page::getPageAndCategorieWherePageIn(Page::getPageAutorized($this->infosPage->isGlobalPage())),
+            'infosPage' => $this->infosPage,
+            'listCinema' => $listCinema
         ]);
     }
 }

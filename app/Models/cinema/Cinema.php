@@ -5,6 +5,7 @@ namespace App\Models\cinema;
 use App\Models\user\Roles_page;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -49,5 +50,11 @@ class Cinema extends Model
 
     public static function getCinema($idclient){
         return Cinema::where('client_id', $idclient);
+    }
+
+    public static function getCinemaByClientName($isAdmin){
+        $eloquent =  Cinema::join('clients', 'cinemas.client_id', '=', 'clients.id')->select('cinemas.*', 'clients.nom as nom_client');
+        if (!$isAdmin) $eloquent->where('clients.id', Auth::user()->client_id);
+        return $eloquent->get()->groupBy('nom_client');
     }
 }

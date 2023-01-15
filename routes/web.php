@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\gestion\ClientController;
+use App\Http\Controllers\gestion\TypeClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +21,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', [HomeController::class, 'index']);
+
+Route::prefix('parametre')->group(function (){
+    Route::prefix('client')->name('Client.')->controller(ClientController::class)->group(function (){
+        Route::get('/', 'list')->name('list');
+        Route::get('/{slug}', 'show')->name('show');
+        Route::post('/create', 'store')->name('create');
+        Route::get('/delete/{slug}', 'delete')->name('delete');
+    });
+    Route::prefix('type-client')->name('TypeClient.')->controller(TypeClientController::class)->group(function(){
+        Route::get('/', 'list')->name('list');
+        Route::get('/{slug}', 'show')->name('show');
+        Route::post('/create', 'store')->name('create');
+        Route::get('/delete/{slug}', 'delete')->name('delete');
+    });
 });
 
-Route::get('/{cinema}/parametre/client', [ClientController::class, 'list']);
-
-Route::prefix('{cinema}')->group(base_path('routes/routeApp.php'));
+Route::middleware('auth')->prefix('{cinema}')->group(base_path('routes/routeApp.php'));
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

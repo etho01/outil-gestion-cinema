@@ -16,9 +16,11 @@ class Client extends Model
 
     protected $fillable = [
         'id',
+        'slug',
         'nom',
         'logo',
-        'email'
+        'email',
+        'types_client_id'
     ];
 
     public function cinemas(){

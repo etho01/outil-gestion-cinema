@@ -22,4 +22,8 @@ class InformationPage {
         return ['cinema' => $this->cinema];
     }
 
+    public function isGlobalPage(){
+        return $this->cinema == null;
+    }
+
 }

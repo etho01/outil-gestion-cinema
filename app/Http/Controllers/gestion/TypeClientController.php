@@ -14,16 +14,16 @@ use App\utils\class\informationPageFormulaire;
 
 class TypeClientController extends Controller
 {
-    public function list(Request $request, $cinema){
-        $infosPage = new InformationPage(Page::find(14), $request, $cinema);
+    public function list(Request $request){
+        $infosPage = new InformationPage(Page::find(14), $request, null);
 
         return view('page_app.parametre.typeClient.list', [
             'infosPage' => $infosPage
         ]);
     }
 
-    public function show(Request $request, $cinema, $slug){
-        $infosPage = new informationPageFormulaire(Page::find(15), $request, $cinema, TypesClient::class, $slug);
+    public function show(Request $request, $slug){
+        $infosPage = new informationPageFormulaire(Page::find(15), $request, null, TypesClient::class, $slug);
         if ($slug == 'new'){
             $listPagesEnable = collect();
         } else {
@@ -38,7 +38,7 @@ class TypeClientController extends Controller
         ]);
     }
 
-    public function store(Request $request, $cinema){
+    public function store(Request $request){
         $TYPE_CLIENT = TypesClient::find((int) $request->input('id'));
         $request->validate([
             'nom' => ['required',
@@ -46,7 +46,7 @@ class TypeClientController extends Controller
                     'max:255',
                     Rule::notIn(['new', 'create', 'update', 'delete']),]
         ]);
-        $infosPage = new InformationPage(Page::find(15), $request, $cinema);
+        $infosPage = new InformationPage(Page::find(15), $request, null);
         if ($request->input('id') == 0){ // si c'est un nouvel element
             $TYPE_CLIENT = TypesClient::create([
                 'nom' => $request->input('nom'),
@@ -65,8 +65,8 @@ class TypeClientController extends Controller
 
     }
 
-    public function delete(Request $request, $cinema, $slug){
-        $infosPage = new InformationPage(Page::find(15), $request, $cinema);
+    public function delete(Request $request, $slug){
+        $infosPage = new InformationPage(Page::find(15), $request, null);
         $TYPE_CLIENT = TypesClient::getBySlug($slug);
         if ($TYPE_CLIENT != null) $TYPE_CLIENT->del();
         return redirect()->route('TypeClient.list', $infosPage->getinfosRoute())->withInput();
