@@ -33,6 +33,10 @@ class Cinema extends Model
         return $this->hasMany(Salle::class);
     }
 
+    public static function getCinemaSlug($slug){
+        return Cinema::where('slug', $slug)->first();
+    }
+
     public static function supCinema($idCinema){
         if (Cinema::cinemaExist($idClient, $idSalle)){
             $CINEMA = Cinema::find($idSalle);

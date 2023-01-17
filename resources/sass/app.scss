@@ -7,6 +7,10 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+@import 'color';
+
+@import 'block';
+
 .image_menu_cinema{
     background-image: url('/images/image_cinema.jpg');
     background-repeat: no-repeat;
@@ -14,20 +18,20 @@
 }
 
 .btn-login{
-    background-color: #d1d5db;
+    background-color: $base-color;
 
     &:hover{
-        background-color: #9ca3af;
+        background-color: $color-hover;
         transition: 0.3s;
     }
 }
 
 body{
-    background-color: #f3f4f6;
+    background-color: $body-bg;
 }
 
 .menu{
-    background-color: #d1d5db;
+    background-color: $base-color;
     text-decoration: none;
     font-size: x-large;
     
@@ -37,7 +41,7 @@ body{
         }
 
         > div:hover{
-            background-color: #9ca3af;
+            background-color: $color-hover;
             cursor: pointer;
         }
     }

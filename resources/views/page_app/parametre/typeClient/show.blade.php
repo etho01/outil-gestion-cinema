@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <form action="{{ $infosPage->getRoute("TypeClient.create") }}" method="POST">
-            <div class="card-body">
+            <div class="card-body p-5">
 
                 @csrf
                 @if($infosPage->isNewElement())
@@ -18,11 +18,12 @@
                 @error('nom')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+                <x-layout.sub-title title="gestion des pages" />
                 <x-gestion.gest-liste-page :listPageAutorized="$listPageAutorized" :listPagesEnable="$listPagesEnable" />
 
             </div>
-            <div class="card-footer d-flex justify-element-end">
-                <input type="submit" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
+            <div class="card-footer d-flex justify-content-end">
+                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
             </div>
         </form>
     </div>

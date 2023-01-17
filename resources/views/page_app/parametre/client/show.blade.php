@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <form action="{{ $infosPage->getRoute("Client.create") }}" method="POST">
-            <div class="card-body">
+            <div class="card-body p-5">
                 @csrf
                 @if($infosPage->isNewElement())
                     <input type="hidden" name="id", value="0">
@@ -26,10 +26,10 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <x-layout.sub-title title="Information sur les cinemas et les salles du client" />
-                <livewire:parametre.client.liste-cinema  :idClient="$infosPage->getInfosInstance('id')"/>
+                <livewire:parametre.client.liste-cinema  :idClient="$infosPage->getInfosInstance('id')" :datasUpdateCine="old('datasUpdateCine') ?? ''"/>
             </div>
-            <div class="card-footer d-flex justify-element-end">
-                <input type="submit" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
+            <div class="card-footer d-flex justify-content-end">
+                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
             </div>
         </form>
     </div>

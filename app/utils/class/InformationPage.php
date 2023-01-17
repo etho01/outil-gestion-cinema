@@ -2,6 +2,8 @@
 
 namespace App\utils\class;
 
+use App\Models\cinema\Cinema;
+
 class InformationPage {
     private $request;
     private $cinema;
@@ -11,6 +13,11 @@ class InformationPage {
         $this->request = $request;
         $this->cinema = $cinema;
         $this->Page = $page;
+        if ($this->isGlobalPage()){
+            $this->instanceCinema = null;
+        } else {
+            $this->instanceCinema = Cinema::getCinemaSlug($this->cinema);
+        }
     }
 
 
@@ -24,6 +31,10 @@ class InformationPage {
 
     public function isGlobalPage(){
         return $this->cinema == null;
+    }
+
+    public function instanceCinema(){
+        return $this->instanceCinema;
     }
 
 }

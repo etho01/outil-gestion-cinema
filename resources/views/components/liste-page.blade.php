@@ -1,4 +1,4 @@
-<div class="bg-dark menu-slide d-flex flex-column menu-bar" style="width: 200px">
+<div class="bg-dark menu-slide d-flex flex-column menu-bar " style="width: 200px">
     <div class="d-flex flex-columns justify-content-center p-2 bg-dark">
         <div class="fs-1 border-bottom text-white pb-2 text-center">{{ config('APP_NAME', 'Laravel') }}</div>
     </div>

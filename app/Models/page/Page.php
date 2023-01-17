@@ -2,6 +2,8 @@
 
 namespace App\Models\page;
 
+use App\Models\client\Client;
+use App\Models\client\TypesClient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -20,13 +22,20 @@ class Page extends Model
         'categoriesPages_id'
     ];
 
-    public static function getPageAutorized($publicPageBase, $CINEMA = null){
+    public static function getPageAutorized($publicPageBase, $CINEMA = null, $hideShow = null){
         $basePageAutorized = collect();
         if (Auth::user()->isAdmin() && Auth::user()->client_id == 1){ // si administrateur de l'entreprise gerant le site
             $basePageAutorized = $basePageAutorized->merge(collect([config('global.PAGES.PAGE_LIST_CLIENT'), config('global.PAGES.PAGE_LIST_TYPE_CLIENT')]));
         }
         if ($publicPageBase){// le cinema n'est pas selectionner
             return $basePageAutorized;
+        } else {
+            if (Auth::user()->isAdmin()){
+                $CLIENT = Client::find($CINEMA->client_id);
+                $eloquent = TypesClient::find($CLIENT->types_client_id)->pages();
+                if ($hideShow) $eloquent->whereNull('page_parent');
+                return $basePageAutorized->concat($eloquent->get()->pluck('id'));
+            }
         }
     }
 

@@ -1,18 +1,33 @@
 <div>
+    <input type="hidden" name='datasUpdateCine' value=@json($datasUpdateCine)>
     <div class="pt-3">
         @foreach ($ListeCinema as $numberCinema => $ListeSalle)
             <div class="d-flex flex-row justify-content-between">
-                <x-input.text name="{{ 'cine'.$numberCinema }}" placeholder="Nom du cinema" class="w-100" 
-                    champLivewire="valueCinema.{{ $numberCinema }}"  :value="$valueCinema[$numberCinema] ?? ''" />
-                <input type="button" class="btn" value="supprimer le cinema" wire:click="supp_cinema({{$numberCinema}})">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="{{ 'cine'.$numberCinema }}" id="{{ 'cine'.$numberCinema }}"
+                    placeholder="Nom du cinema" wire:model="valueCinema.{{ $numberCinema }}" value="{{$valueCinema[$numberCinema] ?? ''}}">
+
+                    <button type="button" wire:click="supp_cinema({{$numberCinema}})" class="input-group-text"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Supprimer le cinema">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
-            <div class="px-5">
+            <div class="ps-5">
                 @foreach ($ListeSalle as $numberSalle => $Salle)
                     
                     <div class="d-flex flex-row justify-content-between pt-3">
-                        <x-input.text name="{{ 'salle'.$numberCinema.'-'.$numberSalle }}" placeholder="Nom de la salle" class="w-100"
-                             champLivewire="valueSalle.{{ $numberCinema }}.{{ $numberSalle }}" :value="$valueSalle[$numberCinema][$numberCinema] ?? ''" />
-                        <input type="button" class="btn" value="supprimer la salle" wire:click="supp_salle({{$numberCinema}}, {{ $numberSalle }})">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="{{ 'salle'.$numberCinema.'-'.$numberSalle }}" 
+                            id="{{ 'salle'.$numberCinema.'-'.$numberSalle }}" placeholder="Nom de la salle"
+                            value="{{ $valueSalle[$numberCinema][$numberSalle] ?? '' }}"
+                            wire:model="valueSalle.{{ $numberCinema }}.{{ $numberSalle }}" />
+
+                            <button type="button" wire:click="supp_salle({{$numberCinema}}, {{ $numberSalle }})" class="input-group-text"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="supprimer la salle">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
                     </div>
                 @endforeach
                 <input type="button" class="btn w-100 btn-secondary my-3" value="ajouter un salle" wire:click="add_salle({{ $numberCinema }})">

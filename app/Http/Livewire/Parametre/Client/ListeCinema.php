@@ -13,17 +13,24 @@ class ListeCinema extends Component
     public $valueCinema = array();
     public $valueSalle = array();
 
-    public function mount($idClient){
-        $this->idClient = $idClient;
-        $LISTE_CINEMA = Cinema::where('client_id', $idClient)->get();
-        foreach ($LISTE_CINEMA as $CINEMA){
-            $this->ListeCinema[$CINEMA->id] = array();
-            $this->valueCinema[$CINEMA->id] = $CINEMA->nom;
-            $LISTE_SALLE = Salle::where('cinema_id', $CINEMA->id)->get();
-            foreach ($LISTE_SALLE as $SALLE){
-                $this->ListeCinema[$CINEMA->id][$SALLE->id] = 'salle';
-                $this->valueSalle[$CINEMA->id][$SALLE->id] = $SALLE->nom;
+    public function mount($idClient, $datasUpdateCine){
+        if ($datasUpdateCine == ""){
+            $this->idClient = $idClient;
+            $LISTE_CINEMA = Cinema::where('client_id', $idClient)->get();
+            foreach ($LISTE_CINEMA as $CINEMA){
+                $this->ListeCinema[$CINEMA->id] = array();
+                $this->valueCinema[$CINEMA->id] = $CINEMA->nom;
+                $LISTE_SALLE = Salle::where('cinema_id', $CINEMA->id)->get();
+                foreach ($LISTE_SALLE as $SALLE){
+                    $this->ListeCinema[$CINEMA->id][$SALLE->id] = 'salle';
+                    $this->valueSalle[$CINEMA->id][$SALLE->id] = $SALLE->nom;
+                }
             }
+        } else {
+            $tab_datasUpdateCine = json_decode($datasUpdateCine, true);
+            $this->ListeCinema = $tab_datasUpdateCine['ListeCinema'];
+            $this->valueCinema = $tab_datasUpdateCine['valueCinema'];
+            $this->valueSalle = $tab_datasUpdateCine['valueSalle'];
         }
     }
 
@@ -32,7 +39,12 @@ class ListeCinema extends Component
         return view('livewire.parametre.client.liste-cinema',[
             'ListeCinema' => $this->ListeCinema,
             'valueCinema' => $this->valueCinema,
-            'valueSalle' => $this->valueSalle
+            'valueSalle' => $this->valueSalle,
+            'datasUpdateCine' => [
+                'ListeCinema' => $this->ListeCinema,
+                'valueCinema' => $this->valueCinema,
+                'valueSalle' => $this->valueSalle,
+            ]
         ]);
     }
 

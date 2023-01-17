@@ -22,7 +22,7 @@
 <body class="vh-100 vh-100 d-flex flex-row">
 
     <x-liste-page :infosPage="$infosPage" />
-    <div class="w-100">
+    <div class="w-100 overflow-auto">
         <header class="container-fluid menu d-flex w-100">
             <div class="d-flex flex-row justify-content-between me-2 ms-auto">
                     <div>
@@ -48,10 +48,9 @@
             </div>
 
         </header>
-
-        <main class="py-4 container">
+        <div class="container-fluid pt-3">
             @yield('content')
-        </main>
+        </div>
     </div>
     @livewireScripts
 </body>

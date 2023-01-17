@@ -1,3 +1,3 @@
-<h2 class="p-5">
+<div class="fs-1 ms-5">
     {{ $title }}
-</h2>
+</div>

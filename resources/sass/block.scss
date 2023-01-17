@@ -1,0 +1,9 @@
+.line-gray{
+    background-color: white;
+    &::before{
+        content: '';
+        width: 100%;
+        height: 10px;
+        background-color: $color-hover;
+    }
+}

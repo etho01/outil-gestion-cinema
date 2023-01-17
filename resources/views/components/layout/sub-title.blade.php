@@ -1,3 +1,3 @@
-<h4 class="p-3">
+<div class="fs-3 ms-3 my-3 line-gray">
     {{ $title }}
-</h4>
+</div>
