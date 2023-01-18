@@ -37,4 +37,8 @@ class InformationPage {
         return $this->instanceCinema;
     }
 
+    public function getSlugCinema(){
+        return $this->cinema;
+    }
+
 }
