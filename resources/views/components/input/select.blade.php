@@ -11,4 +11,7 @@
                 @isset($defaultValue)   @if ($element->id == $defaultValue) selected @endif @endisset>{{$element->nom}}</option>
         @endforeach
     </select>
+    @error($name)
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>

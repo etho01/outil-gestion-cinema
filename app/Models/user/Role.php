@@ -20,7 +20,7 @@ class Role extends Model
     ];
 
     public function pages(){
-        return $this->morphToMany(Page::class, 'role', 'roles_pages');
+        return $this->belongsToMany(Page::class, 'roles_pages');
     }
 
     public function users(){
@@ -31,5 +31,9 @@ class Role extends Model
         Roles_page::where('role_id', $this->id)->delete();
         $this->users()->detach();
         $this->delete();
+    }
+
+    public function getPagePerCinema($id_cinema){
+        return $this->pages()->where('roles_pages.cinema_id', $id_cinema)->get();
     }
 }

@@ -9,15 +9,17 @@ class gestListePage extends Component
 {
     public $listPageAutorized;
     public $listPagesEnable;
+    public $idCliema;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($listPageAutorized, $listPagesEnable)
+    public function __construct($listPageAutorized, $listPagesEnable, $idCliema = '')
     {
         $this->listPageAutorized = $listPageAutorized;
         $this->listPagesEnable = $listPagesEnable;
+        $this->idCliema = $idCliema;
     }
 
     /**
@@ -28,10 +30,11 @@ class gestListePage extends Component
     public function render()
     {
         $listeCategoriePage = Page::getPageAndCategorieWherePageIn($this->listPageAutorized);
-
+        if (!is_array($this->listPagesEnable))$this->listPagesEnable = $this->listPagesEnable->pluck('id')->all();
         return view('components.gestion.gest-liste-page',[
             'listeCategoriePage' => $listeCategoriePage,
-            'listPageEnable' => $this->listPagesEnable
+            'listPageEnable' => $this->listPagesEnable,
+            'idCliema' => $this->idCliema
         ]);
     }
 }

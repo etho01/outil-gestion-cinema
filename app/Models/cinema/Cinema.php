@@ -2,9 +2,10 @@
 
 namespace App\Models\cinema;
 
+use App\Models\client\Client;
 use App\Models\user\Roles_page;
-use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,6 +32,14 @@ class Cinema extends Model
 
     public function salles(){
         return $this->hasMany(Salle::class);
+    }
+
+    public function getCinemaClient(){
+        return Cinema::getCinema($this->client_id);
+    }
+
+    public function getClient(){
+        return Client::find($this->client_id);
     }
 
     public static function getCinemaSlug($slug){

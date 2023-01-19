@@ -15,7 +15,8 @@ use App\Http\Controllers\gestion\TypeClientController;
 Route::prefix('parametre')->group(function (){
     Route::prefix('role')->name('Role.')->controller(RoleController::class)->group(function(){
         Route::get('/', 'list')->name('list');
-        Route::get('/{slug}')->name('show');
+        Route::get('/create', 'store')->name('create');
+        Route::get('/{slug}', 'show')->name('show');
     });
 });
 

@@ -57,8 +57,8 @@ class TypeClientController extends Controller
         $tab_liste_query = $request->all();
         $tab_liste_page = array();
         foreach($tab_liste_query as $key => $query){
-            if (str_contains($key, 'page_')){
-                $TYPE_CLIENT->pages()->attach(str_replace('page_', '', $key));
+            if (str_contains($key, 'page__')){
+                $TYPE_CLIENT->pages()->attach(str_replace('page__', '', $key));
             }
         }
         return redirect()->route('TypeClient.list', $infosPage->getinfosRoute())->withInput();

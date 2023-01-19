@@ -11,4 +11,7 @@
             @isset($value) value="{{$value }}" @endisset>
         @isset($inputGroupAfter) {{ $inputGroupAfter }} @endisset
     </div>
+    @error($name)
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>

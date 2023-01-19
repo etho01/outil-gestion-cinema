@@ -35,6 +35,10 @@ class Client extends Model
         return $this->hasMany(User::class);
     }
 
+    public function getPageAutorized(){
+        return TypesClient::find($this->types_client_id)->pages();
+    }
+
     public static function getBySlug($slug){
         return Client::where('slug', $slug)->first();
     } 
