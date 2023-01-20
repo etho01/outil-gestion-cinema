@@ -56,6 +56,14 @@ class ClientController extends Controller
                 'email' => $request->input('email'),
                 'types_client_id' => $request->input('type_client')
             ]);
+        } else {
+            $CLIENT->update([
+                'nom' => $request->input('nom'),
+                'slug' => Str::of($request->input('nom'))->slug('-')->value(),
+                'logo' => '1',
+                'email' => $request->input('email'),
+                'types_client_id' => $request->input('type_client')
+            ]);
         }
         $tab_liste_query = $request->all();
         $tab_liste_cinema = array();

@@ -52,6 +52,11 @@ class TypeClientController extends Controller
                 'nom' => $request->input('nom'),
                 'slug' => Str::of($request->input('nom'))->slug('-')
             ]);
+        } else {
+            $TYPE_CLIENT->update([
+                'nom' => $request->input('nom'),
+                'slug' => Str::of($request->input('nom'))->slug('-')
+            ]);
         }
         $TYPE_CLIENT->pages()->detach();
         $tab_liste_query = $request->all();

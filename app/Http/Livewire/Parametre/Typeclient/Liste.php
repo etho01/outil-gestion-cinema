@@ -15,7 +15,7 @@ class Liste extends Component
             'typesclient' => TypesClient::where('nom', 'like', '%'.$this->filtreNom.'%')->paginate(30),
             'route' => 'type-client',
             'infostable' => [
-                'nom' => 'nom du type de client'
+                'nom' =>  [ 'nom_col' => 'nom du type de client' ],
             ],
             'filtre' => [
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom', 'class' => 'col-12', 'name' => 'nom']

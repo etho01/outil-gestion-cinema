@@ -5,12 +5,13 @@ namespace App\Http\Controllers\gestion;
 use App\Models\page\Page;
 use App\Models\user\Role;
 use App\utils\form\Option;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\user\Roles_page;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
 use App\utils\class\informationPageFormulaire;
-use App\Models\user\Roles_page;
 
 class RoleController extends Controller
 {
@@ -59,6 +60,12 @@ class RoleController extends Controller
                 'is_admin' => $request->input('is_admin'),
                 'slug' => Str::slug($request->input('nom')),
                 'client_id' => $infosPage->instanceCinema()->client_id,
+            ]);
+        } else {
+            $ROLE->update([
+                'nom' => $request->input('nom'),
+                'is_admin' => $request->input('is_admin'),
+                'slug' => Str::slug($request->input('nom')),
             ]);
         }
 

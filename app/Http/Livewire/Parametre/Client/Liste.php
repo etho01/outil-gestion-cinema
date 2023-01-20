@@ -17,7 +17,7 @@ class Liste extends Component
             'typesclient' => $this->getPaginate(),
             'route' => 'client',
             'infostable' => [
-                'nom' => 'nom du client'
+                'nom' =>  [ 'nom_col' => 'nom du client' ],
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreTypeClient', 'elements' => TypesClient::all(), 'label' => 'type de client', 'class' => 'col-2', 'name' => 'type_client',

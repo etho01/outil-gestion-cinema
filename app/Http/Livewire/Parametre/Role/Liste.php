@@ -32,12 +32,14 @@ class Liste extends Component
             'roles' => $this->getPaginate(),
             'route' => 'role',
             'infostable' => [
-                'nom' => 'nom du client'
+                'nom' =>  [ 'nom_col' => 'nom du role' ],
+                'is_admin' => [ 'nom_col' => 'est administrateur',
+                                'datas' => Option::getOptionOuiNon()->all()]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreCinema', 
                 'elements' => Cinema::where('client_id', $this->idClient)->get(),
-                 'label' => 'Cinema accesible', 'class' => 'col-1', 'name' => 'cinema',
+                 'label' => 'Cinema accesible', 'class' => 'col-2', 'name' => 'cinema',
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'isAdmin', 
@@ -45,7 +47,7 @@ class Liste extends Component
                  'label' => 'Est admin', 'class' => 'col-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-10'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-9'],
 
             ]
         ]);
@@ -62,6 +64,7 @@ class Liste extends Component
                 $paginate->where('is_admin', '1');
             }
         }
+        $paginate->groupBy('roles.id');
         return $paginate->paginate(30);
     }
 }
