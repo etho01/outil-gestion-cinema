@@ -3,7 +3,9 @@
         <label for="{{ $name }}" class="form-check-label">{{ $label }}</label>
     @endif
     <select name="{{$name}}" id="{{ $name }}" class="form-select" 
-    @isset($champLivewire)  wire:model="{{ $champLivewire }}" @endisset >
+    @isset($champLivewire)  wire:model="{{ $champLivewire }}" @endisset 
+    @isset($multiple) multiple @endisset
+    >
 
         <option value="" selected>---</option>
         @foreach ($elements as $element)

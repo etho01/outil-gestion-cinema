@@ -30,7 +30,7 @@ class Liste extends Component
 
         return view('livewire.user.liste', [
             'users' => $this->getPaginate(),
-            'route' => 'role',
+            'route' => 'user',
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'nom du l\'utilisateur' ],
                 'email' =>  [ 'nom_col' => 'email de l\'utilisateur' ],
