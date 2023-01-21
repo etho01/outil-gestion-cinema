@@ -36,12 +36,12 @@ return new class extends Migration
         Role::insert([
             'id' => 1,
             'nom' => 'administrateur',
-            'is_admin' => true,
+            'is_admin' => '2',
             'client_id' => 1
         ]);
         User::insert([
             'id' => 1,
-            'name' => 'test',
+            'nom' => 'test',
             'email' => 'test@test.fr',
             'client_id' => 1,
             'password' => Hash::make('testtest'),

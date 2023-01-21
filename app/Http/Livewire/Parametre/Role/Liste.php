@@ -58,10 +58,8 @@ class Liste extends Component
             $paginate->join('roles_pages', 'roles.id', '=', 'roles_pages.role_id')->where('cinema_id', $this->filtreCinema);
         }
         if ($this->isAdmin){
-            if ($this->isAdmin == 1){
-                $paginate->where('is_admin', '0');
-            } else if ($this->isAdmin == 2){
-                $paginate->where('is_admin', '1');
+            if ($this->isAdmin == 1 || $this->isAdmin == 2){
+                $paginate->where('is_admin', $this->isAdmin);
             }
         }
         $paginate->groupBy('roles.id');
