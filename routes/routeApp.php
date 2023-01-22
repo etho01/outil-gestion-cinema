@@ -23,6 +23,7 @@ Route::prefix('parametre')->group(function (){
 Route::prefix('user')->name('User.')->controller(UserController::class)->group(function(){
     Route::get('/', 'list')->name('list');
     Route::post('/create', 'store')->name('create');
+    Route::get('/delete/{slug}', 'delete')->name('delete');
     Route::get('/{slug}', 'show')->name('show');
 });
 Route::prefix('nas')->name('Nas.')->controller(NasController::class)->group(function(){

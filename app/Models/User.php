@@ -3,8 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\page\Page;
 use App\Models\user\Role;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,7 +25,9 @@ class User extends Authenticatable
         'nom',
         'email',
         'password',
-        'client_id'
+        'client_id',
+        'is_validate',
+        'slug'
     ];
 
     /**
@@ -47,18 +52,17 @@ class User extends Authenticatable
     public function isAdmin(){
         $roles = $this->roles()->get();
         foreach ($roles as $role){
-            if ($role->is_admin) return true;
+            if ($role->is_admin == "2") return true;
         }
         return false;
     }
 
-    public function getPageAutorized($idClient){
-        if ($this->isAdmin()){
-            $Client = Client::find($idClient);
-            return Typesclient::find($Client->types_client_id)->pages();
-        } else {
-
-        }
+    public function getPageForRoleUser($hideShow){
+        $eloquent = Page::join('roles_pages', 'roles_pages.page_id', '=', 'pages.id')
+        ->join('users_roles', 'users_roles.role_id', '=', 'roles_pages.role_id')
+        ->where('users_roles.user_id', $this->id);
+        if ($hideShow) $eloquent->whereNull('page_parent');
+        return $eloquent->groupby('page_id')->get()->pluck('page_id');
     }
 
     public function roles(){
@@ -69,4 +73,9 @@ class User extends Authenticatable
         $this->roles()->detach();
         $this->delete(); 
     }
+
+    public function getKey(){
+        return Hash::make($this->email.$this->nom);
+    }
+
 }

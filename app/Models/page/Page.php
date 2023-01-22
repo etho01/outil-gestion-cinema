@@ -35,6 +35,8 @@ class Page extends Model
                 $eloquent = TypesClient::find($CLIENT->types_client_id)->pages();
                 if ($hideShow) $eloquent->whereNull('page_parent');
                 return $basePageAutorized->concat($eloquent->get()->pluck('id'));
+            } else {
+                return Auth::user()->getPageForRoleUser($hideShow);
             }
         }
     }

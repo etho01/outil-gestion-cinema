@@ -29,9 +29,14 @@
                     @auth
                     <div class="dropdown">
                         <button id="dropDownUser" class="btn btn-dark"  data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->nom }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropDownUser">
+                            <a href="{{ route('profile', ['slug' => Auth::user()->slug]) }}">
+                                <li class="dropdown-item"  >
+                                    profil
+                                </li>
+                            </a>
                             <li class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
                                 Deconnection
                             </li>

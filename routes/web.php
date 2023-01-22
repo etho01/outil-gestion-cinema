@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\gestion\UserController;
 use App\Http\Controllers\gestion\ClientController;
 use App\Http\Controllers\gestion\TypeClientController;
 
@@ -19,9 +20,14 @@ use App\Http\Controllers\gestion\TypeClientController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('acceuil');
 
-Route::get('/dashboard', [HomeController::class, 'index']);
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+Route::get('/register/{slug}/{key}', [UserController::class, 'add_password'])->name('add_password');
+Route::post('/profile/update', [UserController::class, 'update'])->name('profile.change');
+
+Route::get('profile/{slug}', [UserController::class, 'viewProfile'])->name('profile');
 
 Route::prefix('parametre')->group(function (){
     Route::prefix('client')->name('Client.')->controller(ClientController::class)->group(function (){
@@ -39,15 +45,13 @@ Route::prefix('parametre')->group(function (){
 });
 
 Route::middleware('auth')->prefix('{cinema}')->group(base_path('routes/routeApp.php'));
-
+/*
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+});*/
 
 require __DIR__.'/auth.php';
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
