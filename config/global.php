@@ -17,6 +17,7 @@ return [
         'PAGE_LIST_CLIENT'=>12,
         'PAGE_CLIENT'=>13,
         'PAGE_LIST_TYPE_CLIENT'=>14,
-        'PAGE_TYPE_CLIENT'=>15
+        'PAGE_TYPE_CLIENT'=>15,
+        'PAGE_LISTE_SCEANCE'=>16
     ]
     ];

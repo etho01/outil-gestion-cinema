@@ -54,42 +54,63 @@ return new class extends Migration
         CategoriePage::insert([
             'id' => 1,
             'icone' => 'fa-solid fa-film',
-            'nom' => 'films'
+            'nom' => 'films',
+            'pos_categorie' => 1
         ]);
         CategoriePage::insert([
             'id' => 2,
             'icone' => 'fa-solid fa-key',
-            'nom' => 'KDM'
+            'nom' => 'KDM',
+            'pos_categorie' => 3
         ]);
         CategoriePage::insert([
             'id' => 3,
             'icone' => "fa-solid fa-server",
-            'nom' => 'Serveur'
+            'nom' => 'Serveur',
+            'pos_categorie' => 4
         ]);
         CategoriePage::insert([
             'id' => 4,
             'icone' => "fa-solid fa-cloud",
-            'nom' => 'Globecast'
+            'nom' => 'Globecast',
+            'pos_categorie' => 5
         ]);
         CategoriePage::insert([
             'id' => 5,
             'icone' => 'fa-solid fa-compact-disc',
-            'nom' => 'DCP'
+            'nom' => 'DCP',
+            'pos_categorie' => 6
         ]);
         CategoriePage::insert([
             'id' => 6,
             'icone' => "fa-solid fa-hard-drive",
-            'nom' => 'NAS'
+            'nom' => 'NAS',
+            'pos_categorie' => 7
         ]);
         CategoriePage::insert([
             'id' => 7,
             'icone' => "fa-solid fa-user",
-            'nom' => 'User'
+            'nom' => 'User',
+            'pos_categorie' => 8
         ]);
         CategoriePage::insert([
             'id' => 8,
             'icone' => 'fa-solid fa-gear',
-            'nom' => 'Paramentre'
+            'nom' => 'Paramentre',
+            'pos_categorie' => 9
+        ]);
+        CategoriePage::insert([
+            'id' => 9,
+            'icone' => 'fa-solid fa-circle-play',
+            'nom' => 'Sceance',
+            'pos_categorie' => 2
+        ]);
+        Page::insert([
+            'id' => 16,
+            'nom' => 'Liste sceance',
+            'route' => 'Sceance.list',
+            'pos' => 1,
+            'categorie_page_id' => 9,
         ]);
         Page::insert([
             'id' => 1,

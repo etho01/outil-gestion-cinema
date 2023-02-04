@@ -13,7 +13,7 @@ class Sceance extends Model
         'id',
         'salle_id',
         'combinaison_option_id',
-        'date'
+        'date_sceance'
     ];
 
 }

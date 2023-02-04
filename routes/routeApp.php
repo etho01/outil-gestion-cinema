@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\cinema\SceanceController;
 use App\Http\Controllers\cinema\DcpController;
 use App\Http\Controllers\cinema\KdmController;
 use App\Http\Controllers\cinema\NasController;
@@ -25,6 +26,9 @@ Route::prefix('user')->name('User.')->controller(UserController::class)->group(f
     Route::post('/create', 'store')->name('create');
     Route::get('/delete/{slug}', 'delete')->name('delete');
     Route::get('/{slug}', 'show')->name('show');
+});
+Route::prefix('sceance')->name('Sceance.')->controller(SceanceController::class)->group(function(){
+    Route::get('/', 'list')->name('list');
 });
 Route::prefix('nas')->name('Nas.')->controller(NasController::class)->group(function(){
     Route::get('/', 'list')->name('list');

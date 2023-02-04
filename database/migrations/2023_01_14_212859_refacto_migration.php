@@ -64,6 +64,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom')->unique();
             $table->string('icone');
+            $table->integer('pos_categorie');
             $table->timestamps();
         });
         Schema::create('pages', function (Blueprint $table) {
@@ -148,6 +149,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(CombinaisonOption::class)->constrained();
             $table->foreignIdFor(Salle::class)->constrained();
+            $table->datetime('date_sceance');
             $table->timestamps();
         });
         Schema::create('kdms', function (Blueprint $table) {
@@ -155,6 +157,7 @@ return new class extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->foreignIdFor(CombinaisonOption::class)->constrained();
+            $table->foreignIdFor(Salle::class)->constrained();
             $table->timestamps();
         });
         Schema::create('users_roles', function (Blueprint $table) {

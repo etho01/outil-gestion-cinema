@@ -14,7 +14,7 @@ class table extends Component
      *
      * @return void
      */
-    public function __construct($typesclient, $route, $infostable)
+    public function __construct($typesclient, $infostable, $route = null)
     {
         $this->typesclient = $typesclient;
         $this->route = $route;
