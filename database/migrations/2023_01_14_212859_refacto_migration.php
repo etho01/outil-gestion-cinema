@@ -105,7 +105,13 @@ return new class extends Migration
         Schema::create('distributeurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->timestamps();
+        });
+        Schema::create('client_distributeur', function (Blueprint $table) {
+            $table->id();
             $table->string('mail');
+            $table->ForeignIdFor(Client::class)->constrained();
+            $table->ForeignIdFor(Distributeur::class)->constrained();
             $table->timestamps();
         });
         Schema::create('films', function (Blueprint $table) {
@@ -119,6 +125,7 @@ return new class extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->ForeignIdFor(Client::class)->constrained();
             $table->timestamps();
         });
         Schema::create('combinaison_options', function (Blueprint $table) {

@@ -1,23 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\cinema\SceanceController;
 use App\Http\Controllers\cinema\DcpController;
 use App\Http\Controllers\cinema\KdmController;
 use App\Http\Controllers\cinema\NasController;
 use App\Http\Controllers\cinema\FilmController;
 use App\Http\Controllers\gestion\RoleController;
 use App\Http\Controllers\gestion\UserController;
+use App\Http\Controllers\cinema\OptionController;
+use App\Http\Controllers\cinema\SceanceController;
 use App\Http\Controllers\cinema\ServeurController;
 use App\Http\Controllers\gestion\ClientController;
 use App\Http\Controllers\cinema\GlobecastController;
 use App\Http\Controllers\gestion\TypeClientController;
+use App\Http\Controllers\cinema\DistributeurController;
 
 Route::prefix('parametre')->group(function (){
     Route::prefix('role')->name('Role.')->controller(RoleController::class)->group(function(){
         Route::get('/', 'list')->name('list');
         Route::get('/create', 'store')->name('create');
         Route::get('/{slug}', 'show')->name('show');
+    });
+
+    Route::prefix('distributeur')->name('Distributeur.')->controller(DistributeurController::class)->group(function(){
+        Route::get('/', 'list')->name('list');
+    });
+
+    Route::prefix('option')->name('Options.')->controller(OptionController::class)->group(function(){
+        Route::get('/', 'list')->name('list');
     });
 });
 

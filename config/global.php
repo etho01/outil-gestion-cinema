@@ -18,6 +18,8 @@ return [
         'PAGE_CLIENT'=>13,
         'PAGE_LIST_TYPE_CLIENT'=>14,
         'PAGE_TYPE_CLIENT'=>15,
-        'PAGE_LISTE_SCEANCE'=>16
+        'PAGE_LISTE_SCEANCE'=>16,
+        'PAGE_LISTE_DISTRIBUTEUR'=>17,
+        'PAGE_LISTE_OPTION'=>18
     ]
     ];

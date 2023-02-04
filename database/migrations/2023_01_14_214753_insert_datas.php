@@ -179,7 +179,7 @@ return new class extends Migration
             'id' => 10,
             'nom' => 'Liste Role',
             'route' => 'Role.list',
-            'pos' => 1,
+            'pos' => 3,
             'categorie_page_id' => 8
         ]);
         Page::insert([
@@ -193,7 +193,7 @@ return new class extends Migration
             'id' => 12,
             'nom' => 'Liste Client',
             'route' => 'Client.list',
-            'pos' => 2,
+            'pos' => 4,
             'categorie_page_id' => 8
         ]);
         Page::insert([
@@ -207,7 +207,7 @@ return new class extends Migration
             'id' => 14,
             'nom' => 'Liste type client',
             'route' => 'TypeClient.list',
-            'pos' => 3,
+            'pos' => 5,
             'categorie_page_id' => 8
         ]);
         Page::insert([
@@ -215,6 +215,20 @@ return new class extends Migration
             'nom' => 'Type Client',
             'route' => 'TypeClient.show',
             'page_parent' => 14,
+            'categorie_page_id' => 8
+        ]);
+        Page::insert([
+            'id' => 17,
+            'nom' => 'Liste distributeur',
+            'route' => 'Distributeur.list',
+            'pos' => 2,
+            'categorie_page_id' => 8
+        ]);
+        Page::insert([
+            'id' => 18,
+            'nom' => 'Liste Options',
+            'route' => 'Options.list',
+            'pos' => 1,
             'categorie_page_id' => 8
         ]);
     }
