@@ -58,5 +58,24 @@
         </div>
     </div>
     @livewireScripts
+    <script>
+         window.addEventListener('showModal', e => {
+            toggleModal();
+        });
+
+        window.addEventListener('hideModal', e => {
+            console.log('d');
+            toggleModal();
+        });
+
+        function toggleModal(){
+            console.log('test');
+            modals = document.querySelectorAll('[data-bs-toggle="modal"]');
+            console.log(modals);
+            modals.forEach(element => {
+                element.click();
+            });
+        }
+    </script>
 </body>
 </html>

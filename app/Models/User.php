@@ -57,6 +57,10 @@ class User extends Authenticatable
         return false;
     }
 
+    public function isSuperAdmin(){
+        return $this->isAdmin() && $this->client_id == 1;
+    }
+
     public function getPageForRoleUser($hideShow){
         $eloquent = Page::join('roles_pages', 'roles_pages.page_id', '=', 'pages.id')
         ->join('users_roles', 'users_roles.role_id', '=', 'roles_pages.role_id')

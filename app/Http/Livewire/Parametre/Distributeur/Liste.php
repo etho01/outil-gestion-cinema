@@ -17,16 +17,35 @@ class Liste extends Component
     public $slug_cinema;
     public $idClient;
 
+    public $elementUpdate = -1;
+
+    protected $listeners = [
+        "saveElement" => 'saveElement'
+    ];
+
+    public function saveElement(){
+        $this->elementUpdate = -1;
+        $this->emit('hideModal');
+        $this->reset('elementUpdate');
+    }
+
     public function mount($infosPage){
         $this->infosPage = $infosPage;
         $this->slug_cinema = $infosPage->getSlugCinema();
         $this->idClient = $infosPage->instanceCinema()->client_id;
     }
 
+    public function update($id){
+        $this->elementUpdate = $id;
+        $this->dispatchBrowserEvent('showModal');
+    }
+
     public function render()
     {
         return view('livewire.parametre.distributeur.liste', [
             'distributeur' => $this->getPaginate(),
+            'livewireObject' => "distributeur",
+            'elementUpdate' => $this->elementUpdate,
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'nom du distributeur' ],
                 'mail' => [ 'nom_col' => 'email']
@@ -34,7 +53,7 @@ class Liste extends Component
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'isParam', 
                 'elements' => Option::getOptionOuiNon(),
-                 'label' => 'Est parametré', 'class' => 'col-1', 'name' => 'cinema',
+                 'label' => 'Est parametré', 'class' => 'col-2', 'name' => 'cinema',
                 'defaultValue' => 0],
 
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-9'],
