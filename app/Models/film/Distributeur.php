@@ -2,8 +2,9 @@
 
 namespace App\Models\film;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Distributeur extends Model
 {
@@ -12,6 +13,13 @@ class Distributeur extends Model
     protected $fillable = [
         'id',
         'nom',
-        'mail',
    ];
+
+   public function mail($id_client){
+    return DB::table('client_distributeur')->select('mail')->where('distributeur_id', $this->id)->where('client_id', $id_client)->first()->mail;
+   }
+
+   public function updateMail($id_client, $newMail){
+    DB::table('client_distributeur')->where('distributeur_id', $this->id)->where('client_id', $id_client)->update(['mail' => $newMail]);
+   }
 }

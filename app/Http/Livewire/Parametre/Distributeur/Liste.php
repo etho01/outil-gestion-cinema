@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\utils\form\Option;
 use App\Models\cinema\Cinema;
 use App\Models\film\Distributeur;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Liste extends Component
@@ -16,6 +17,7 @@ class Liste extends Component
     public $isParam;
     public $slug_cinema;
     public $idClient;
+    public $idCinema;
 
     public $elementUpdate = -1;
 
@@ -33,6 +35,7 @@ class Liste extends Component
         $this->infosPage = $infosPage;
         $this->slug_cinema = $infosPage->getSlugCinema();
         $this->idClient = $infosPage->instanceCinema()->client_id;
+        $this->idCinema = $infosPage->getIdcinema();
     }
 
     public function update($id){
@@ -46,6 +49,7 @@ class Liste extends Component
             'distributeur' => $this->getPaginate(),
             'livewireObject' => "distributeur",
             'elementUpdate' => $this->elementUpdate,
+            'canCreateDelete' => Auth::user()->isSuperAdmin(),
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'nom du distributeur' ],
                 'mail' => [ 'nom_col' => 'email']

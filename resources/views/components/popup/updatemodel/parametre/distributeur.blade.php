@@ -5,7 +5,7 @@
     
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <livewire:parametre.distributeur.element :idElement="$elementUpdate"/>
+            <livewire:parametre.distributeur.element :idElement="$elementUpdate" :idCinema="$idCinema"/>
                             
         </div>
     </div>

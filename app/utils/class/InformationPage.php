@@ -41,4 +41,7 @@ class InformationPage {
         return $this->cinema;
     }
 
+    public function getIdcinema(){
+        return $this->instanceCinema->id;
+    }
 }

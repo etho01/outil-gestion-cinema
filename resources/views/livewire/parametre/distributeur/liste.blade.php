@@ -3,7 +3,8 @@
     <div class="card">
         <div class="card-body">
             <x-gestion.table :typesclient="$distributeur" :infostable="$infostable" 
-            :livewireObject="$livewireObject" :elementUpdate="$elementUpdate"/>
+            :livewireObject="$livewireObject" :elementUpdate="$elementUpdate" :idCinema="$idCinema"
+            :canCreateDelete="$canCreateDelete"/>
         </div>
         <div class="card-footer">
             {{ $distributeur->links() }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Parametre\Distributeur;
 
+use App\Models\cinema\Cinema;
 use Livewire\Component;
 use App\Models\film\Distributeur;
 use Illuminate\Support\Facades\Auth;
@@ -9,12 +10,23 @@ use Illuminate\Support\Facades\Auth;
 class Element extends Component
 {
     public $idElement;
+    public $idCinema;
+    public $idClient;
 
     public $nomDistrib;
     public $mailDistrib;
 
-    public function mount($idElement){
+    private $distributeur;
+
+    public function mount($idElement, $idCinema){
         $this->idElement = $idElement;
+        $this->idCinema = $idCinema;
+
+        $this->distributeur = Distributeur::find($this->idElement);
+        $this->idClient = Cinema::find($idCinema)->client_id;
+
+        $this->nomDistrib = $this->distributeur->nom;
+        $this->mailDistrib = $this->distributeur->mail($this->idClient);
     }
 
     protected $rules = [
@@ -29,6 +41,7 @@ class Element extends Component
             $distributeur->nom = $this->nomDistrib;
             $distributeur->save();
         }
+        $distributeur->updateMail($this->idClient, $this->mailDistrib); 
         $this->emit('saveElement');
         $this->dispatchBrowserEvent('hideModal');
     }
@@ -37,7 +50,6 @@ class Element extends Component
     {
         return view('livewire.parametre.distributeur.element', [
             'idElement' => $this->idElement,
-            'element' => Distributeur::find($this->idElement),
             'user' => Auth::user()
         ]);
     }

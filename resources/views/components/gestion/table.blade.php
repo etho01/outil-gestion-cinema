@@ -7,18 +7,25 @@
                         {{ $infos['nom_col'] }}
                     </td>
                 @endforeach
-                <td class="">
+                <td class="justify-content-end">
                     @isset($route)
                         <a class="btn btn-secondary" href="{{ $route.'/new' }}">
                             Crée un nouvel element
                         </a>
+                    @endisset
+                    @isset ($livewireObject)
+                        @if ($canCreateDelete == true)
+                            <a class="btn btn-secondary" href="{{ $route.'/new' }}">
+                                Crée un nouvel element
+                            </a>
+                        @endif
                     @endisset
                 </td>
             </tr>
         </thead>
         @if ($elementUpdate != -1)
             <!-- zone popup -->
-            <x-popup.index :elementUpdate="$elementUpdate" :livewireObject="$livewireObject"/>
+            <x-popup.index :elementUpdate="$elementUpdate" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
             <!-- fin zone popup -->
         @endif
         <tbody>
@@ -48,10 +55,11 @@
                             <button class="btn btn-secondary" wire:click="update({{ $typeclient->id }})">
                                 Modifier
                             </button>
-                            <button class="btn btn-secondary ms-3" type="button">
-                                Supprimer
-                            </button>
-                        </td>
+                            @if ($canCreateDelete == true)
+                                <button class="btn btn-secondary ms-3" type="button">
+                                    Supprimer
+                                </button>
+                            @endif
                         @endisset
                     </td>
                 </tr>

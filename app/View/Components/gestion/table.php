@@ -11,18 +11,22 @@ class table extends Component
     public $infosPage;
     public $livewireObject;
     public $elementUpdate;
+    public $idCinema;
+    public $canCreateDelete;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($typesclient, $infostable, $route = null, $livewireObject = null, $elementUpdate = null)
+    public function __construct($typesclient, $infostable, $route = null, $livewireObject = null, $elementUpdate = null, $idCinema = null, $canCreateDelete = true)
     {
         $this->typesclient = $typesclient;
         $this->route = $route;
         $this->infostable = $infostable;
         $this->livewireObject = $livewireObject;
         $this->elementUpdate = $elementUpdate;
+        $this->idCinema = $idCinema;
+        $this->canCreateDelete = $canCreateDelete;
     }
 
     /**
@@ -37,7 +41,9 @@ class table extends Component
             'route' => $this->route,
             'infostable' => $this->infostable,
             'livewireObject' => $this->livewireObject,
-            'elementUpdate' => $this->elementUpdate
+            'elementUpdate' => $this->elementUpdate,
+            'idCinema' => $this->idCinema,
+            'canCreateDelete' => $this->canCreateDelete
         ]);
     }
 }
