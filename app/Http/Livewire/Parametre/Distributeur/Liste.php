@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class Liste extends Component
 {
+    public $livewireObject = "distributeur";
+
     protected $infosPage;
     public $filtreNom;
 
@@ -27,7 +29,6 @@ class Liste extends Component
 
     public function saveElement(){
         $this->elementUpdate = -1;
-        $this->emit('hideModal');
         $this->reset('elementUpdate');
     }
 
@@ -40,19 +41,19 @@ class Liste extends Component
 
     public function update($id){
         $this->elementUpdate = $id;
-        $this->dispatchBrowserEvent('showModal');
+        $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
     }
 
     public function render()
     {
         return view('livewire.parametre.distributeur.liste', [
             'distributeur' => $this->getPaginate(),
-            'livewireObject' => "distributeur",
+            'livewireObject' => $this->livewireObject,
             'elementUpdate' => $this->elementUpdate,
             'canCreateDelete' => Auth::user()->isSuperAdmin(),
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'nom du distributeur' ],
-                'mail' => [ 'nom_col' => 'email']
+                'nom' =>  [ 'nom_col' => 'Nom du distributeur' ],
+                'mail' => [ 'nom_col' => 'Email']
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'isParam', 
@@ -60,7 +61,7 @@ class Liste extends Component
                  'label' => 'Est parametré', 'class' => 'col-2', 'name' => 'cinema',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-9'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du type du client', 'label' => 'Nom du client', 'name' => 'nom', 'class' => 'col-9'],
 
             ]
         ]);

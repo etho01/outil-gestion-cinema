@@ -22,11 +22,14 @@ class Element extends Component
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
 
-        $this->distributeur = Distributeur::find($this->idElement);
         $this->idClient = Cinema::find($idCinema)->client_id;
 
-        $this->nomDistrib = $this->distributeur->nom;
-        $this->mailDistrib = $this->distributeur->mail($this->idClient);
+        if ($idElement != 0){ // si ne crée pas
+            $this->distributeur = Distributeur::find($this->idElement);
+
+            $this->nomDistrib = $this->distributeur->nom;
+            $this->mailDistrib = $this->distributeur->mail($this->idClient);
+        }
     }
 
     protected $rules = [
@@ -36,14 +39,27 @@ class Element extends Component
 
     public function save(){
         $this->validate();
+        $this->emit('saveElement');
+        $this->dispatchBrowserEvent('hideModal'.'distributeur'.$this->idElement);
         $distributeur = Distributeur::find($this->idElement);
         if (Auth::user()->isSuperAdmin()){
             $distributeur->nom = $this->nomDistrib;
             $distributeur->save();
         }
         $distributeur->updateMail($this->idClient, $this->mailDistrib); 
+    }
+
+    public function create(){
+        $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal');
+        $this->dispatchBrowserEvent('hideModal'.'distributeur'.$this->idElement);
+        $distributeur = Distributeur::create([
+            'nom' => $this->nomDistrib,
+        ]);
+        $distributeur->insertMail($this->idClient, $this->mailDistrib);
+        $this->mailDistrib = "";
+        $this->nomDistrib = "";
+
     }
 
     public function render()

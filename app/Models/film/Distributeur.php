@@ -22,4 +22,11 @@ class Distributeur extends Model
    public function updateMail($id_client, $newMail){
     DB::table('client_distributeur')->where('distributeur_id', $this->id)->where('client_id', $id_client)->update(['mail' => $newMail]);
    }
+   public function insertMail($id_client, $newMail){
+    DB::table('client_distributeur')->insert([
+        'distributeur_id' => $this->id,
+        'client_id' => $id_client,
+        'mail' => $newMail
+    ]);
+   }
 }

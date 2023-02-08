@@ -7,27 +7,24 @@
                         {{ $infos['nom_col'] }}
                     </td>
                 @endforeach
-                <td class="justify-content-end">
+                <td class="w-auto d-flex flex-row justify-content-end">
                     @isset($route)
                         <a class="btn btn-secondary" href="{{ $route.'/new' }}">
                             Crée un nouvel element
                         </a>
                     @endisset
                     @isset ($livewireObject)
+                        &nbsp;
                         @if ($canCreateDelete == true)
-                            <a class="btn btn-secondary" href="{{ $route.'/new' }}">
+                            <a class="btn btn-secondary" wire:click="update(0)">
                                 Crée un nouvel element
                             </a>
+                            <x-popup.index elementUpdate="0" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
                         @endif
                     @endisset
                 </td>
             </tr>
         </thead>
-        @if ($elementUpdate != -1)
-            <!-- zone popup -->
-            <x-popup.index :elementUpdate="$elementUpdate" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
-            <!-- fin zone popup -->
-        @endif
         <tbody>
             @foreach ($typesclient as $typeclient)
                 <tr>
@@ -60,6 +57,7 @@
                                     Supprimer
                                 </button>
                             @endif
+                            <x-popup.index :elementUpdate="$typeclient->id" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
                         @endisset
                     </td>
                 </tr>
