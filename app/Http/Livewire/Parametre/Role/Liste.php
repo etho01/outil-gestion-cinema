@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Parametre\Role;
 
 use Livewire\Component;
 use App\Models\user\Role;
-use App\utils\form\Option;
+use App\utils\form\OptionForm;
 use App\Models\cinema\Salle;
 use App\Models\cinema\Cinema;
 use App\Models\client\Client;
@@ -34,7 +34,7 @@ class Liste extends Component
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'nom du role' ],
                 'is_admin' => [ 'nom_col' => 'est administrateur',
-                                'datas' => Option::getOptionOuiNon()->all()]
+                                'datas' => OptionForm::getOptionOuiNon()->all()]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreCinema', 
@@ -43,7 +43,7 @@ class Liste extends Component
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'isAdmin', 
-                'elements' => Option::getOptionOuiNon(),
+                'elements' => OptionForm::getOptionOuiNon(),
                  'label' => 'Est admin', 'class' => 'col-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 

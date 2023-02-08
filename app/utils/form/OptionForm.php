@@ -2,7 +2,7 @@
 
 namespace App\utils\form;
 
-class Option{
+class OptionForm{
 
     public $id;
     public $nom;
@@ -13,7 +13,7 @@ class Option{
     }
 
     public static function getOptionOuiNon(){
-        return collect([1 => new Option(1, 'NON'), 2 => new Option(2, 'OUI')]);
+        return collect([1 => new OptionForm(1, 'NON'), 2 => new OptionForm(2, 'OUI')]);
     }
 
 }

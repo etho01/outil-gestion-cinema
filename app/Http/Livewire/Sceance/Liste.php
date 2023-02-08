@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Sceance;
 
 use Livewire\Component;
-use App\utils\form\Option;
+use App\utils\form\OptionForm;
 use App\Models\cinema\Cinema;
 use App\Models\cinema\Sceance;
 
@@ -33,12 +33,12 @@ class Liste extends Component
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'isAdmin', 
-                'elements' => Option::getOptionOuiNon(),
+                'elements' => OptionForm::getOptionOuiNon(),
                  'label' => 'Est admin', 'class' => 'col-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'isValidate', 
-                'elements' => Option::getOptionOuiNon(),
+                'elements' => OptionForm::getOptionOuiNon(),
                  'label' => 'Est valide', 'class' => 'col-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 

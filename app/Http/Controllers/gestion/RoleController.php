@@ -4,7 +4,7 @@ namespace App\Http\Controllers\gestion;
 
 use App\Models\page\Page;
 use App\Models\user\Role;
-use App\utils\form\Option;
+use App\utils\form\OptionForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\user\Roles_page;
@@ -37,7 +37,7 @@ class RoleController extends Controller
         }
         return view('page_app.parametre.role.show', [
             'infosPage' => $infosPage,
-            'ListElementAdmin' => Option::getOptionOuiNon(),
+            'ListElementAdmin' => OptionForm::getOptionOuiNon(),
             'listePageAutorized' => $infosPage->instanceCinema()->getClient()->getPageAutorized()->get()->pluck('id'),
             'tabEnable' => $tabEnable
         ]);

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Parametre\Distributeur;
 
 use Livewire\Component;
-use App\utils\form\Option;
+use App\utils\form\OptionForm;
 use App\Models\cinema\Cinema;
 use App\Models\film\Distributeur;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +57,7 @@ class Liste extends Component
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'isParam', 
-                'elements' => Option::getOptionOuiNon(),
+                'elements' => OptionForm::getOptionOuiNon(),
                  'label' => 'Est parametré', 'class' => 'col-2', 'name' => 'cinema',
                 'defaultValue' => 0],
 
