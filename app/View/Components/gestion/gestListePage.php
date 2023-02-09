@@ -29,7 +29,7 @@ class gestListePage extends Component
      */
     public function render()
     {
-        $listeCategoriePage = Page::getPageAndCategorieWherePageIn($this->listPageAutorized);
+        $listeCategoriePage = Page::getPageAndCategorieWherePageIn($this->listPageAutorized, true);
         if (!is_array($this->listPagesEnable))$this->listPagesEnable = $this->listPagesEnable->pluck('id')->all();
         return view('components.gestion.gest-liste-page',[
             'listeCategoriePage' => $listeCategoriePage,

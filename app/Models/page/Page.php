@@ -41,9 +41,18 @@ class Page extends Model
         }
     }
 
-    public static function getPageAndCategorieWherePageIn($array_pages){
-        return Page::join('categorie_pages', 'pages.categorie_page_id', '=', 'categorie_pages.id')->
-        select('pages.*', 'categorie_pages.nom as nom_categorie', "categorie_pages.icone as icone_categorie")->wherein('pages.id', $array_pages)->
+    public function getPageChildren(){
+        return Page::where('categorie_page_id', $this->categorie_page_id)->where('page_parent', $this->id)->get();
+    }
+
+    public static function getPageAndCategorieWherePageIn($array_pages, $getPageHide = false){
+        $request = Page::join('categorie_pages', 'pages.categorie_page_id', '=', 'categorie_pages.id')->
+        select('pages.*', 'categorie_pages.nom as nom_categorie', "categorie_pages.icone as icone_categorie");
+        if ($getPageHide){
+            $request->whereNotNull('pos');
+        }
+
+        return $request->wherein('pages.id', $array_pages)->
         orderby('categorie_pages.pos_categorie')->orderby('pages.pos')->get()->groupBy('nom_categorie');
     }
 }
