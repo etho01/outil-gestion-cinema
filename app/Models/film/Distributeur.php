@@ -29,4 +29,9 @@ class Distributeur extends Model
         'mail' => $newMail
     ]);
    }
+
+   public function del(){
+    DB::table('client_distributeur')->where('distributeur_id', $this->id)->delete();
+    $this->delete();
+   }
 }

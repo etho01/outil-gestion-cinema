@@ -16,4 +16,12 @@ class OptionForm{
         return collect([1 => new OptionForm(1, 'NON'), 2 => new OptionForm(2, 'OUI')]);
     }
 
+    public static function getOption($array = array()){
+        $tab_collect = array();
+        foreach ($array as $id_option => $nom_option){
+            $tab_collect[$id_option] = new OptionForm($id_option, $nom_option);
+        }
+        return collect($tab_collect);
+    } 
+
 }

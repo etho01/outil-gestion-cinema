@@ -40,8 +40,16 @@ class Liste extends Component
     }
 
     public function update($id){
-        $this->elementUpdate = $id;
-        $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
+        if (Auth::user()->isSuperAdmin()){
+            $this->elementUpdate = $id;
+            $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
+        }
+    }
+
+    public function delete($id){
+        if (Auth::user()->isSuperAdmin()){
+            Distributeur::find($id)->del();
+        }
     }
 
     public function render()

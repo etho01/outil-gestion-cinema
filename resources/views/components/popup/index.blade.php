@@ -6,6 +6,8 @@
 
     @if ($livewireObject == "distributeur")
         <x-popup.updatemodel.parametre.distributeur :elementUpdate="$elementUpdate" :idCinema="$idCinema" :livewireObject="$livewireObject"/>
+    @elseif($livewireObject == "option")
+        <x-popup.updatemodel.parametre.option :elementUpdate="$elementUpdate" :idCinema="$idCinema" :livewireObject="$livewireObject"/>
     @endif
 
     <script>

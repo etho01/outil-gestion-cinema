@@ -11,6 +11,8 @@ class Option extends Model
 
     protected $fillable = [
         'id',
-        'nom'
+        'nom',
+        'client_id',
+        'type'
    ];
 }

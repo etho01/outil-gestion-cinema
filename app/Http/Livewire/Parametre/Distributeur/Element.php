@@ -34,7 +34,7 @@ class Element extends Component
 
     protected $rules = [
         'mailDistrib' => 'required|email',
-        'nomDistrib' => 'required'
+        'nomDistrib' => 'required',
     ];
 
     public function save(){

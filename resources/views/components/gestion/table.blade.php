@@ -31,7 +31,7 @@
                     @foreach($infostable as $nom => $infos)
                         <td class="">
                             @if (isset($infos['datas']))
-                            {{ $infos['datas'][$typeclient->{$nom}]->nom }}
+                            {{ isset($infos['datas'][$typeclient->{$nom}]) ? ucfirst(strtolower($infos['datas'][$typeclient->{$nom}]->nom)) : '-' }}
                             @else
                                 {{ $typeclient->{$nom} == "" ? '-' : $typeclient->{$nom} }}
                             @endif
@@ -53,7 +53,7 @@
                                 Modifier
                             </button>
                             @if ($canCreateDelete == true)
-                                <button class="btn btn-secondary ms-3" type="button">
+                                <button class="btn btn-secondary ms-3" wire:click="delete({{$typeclient->id}})" type="button">
                                     Supprimer
                                 </button>
                             @endif
