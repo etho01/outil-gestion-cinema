@@ -27,7 +27,7 @@ class TypeClientController extends Controller
         if ($slug == 'new'){
             $listPagesEnable = collect();
         } else {
-            $listPagesEnable = $infosPage->getInstanceWork()->pages()->get()->pluck('id');
+            $listPagesEnable = $infosPage->getInstanceWork()->pages()->get()->pluck('id')->all();
         }
         $listPageAutorized = Page::all()->pluck('id');
 
