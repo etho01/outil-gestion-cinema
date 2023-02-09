@@ -34,7 +34,7 @@ class Liste extends Component
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'nom du l\'utilisateur' ],
                 'email' =>  [ 'nom_col' => 'email de l\'utilisateur' ],
-                'is_validate' => ['nom_col' => 'est validé' , 'datas' => Option::getOptionOuiNon()->all()]
+                'is_validate' => ['nom_col' => 'est validé' , 'datas' => OptionForm::getOptionOuiNon()->all()]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreCinema', 

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
 use App\Models\page\TypesClients_page;
 use App\utils\class\informationPageFormulaire;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TypeClientController extends Controller
 {
@@ -23,19 +24,23 @@ class TypeClientController extends Controller
     }
 
     public function show(Request $request, $slug){
-        $infosPage = new informationPageFormulaire(Page::find(15), $request, null, TypesClient::class, $slug);
-        if ($slug == 'new'){
-            $listPagesEnable = collect();
-        } else {
-            $listPagesEnable = $infosPage->getInstanceWork()->pages()->get()->pluck('id')->all();
-        }
-        $listPageAutorized = Page::all()->pluck('id');
+        try {
+            $infosPage = new informationPageFormulaire(Page::find(15), $request, null, TypesClient::class, $slug);
+            if ($slug == 'new'){
+                $listPagesEnable = collect();
+            } else {
+                $listPagesEnable = $infosPage->getInstanceWork()->pages()->get()->pluck('id')->all();
+            }
+            $listPageAutorized = Page::all()->pluck('id');
 
-        return view('page_app.parametre.typeClient.show', [
-            'infosPage' => $infosPage,
-            'listPageAutorized' => $listPageAutorized,
-            'listPagesEnable' => $listPagesEnable
-        ]);
+            return view('page_app.parametre.typeClient.show', [
+                'infosPage' => $infosPage,
+                'listPageAutorized' => $listPageAutorized,
+                'listPagesEnable' => $listPagesEnable
+            ]);
+        } catch (ModelNotFoundException $e){
+            return redirect()->route('TypeClient.list');
+        }
     }
 
     public function store(Request $request){

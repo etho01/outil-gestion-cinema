@@ -13,6 +13,7 @@ use App\Models\client\TypesClient;
 use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
 use App\utils\class\informationPageFormulaire;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ClientController extends Controller
 {
@@ -26,13 +27,16 @@ class ClientController extends Controller
     }
 
     public function show(Request $request, $slug){
-        $infosPage = new informationPageFormulaire(Page::find(13),$request, null ,Client::class ,$slug);
+        try {
+            $infosPage = new informationPageFormulaire(Page::find(13),$request, null ,Client::class ,$slug);
 
-        
-        return view('page_app.parametre.client.show', [
-            'infosPage' => $infosPage,
-            'typeClient' => TypesClient::all()
-        ]);
+            return view('page_app.parametre.client.show', [
+                'infosPage' => $infosPage,
+                'typeClient' => TypesClient::all()
+            ]);
+        } catch (ModelNotFoundException $e){
+            return redirect()->route('Client.list');
+        }
     }
 
     public function store(Request $request){

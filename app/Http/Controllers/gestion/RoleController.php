@@ -4,14 +4,15 @@ namespace App\Http\Controllers\gestion;
 
 use App\Models\page\Page;
 use App\Models\user\Role;
-use App\utils\form\OptionForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\utils\form\OptionForm;
 use App\Models\user\Roles_page;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
 use App\utils\class\informationPageFormulaire;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RoleController extends Controller
 {
@@ -24,23 +25,27 @@ class RoleController extends Controller
     }
 
     public function show(Request $request,$cinema ,$slug){
-        $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_ROLE')),$request, $cinema ,Role::class ,$slug);
+        try {
+            $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_ROLE')),$request, $cinema ,Role::class ,$slug);
 
-        $cinemas = $infosPage->instanceCinema()->getCinemaClient()->get();
-        $tabEnable = array();
-        foreach ($cinemas as $cinema){
-            if ($infosPage->isNewElement()){
-                $tabEnable[$cinema->id] = array();
-            } else {
-                $tabEnable[$cinema->id] = $infosPage->getInstanceWork()->getPagePerCinema($cinema->id);
+            $cinemas = $infosPage->instanceCinema()->getCinemaClient()->get();
+            $tabEnable = array();
+            foreach ($cinemas as $cinema){
+                if ($infosPage->isNewElement()){
+                    $tabEnable[$cinema->id] = array();
+                } else {
+                    $tabEnable[$cinema->id] = $infosPage->getInstanceWork()->getPagePerCinema($cinema->id);
+                }
             }
+            return view('page_app.parametre.role.show', [
+                'infosPage' => $infosPage,
+                'ListElementAdmin' => OptionForm::getOptionOuiNon(),
+                'listePageAutorized' => $infosPage->instanceCinema()->getClient()->getPageAutorized()->get()->pluck('id'),
+                'tabEnable' => $tabEnable
+            ]);
+        } catch (ModelNotFoundException $e){
+            return redirect()->route('Role.list', ['cinema' => $cinema]);
         }
-        return view('page_app.parametre.role.show', [
-            'infosPage' => $infosPage,
-            'ListElementAdmin' => OptionForm::getOptionOuiNon(),
-            'listePageAutorized' => $infosPage->instanceCinema()->getClient()->getPageAutorized()->get()->pluck('id'),
-            'tabEnable' => $tabEnable
-        ]);
     }
 
     public function store(Request $request, $cinema){

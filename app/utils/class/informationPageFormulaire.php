@@ -14,7 +14,7 @@ class informationPageFormulaire extends InformationPage{
         $this->slug = $slug;
         $this->classWork = $classWork;
         if (!$this->isNewElement()){
-            $this->instanceClass = $classWork::where('slug', $slug)->first();
+            $this->instanceClass = $classWork::where('slug', $slug)->firstOrFail();
         }
     }
 
