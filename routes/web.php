@@ -29,7 +29,7 @@ Route::post('/profile/update', [UserController::class, 'update'])->name('profile
 
 Route::get('profile/{slug}', [UserController::class, 'viewProfile'])->name('profile');
 
-Route::prefix('parametre')->group(function (){
+Route::prefix('parametre')->middleware('route', 'auth')->group(function (){
     Route::prefix('client')->name('Client.')->controller(ClientController::class)->group(function (){
         Route::get('/', 'list')->name('list');
         Route::get('/{slug}', 'show')->name('show');
@@ -44,7 +44,7 @@ Route::prefix('parametre')->group(function (){
     });
 });
 
-Route::middleware('auth')->prefix('{cinema}')->group(base_path('routes/routeApp.php'));
+Route::middleware('route')->middleware('cineExist')->middleware('auth')->prefix('{cinema}')->group(base_path('routes/routeApp.php'));
 /*
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

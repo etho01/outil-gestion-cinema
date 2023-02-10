@@ -65,9 +65,9 @@ class Cinema extends Model
         return Cinema::where('client_id', $idclient);
     }
 
-    public static function getCinemaByClientName($isAdmin){
+    public static function getCinemaByClient(){
         $eloquent =  Cinema::join('clients', 'cinemas.client_id', '=', 'clients.id')->select('cinemas.*', 'clients.nom as nom_client');
-        if (!$isAdmin) $eloquent->where('clients.id', Auth::user()->client_id);
-        return $eloquent->get()->groupBy('nom_client');
+        if (!Auth::user()->isSuperAdmin()) $eloquent->where('clients.id', Auth::user()->client_id);
+        return $eloquent->get();
     }
 }

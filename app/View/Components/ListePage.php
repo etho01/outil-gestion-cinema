@@ -29,9 +29,9 @@ class ListePage extends Component
      */
     public function render()
     {
-        $listCinema = Cinema::getCinemaByClientName(Auth::user()->isAdmin());
+        $listCinema = Cinema::getCinemaByClient()->groupBy('nom_client');
         return view('components.liste-page', [
-            'TAB_CATEGORIES_PAGES' => Page::getPageAndCategorieWherePageIn(Page::getPageAutorized($this->infosPage->isGlobalPage(), $this->infosPage->instanceCinema(), true)),
+            'TAB_CATEGORIES_PAGES' => Page::getPageAndCategorieWherePageIn(Auth::user()->getPageAutorized($this->infosPage->instanceCinema(), true)),
             'infosPage' => $this->infosPage,
             'listCinema' => $listCinema
         ]);

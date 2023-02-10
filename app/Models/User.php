@@ -5,7 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\page\Page;
 use App\Models\user\Role;
+use App\Models\client\Client;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\client\TypesClient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -67,6 +69,25 @@ class User extends Authenticatable
         ->where('users_roles.user_id', $this->id);
         if ($hideShow) $eloquent->whereNull('page_parent');
         return $eloquent->groupby('page_id')->get()->pluck('page_id');
+    }
+
+    public function getPageAutorized( $CINEMA = null, $hideShow = null) {
+        $basePageAutorized = collect();
+        if ($this->isSuperAdmin()){ // si administrateur de l'entreprise gerant le site
+            $basePageAutorized = $basePageAutorized->merge(collect([config('global.PAGES.PAGE_LIST_CLIENT'), config('global.PAGES.PAGE_LIST_TYPE_CLIENT')]));
+        }
+        if ($CINEMA == null){// le cinema n'est pas selectionner donc page global
+            return $basePageAutorized;
+        } else {
+            if ($this->isAdmin()){
+                $CLIENT = Client::find($CINEMA->client_id);
+                $eloquent = TypesClient::find($CLIENT->types_client_id)->pages();
+                if ($hideShow) $eloquent->whereNull('page_parent');
+                return $basePageAutorized->concat($eloquent->get()->pluck('id'));
+            } else {
+                return $this->getPageForRoleUser($hideShow);
+            }
+        }
     }
 
     public function roles(){
