@@ -5,9 +5,26 @@
     </button>
 
     @if ($livewireObject == "distributeur")
-        <x-popup.updatemodel.parametre.distributeur :elementUpdate="$elementUpdate" :idCinema="$idCinema" :livewireObject="$livewireObject"/>
+        <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <livewire:parametre.distributeur.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                                
+            </div>
+        </div>
     @elseif($livewireObject == "option")
-        <x-popup.updatemodel.parametre.option :elementUpdate="$elementUpdate" :idCinema="$idCinema" :livewireObject="$livewireObject"/>
+        <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <livewire:parametre.option.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                                
+            </div>
+        </div>
+    @elseif($livewireObject == "films")
+        <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <livewire:films.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                                
+            </div>
+        </div>
     @endif
 
     <script>

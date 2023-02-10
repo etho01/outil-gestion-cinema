@@ -8,13 +8,13 @@
                     </td>
                 @endforeach
                 <td class="w-auto d-flex flex-row justify-content-end">
+                    &nbsp;
                     @isset($route)
                         <a class="btn btn-secondary" href="{{ $route.'/new' }}">
                             Crée un nouvel element
                         </a>
                     @endisset
                     @isset ($livewireObject)
-                        &nbsp;
                         @if ($canCreateDelete == true)
                             <a class="btn btn-secondary" wire:click="update(0)">
                                 Crée un nouvel element

@@ -5,6 +5,7 @@
     <select name="{{$name}}" id="{{ $name }}" class="form-select" 
     @isset($champLivewire)  wire:model="{{ $champLivewire }}" @endisset 
     @isset($multiple) multiple @endisset
+    @isset($change)  wire:change="{{$change}}"    @endisset
     >
 
         <option value="" selected>---</option>

@@ -54,7 +54,8 @@ class Liste extends Component
             'elementUpdate' => $this->elementUpdate,
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'Nom de l\'option' ],
-                'type' => [ 'nom_col' => 'Type de l\'option', 'datas' => OptionForm::getOption(config('cinema.OPTIONS.TYPE_OPTION'))->all()],
+                'visibilite' => [ 'nom_col' => 'Visibilité de l\'option', 'datas' => OptionForm::getOption(config('cinema.OPTIONS.TYPE_OPTION'))->all()],
+                'type' => [ 'nom_col' => 'Type de l\'option', 'datas' => OptionForm::getOption(Option::getAllOptionTypes()->all())],
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'typeOption', 

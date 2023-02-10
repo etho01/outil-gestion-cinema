@@ -16,6 +16,7 @@ class Element extends Component
 
     public $nom;
     public $type;
+    public $visibilite;
 
     public function mount($idElement, $idCinema){
         $this->idElement = $idElement;
@@ -28,12 +29,14 @@ class Element extends Component
             $option = Option::find($idElement);
             $this->nom = $option->nom;
             $this->type = $option->type;
+            $this->visibilite = $option->visibilite;
         }
     }
 
     protected $rules = [
         'nom' => 'required',
-        'type' => 'required'
+        'type' => 'required',
+        'visibilite' => 'required'
     ];
 
     public function save(){
@@ -43,7 +46,8 @@ class Element extends Component
         $option = Option::find($this->idElement);
         $option->update([
             'nom' => $this->nom,
-            'type' => $this->type
+            'type' => $this->type,
+            'visibilite' => $this->visibilite
         ]);
     }
 
@@ -54,17 +58,24 @@ class Element extends Component
         Option::create([
             'nom' => $this->nom,
             'client_id' => $this->idClient,
-            'type' => $this->type
+            'type' => $this->type,
+            'visibilite' => $this->visibilite
         ]);
         $this->nom = "";
         $this->type = 0;
+    }
+
+    function changeType(){
+        $this->type = "";
     }
 
     public function render()
     {
         return view('livewire.parametre.option.element', [
             'idElement' => $this->idElement,
-            'typeOption' => OptionForm::getOption(config('cinema.OPTIONS.TYPE_OPTION'))
+            'visibiliteOption' => OptionForm::getOption(config('cinema.OPTIONS.TYPE_OPTION')),
+            'visibilite' => $this->visibilite,
+            'typeOption' => OptionForm::getOption(Option::getTypeOptionByVisibilite($this->visibilite)),
         ]);
     }
 }
