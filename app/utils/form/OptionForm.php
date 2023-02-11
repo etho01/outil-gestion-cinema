@@ -24,4 +24,12 @@ class OptionForm{
         return collect($tab_collect);
     } 
 
+    public static function getoptionClass($collect){
+        $tab_collect = array();
+        foreach($collect as $element){
+            $tab_collect[$element->id] = new OptionForm($element->id, $element->nom);
+        }
+        return collect($tab_collect);
+    }
+
 }

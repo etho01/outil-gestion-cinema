@@ -29,4 +29,7 @@ class Option extends Model
     public static function getAllOptionTypes(){
         return collect( config('cinema.OPTIONS.TYPE_OPTION_SCEANCE') +  config('cinema.OPTIONS.TYPE_OPTION_FILM'));
    }
+   public static function getElmentByType($type){
+    return Option::where('type', $type)->get();
+   }
 }

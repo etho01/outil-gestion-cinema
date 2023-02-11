@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Films;
 
 use App\Models\film\Film;
+use App\Models\film\Option;
+use App\utils\form\OptionForm;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +21,17 @@ class Liste extends Component
     public $filtreSalle;
 
     public $filtreNom;
+    public $filtreSon;
+    public $filtreImage;
+
+    protected $listeners = [
+        "saveElement" => 'saveElement'
+    ];
+
+    public function saveElement(){
+        $this->elementUpdate = -1;
+        $this->reset('elementUpdate');
+    }
 
     public function mount($infosPage){
         $this->infosPage = $infosPage;
@@ -34,11 +47,16 @@ class Liste extends Component
             'livewireObject' => $this->livewireObject,
             'elementUpdate' => $this->elementUpdate,
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'Nom du films' ],
+                'nom' =>  [ 'nom_col' => 'Nom de la version' ],
+                'nom_film' => ['nom_col' => 'Nom du film'],
+                'option_son' => ['nom_col' => 'Option du son', 'datas' => OptionForm::getoptionClass(Option::all())],
+                'option_image' => ['nom_col' => 'Option de l\'image', 'datas' => OptionForm::getoptionClass(Option::all())]
             ],
             'filtre' => [
-
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film', 'label' => 'Nom du films', 'name' => 'nom', 'class' => 'col-9'],
+                ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre Son', 'name' => 'filtreSom' , 'elements' => Option::getElmentByType(3)],
+                ['type' => 'select', 'champLivewire' => 'filtreImage','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre image', 'name' => 'filtreImage' , 'elements' => Option::getElmentByType(4)],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du films', 'name' => 'nom', 'class' => 'col-6'],
+                
 
             ]
         ]);
@@ -58,6 +76,13 @@ class Liste extends Component
         $paginate->where(function ($query){
             $query->where('nom', 'like', '%'.$this->filtreNom.'%');
         });
+        if ($this->filtreSon){
+            $paginate->where('option_son', $this->filtreSon);
+        }
+        if ($this->filtreImage){
+            $paginate->where('filtre_image', $this->filtreImage);
+        }
+        $paginate->where('cinema_id', $this->idCinema);
         $paginate->groupBy('films.id');
         return $paginate->paginate(30);
     }

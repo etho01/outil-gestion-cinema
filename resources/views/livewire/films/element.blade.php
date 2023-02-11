@@ -2,21 +2,31 @@
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            {{ $idElement == 0 ? 'Créer une version d\un film ': 'Modifier une version d\un film'}}</h5>
+            {{ $idElement == 0 ? 'Créer une version d\'un film ': 'Modifier une version d\'un film'}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
         <div class="d-flex row m-3">
             <div class="d-flex row">
                 <div class="col-6">
-
+                    <img class="img-fluid" src="{{$urlImage}}" alt="">
                 </div>
                 <div class="col-6">
-                    <x-input.text name="nomVersion" label="Nom de la version du film" placeholder="Nom de la version du film"/>
-                    <x-input.text name="nomFilm" label="Nom du film" placeholder="Nom du film"/>
+                    <x-input.text name="nomVersion" champLivewire="nomVersion" label="Nom de la version du film" placeholder="Nom de la version du film"/>
+                    
+                    <x-input.select champLivewire="distributeur" name="distributeur" label="Distributeur" :elements="$listeDistrib"/>
 
-                    <x-input.select name="formatSons" label="Format du sons"/>
-                    <x-input.select name="formatImage" label="Format de l'image"/>
+                    <div class="dropdown">
+                        <a class="btn " href="#" role="button" id="dropDownSelectFilm" data-bs-toggle="dropdown" aria-expanded="false">
+                          Film {{ $nomFilm }}
+                        </a>
+                        <button wire:click="changeFilm" id="idBtnModal{{$idElement}}" style="display: none"></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropDownSelectFilm">
+                            <livewire:films.element.liste-film  :idElement="$idElement"/>
+                        </ul>
+                      </div>
+                    <x-input.select champLivewire="formatSon" name="formatSon" label="Format du sons" :elements="$listeFormatSon"/>
+                    <x-input.select champLivewire="formatImage" name="formatImage" label="Format de l'image" :elements="$listeFormatImage"/>
                 </div>
             </div>
         </div>

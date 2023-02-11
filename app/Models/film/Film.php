@@ -13,6 +13,12 @@ class Film extends Model
         'id',
         'distributeur_id',
         'durree',
-        'slug'
+        'slug',
+        'nom',
+        'nom_film',
+        'id_imdb',
+        'option_son',
+        'option_image',
+        'cinema_id',
    ];
 }

@@ -21,5 +21,6 @@ return [
         'PAGE_LISTE_SCEANCE'=>16,
         'PAGE_LISTE_DISTRIBUTEUR'=>17,
         'PAGE_LISTE_OPTION'=>18
-    ]
+    ],
+    'KEY_IMBD' => '2b0b1ca1a0d3e40fd594aba650646b0e'
     ];
