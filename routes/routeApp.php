@@ -12,6 +12,7 @@ use App\Http\Controllers\cinema\SceanceController;
 use App\Http\Controllers\cinema\ServeurController;
 use App\Http\Controllers\gestion\ClientController;
 use App\Http\Controllers\cinema\GlobecastController;
+use App\Http\Controllers\cinema\FilmSceanceController;
 use App\Http\Controllers\gestion\TypeClientController;
 use App\Http\Controllers\cinema\DistributeurController;
 
@@ -55,7 +56,11 @@ Route::prefix('serveur')->name('Serveur.')->controller(ServeurController::class)
 Route::prefix('kdm')->name('Kdm.')->controller(KdmController::class)->group(function(){
     Route::get('/', 'list')->name('list');
 });
-Route::prefix('film')->name('Film.')->controller(FilmController::class)->group(function(){
+Route::prefix('film_version')->name('Film.')->controller(FilmController::class)->group(function(){
     Route::get('/', 'list')->name('list');
     Route::get('/{slug}')->name('show');
+});
+
+Route::prefix('film_sceance')->name('FilmVersion.')->controller(FilmSceanceController::class)->group(function(){
+    Route::get('/', 'list')->name('list');
 });

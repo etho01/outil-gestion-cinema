@@ -8,6 +8,7 @@ use App\Models\film\Option;
 use App\Models\cinema\Salle;
 use App\Models\cinema\Cinema;
 use App\Models\client\Client;
+use App\Models\film\filmSceance;
 use App\Models\film\Distributeur;
 use App\Models\client\TypesClient;
 use App\Models\page\CategoriePage;
@@ -128,16 +129,13 @@ return new class extends Migration
             $table->ForeignIdFor(Client::class)->constrained();
             $table->timestamps();
         });
-        Schema::create('combinaison_options', function (Blueprint $table) {
+        Schema::create('film_sceances', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Option::class)->constrained();
+            $table->foreignIdFor(Option::class, 'option_langue');
+            $table->foreignIdFor(Option::class, 'option_dimention');
             $table->foreignIdFor(Film::class)->constrained();
-            $table->timestamps();
-        });
-        Schema::create('dcp_cinemas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(CombinaisonOption::class)->constrained();
-            $table->foreignIdFor(Film::class)->constrained();
+            $table->string('nom');
+            $table->foreignIdFor(Cinema::class)->constrained();
             $table->timestamps();
         });
         Schema::create('stockage_elements', function (Blueprint $table) {
@@ -146,15 +144,15 @@ return new class extends Migration
             $table->integer('type');
             $table->timestamps();
         });
-        Schema::create('combinaison_stockage_elements', function (Blueprint $table) {
+        Schema::create('film_sceances_elements', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignIdFor(CombinaisonOption::class)->constrained();
+            $table->foreignIdFor(filmSceance::class)->constrained();
             $table->foreignIdFor(StockageElement::class)->constrained();
             $table->timestamps();
         });
         Schema::create('sceances', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(CombinaisonOption::class)->constrained();
+            $table->foreignIdFor(filmSceance::class)->constrained();
             $table->foreignIdFor(Salle::class)->constrained();
             $table->datetime('date_sceance');
             $table->timestamps();
@@ -163,7 +161,7 @@ return new class extends Migration
             $table->id();
             $table->date('date_debut');
             $table->date('date_fin');
-            $table->foreignIdFor(CombinaisonOption::class)->constrained();
+            $table->foreignIdFor(filmSceance::class)->constrained();
             $table->foreignIdFor(Salle::class)->constrained();
             $table->timestamps();
         });

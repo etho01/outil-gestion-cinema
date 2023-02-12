@@ -114,7 +114,7 @@ return new class extends Migration
         ]);
         Page::insert([
             'id' => 1,
-            'nom' => 'Liste film',
+            'nom' => 'Liste film version',
             'route' => 'Film.list',
             'pos' => 1,
             'categorie_page_id' => 1,

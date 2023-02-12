@@ -29,7 +29,7 @@ class canGoPage
             }
             //dd(!in_array($PAGE->id, $pageAuth->all()));
             if (!in_array($PAGE->id, $pageAuth->all())){
-                return redirect()->route('dashboard');
+           //     return redirect()->route('dashboard');
             }
         }
         return $next($request);
