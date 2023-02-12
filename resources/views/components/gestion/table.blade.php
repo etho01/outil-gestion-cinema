@@ -16,7 +16,7 @@
                     @endisset
                     @isset ($livewireObject)
                         @if ($canCreateDelete == true)
-                            <a class="btn btn-secondary" wire:click="update(0)">
+                            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-dimiss="modal" data-bs-target="#modal{{$livewireObject}}0">
                                 Crée un nouvel element
                             </a>
                             <x-popup.index elementUpdate="0" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
@@ -49,7 +49,7 @@
                             </a>
                         @endisset
                         @isset ($livewireObject)
-                            <button class="btn btn-secondary" wire:click="update({{ $typeclient->id }})">
+                            <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-dimiss="modal" data-bs-target="#modal{{$livewireObject}}{{$typeclient->id}}" >
                                 Modifier
                             </button>
                             @if ($canCreateDelete == true)
@@ -64,4 +64,13 @@
             @endforeach
         </tbody>
     </table>
+    @isset($importOtherPopUp)
+        @foreach ($importOtherPopUp as $importPopUp)
+            <x-popup.index elementUpdate="0" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
+            @foreach ($importPopUp['ids'] as $element)
+            <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
+      
+            @endforeach
+        @endforeach
+    @endisset
 </div>

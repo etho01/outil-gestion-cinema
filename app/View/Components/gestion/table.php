@@ -13,12 +13,13 @@ class table extends Component
     public $elementUpdate;
     public $idCinema;
     public $canCreateDelete;
+    public $importOtherPopUp;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($typesclient, $infostable, $route = null, $livewireObject = null, $elementUpdate = null, $idCinema = null, $canCreateDelete = true)
+    public function __construct($typesclient, $infostable, $route = null, $livewireObject = null, $elementUpdate = null, $idCinema = null, $canCreateDelete = true, $importOtherPopUp = [])
     {
         $this->typesclient = $typesclient;
         $this->route = $route;
@@ -27,6 +28,7 @@ class table extends Component
         $this->elementUpdate = $elementUpdate;
         $this->idCinema = $idCinema;
         $this->canCreateDelete = $canCreateDelete;
+        $this->importOtherPopUp = $importOtherPopUp;
     }
 
     /**
@@ -43,7 +45,8 @@ class table extends Component
             'livewireObject' => $this->livewireObject,
             'elementUpdate' => $this->elementUpdate,
             'idCinema' => $this->idCinema,
-            'canCreateDelete' => $this->canCreateDelete
+            'canCreateDelete' => $this->canCreateDelete,
+            'importOtherPopUp' => $this->importOtherPopUp
         ]);
     }
 }

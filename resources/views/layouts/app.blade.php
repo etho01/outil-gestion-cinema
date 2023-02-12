@@ -61,9 +61,7 @@
     <script>
         function toggleModal(type, idElement){
             var modals = document.querySelectorAll('[data-bs-target="#modal'+type+idElement+'"]');
-            modals.forEach(element => {
-                element.click();
-            });
+            modals[0].click();
             
         }
     </script>

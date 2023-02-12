@@ -4,6 +4,7 @@ namespace App\Http\Livewire\FilmsSceance;
 
 use Livewire\Component;
 use App\Models\film\Film;
+use App\Models\film\filmSceance;
 use App\Models\film\Option;
 use App\utils\form\OptionForm;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,6 @@ class Liste extends Component
     public $idCinema;
 
     public $livewireObject = "films_sceance";
-    public $elementUpdate = -1;
 
     public $filtreSon;
     public $filtreImage;
@@ -31,8 +31,6 @@ class Liste extends Component
     public $filtreNom;
 
     public function saveElement(){
-        $this->elementUpdate = -1;
-        $this->reset('elementUpdate');
     }
 
     public function mount($infosPage){
@@ -47,7 +45,6 @@ class Liste extends Component
         return view('livewire.films-sceance.liste', [
             'films' => $this->getPaginate(),
             'livewireObject' => $this->livewireObject,
-            'elementUpdate' => $this->elementUpdate,
             'infostable' => [
                 'slug' =>  [ 'nom_col' => 'Nom de la version pour la sceance' ],
                 'nom' =>  [ 'nom_col' => 'Nom de la version' ],
@@ -63,18 +60,15 @@ class Liste extends Component
                 ['type' => 'select', 'champLivewire' => 'filtreLangue','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre Lanque', 'name' => 'filtreLangue' , 'elements' => Option::getElmentByType(1)],
                 ['type' => 'select', 'champLivewire' => 'filtreDim','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre dimention', 'name' => 'filtreDim' , 'elements' => Option::getElmentByType(2)],
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du films', 'name' => 'nom', 'class' => 'col-12'],
-                
-
+            ],
+            'importOtherPopUp' => [
+                ['name' => 'films', 'ids' => Film::where('cinema_id', $this->idCinema)->get()->pluck('id')]
             ]
         ]);
     }
-    public function update($id){
-        $this->elementUpdate = $id;
-        $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
-    }
 
     public function delete($id){
-        Film::find($id)->del();
+        filmSceance::find($id)->del();
     }
 
     public function getPaginate(){

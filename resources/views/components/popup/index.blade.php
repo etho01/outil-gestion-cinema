@@ -25,6 +25,13 @@
                                 
             </div>
         </div>
+    @elseif ($livewireObject == "films_sceance")
+        <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <livewire:films-sceance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                                
+            </div>
+        </div>
     @endif
 
     <script>
