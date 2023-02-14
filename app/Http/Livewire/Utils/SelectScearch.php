@@ -17,12 +17,16 @@ class SelectScearch extends Component
     public $foncCall;
     public $label;
 
-    public function mount($idElement, $type, $foncCall, $label, $idCinema){
+    public function mount($idElement, $type, $foncCall, $label, $idCinema, $idElementPopUp){
         $this->idElement = $idElement;
         $this->type = $type;
 
         $this->foncCall = $foncCall;
         $this->label = $label;
+
+        $this->idCinema = $idCinema;
+
+        $this->idSelect = $idElementPopUp;
     }
 
     public function render()
@@ -36,7 +40,8 @@ class SelectScearch extends Component
             'idElement' => $this->idElement,
             'type' => $this->type,
             'filtre' => $this->filtre,
-            'label' => $this->label
+            'label' => $this->label,
+            'idSelect' => $this->idSelect
         ]);
     }
 

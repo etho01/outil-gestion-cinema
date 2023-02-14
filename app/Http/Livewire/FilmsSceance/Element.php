@@ -23,7 +23,7 @@ class Element extends Component
     public $idFilmVersion = 0;
 
     public $id_film_imdb = 0;
-    public $nom_film_version;
+    public $nom_film_version = "";
 
     public function mount($idElement, $idCinema, $typeElement = ''){
         $this->idElement = $idElement;
@@ -53,9 +53,14 @@ class Element extends Component
 
     public function updateFilmBase($idFilmVersion){
         $this->idFilmVersion = $idFilmVersion;
-        $film = Film::find($idFilmVersion);
-        $this->id_film_imdb = $film->id_imdb;
-        $this->nom_film_version = $film->nom;
+        if ($this->idFilmVersion != 0){
+            $film = Film::find($idFilmVersion);
+            $this->id_film_imdb = $film->id_imdb;
+            $this->nom_film_version = $film->nom;
+        } else {
+            $this->id_film_imdb = 0;
+            $this->nom_film_version = "";
+        }
     }
 
     public function save(){
@@ -96,7 +101,8 @@ class Element extends Component
             'nomFilmVersion' => $this->nom_film_version,
             'idFilmVersion' => $this->idFilmVersion,
             'idCinema' => $this->idCinema,
-            'typeElement' => $this->typeElement
+            'typeElement' => $this->typeElement,
+            'IdElementSelect' => $this->idFilmVersion
         ]);
     }
 }

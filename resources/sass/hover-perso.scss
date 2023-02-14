@@ -1,0 +1,15 @@
+.dropdown-item {
+    text-decoration: none;
+    &:hover {
+        background-color: $base-color;
+    }
+
+    &.active {
+        background-color: $base-color!important;
+        color: black;
+    }
+
+    a{
+        text-decoration: none!important;
+    }
+}
