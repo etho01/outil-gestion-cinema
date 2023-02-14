@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\Utils;
 
 use Livewire\Component;
+use App\Models\film\Film;
 
 class SelectScearch extends Component
 {
-    public $elements;
     public $idElement;
     public $type;
+    public $idCinema;
 
     public $idSelect = 0;
 
@@ -16,8 +17,7 @@ class SelectScearch extends Component
     public $foncCall;
     public $label;
 
-    public function mount($elements, $idElement, $type, $foncCall, $label){
-        $this->elements = $elements;
+    public function mount($idElement, $type, $foncCall, $label, $idCinema){
         $this->idElement = $idElement;
         $this->type = $type;
 
@@ -27,18 +27,10 @@ class SelectScearch extends Component
 
     public function render()
     {
-        if ($this->filtre == ""){
-            $elements_filtre = $this->elements;
-        } else {
-            $tab_filtre = [];
-            foreach ($this->elements as $element){
-                if (str_contains($element->nom, $this->filtre)){
-                    $tab_filtre[] = $element;
-                }
-            }
-            $elements_filtre = collect($tab_filtre);
+        if ($this->type == 'films'){
+            $elements_filtre = Film::where('nom','like', '%'.$this->filtre."%")->where('cinema_id', $this->idCinema)->get();
         }
-
+        
         return view('livewire.utils.select-scearch',[
             'elementsFiltre' => $elements_filtre,
             'idElement' => $this->idElement,

@@ -64,6 +64,17 @@
             modals[0].click();
             
         }
+        
+        function saveOldModal(oldType, oldIdelement, newType, newIdElement){
+            document.getElementById('modalParent'+newType+newIdElement).value = "modal"+oldType+oldIdelement;
+        }
+
+        function openOldModal(TypePopUpClose, idPopClose){
+            var modalOpen = document.querySelectorAll('[data-bs-target="#'+document.getElementById('modalParent'+TypePopUpClose+idPopClose).value+'"]');
+            if (modalOpen[0] != undefined){
+                modalOpen[0].click();
+            }
+        }
     </script>
 </body>
 </html>

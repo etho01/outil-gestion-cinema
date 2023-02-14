@@ -14,9 +14,9 @@
                 <div class="col-6">
                     <x-input.text name="nomFilmSceance" champLivewire="nomFilmSceance" label="Nom du film pour la sceance" placeholder="Nom du film pour la sceance"/>
 
-                    <x-utils.select-scearch :elements="$listeFilmBase" type="listeFilm" :idElement="$idElement" texteBtn="Version du film : {{$nomFilmVersion}}" 
+                    <x-utils.select-scearch :baseType="$typeElement" type="films" :idElement="$idElement" texteBtn="Version du film : {{$nomFilmVersion}}" 
                         fonctCall="updateFilmBase" label="Nom de la version du filtre" ouverturePopUp="films" :idElementPopUp="$idFilmVersion"
-                        :idCinema="$idCinema" texteBtnUpdate="une version de film"/>
+                        :idCinema="$idCinema" texteBtnUpdate="une version de film" :idCinema="$idCinema"/>
 
                     <x-input.select champLivewire="filtreLangue" name="filtreLangue" label="Filtre sur la langue" :elements="$listeLangue"/>
                     <x-input.select champLivewire="filtreDim" name="filtreDim" label="Dimention du film" :elements="$listeDim"/>

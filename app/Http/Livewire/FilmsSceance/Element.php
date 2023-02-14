@@ -14,6 +14,7 @@ class Element extends Component
     public $idElement;
     public $idCinema;
     public $idClient;
+    public $typeElement;
 
     public $nomFilmSceance;
     public $filtreDim;
@@ -24,9 +25,10 @@ class Element extends Component
     public $id_film_imdb = 0;
     public $nom_film_version;
 
-    public function mount($idElement, $idCinema){
+    public function mount($idElement, $idCinema, $typeElement = ''){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
+        $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
         if ($idElement > 0){
@@ -59,7 +61,7 @@ class Element extends Component
     public function save(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.'films_sceance'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
         $film = filmSceance::find($this->idElement);
         $film->update([
             'option_langue' => $this->filtreLangue,
@@ -73,7 +75,7 @@ class Element extends Component
     public function create(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.'films_sceance'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
         filmSceance::create([
             'option_langue' => $this->filtreLangue,
             'option_dimention' => $this->filtreDim,
@@ -94,6 +96,7 @@ class Element extends Component
             'nomFilmVersion' => $this->nom_film_version,
             'idFilmVersion' => $this->idFilmVersion,
             'idCinema' => $this->idCinema,
+            'typeElement' => $this->typeElement
         ]);
     }
 }
