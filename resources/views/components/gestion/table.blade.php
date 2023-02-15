@@ -1,4 +1,4 @@
-<div>
+<div class="w-100" style="overflow-x: auto">
     <table class="table">
         <thead>
             <tr>
@@ -7,7 +7,7 @@
                         {{ $infos['nom_col'] }}
                     </td>
                 @endforeach
-                <td class="w-auto d-flex flex-row justify-content-end">
+                <td class="text-end w-auto">
                     &nbsp;
                     @isset($route)
                         <a class="btn btn-secondary" href="{{ $route.'/new' }}">
@@ -27,18 +27,27 @@
         </thead>
         <tbody>
             @foreach ($typesclient as $typeclient)
-                <tr>
+                <tr style="vertical-align: middle">
                     @foreach($infostable as $nom => $infos)
-                        <td class="">
+                        <td class="@isset($infos['class']) {{$infos['class']}} @endisset">
                             @if (isset($infos['datas']))
                             {{ isset($infos['datas'][$typeclient->{$nom}]) ? ucfirst(strtolower($infos['datas'][$typeclient->{$nom}]->nom)) : '-' }}
+                            @elseif (isset($infos['pop_up']))
+                                @foreach ($infos['pop_up'] as $key => $pop_up)
+                                    <a href="#" class="btn @if ($key == 0)align-self-center @endif" 
+                                    @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset 
+                                    data-bs-toggle="modal" data-bs-target="#modal{{$pop_up['type']}}0">
+                                        <i class="{{$pop_up['icone']}}"></i>
+                                    </a>
+                                    <x-popup.index elementUpdate="0" :livewireObject="$pop_up['type']" :idCinema="$idCinema" :idBase="$typeclient->id"/>
+                                @endforeach
                             @else
                                 {{ $typeclient->{$nom} == "" ? '-' : $typeclient->{$nom} }}
                             @endif
                             
                         </td>
                     @endforeach
-                    <td class="w-auto d-flex flex-row justify-content-end">
+                    <td class="text-end w-auto">
                         @isset($route)
                         
                             <a class="btn btn-secondary" href="{{ $route.'/'.$typeclient->slug }}">
@@ -65,11 +74,11 @@
         </tbody>
     </table>
     @isset($importOtherPopUp)
+    @json($importOtherPopUp)
         @foreach ($importOtherPopUp as $importPopUp)
             <x-popup.index elementUpdate="0" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
             @foreach ($importPopUp['ids'] as $element)
-            <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
-      
+                <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
             @endforeach
         @endforeach
     @endisset

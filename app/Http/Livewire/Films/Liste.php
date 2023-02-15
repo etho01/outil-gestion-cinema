@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Films;
 
 use App\Models\film\Film;
+use App\Models\film\filmSceance;
 use App\Models\film\Option;
 use App\utils\form\OptionForm;
 use Livewire\Component;
@@ -50,14 +51,15 @@ class Liste extends Component
                 'nom' =>  [ 'nom_col' => 'Nom de la version' ],
                 'nom_film' => ['nom_col' => 'Nom du film'],
                 'option_son' => ['nom_col' => 'Option du son', 'datas' => OptionForm::getoptionClass(Option::all())],
-                'option_image' => ['nom_col' => 'Option de l\'image', 'datas' => OptionForm::getoptionClass(Option::all())]
+                'option_image' => ['nom_col' => 'Option de l\'image', 'datas' => OptionForm::getoptionClass(Option::all())],
+                '' => ['nom_col' => "", "class" => "text-end" , 'pop_up' => [
+                    ['type' => "films_sceance", 'icone' => "fa-solid fa-film", "title" => "Ajouter un film sceance"]
+                ]]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre Son', 'name' => 'filtreSom' , 'elements' => Option::getElmentByType(3)],
                 ['type' => 'select', 'champLivewire' => 'filtreImage','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre image', 'name' => 'filtreImage' , 'elements' => Option::getElmentByType(4)],
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du films', 'name' => 'nom', 'class' => 'col-6'],
-                
-
             ]
         ]);
     }

@@ -2,35 +2,40 @@
 
     <button type="button" class="" data-bs-toggle="modal" data-bs-target="#modal{{$livewireObject}}{{$elementUpdate}}" style="display: none">
         Launch demo modal
+        @if (!isset($idBase)) {{$idBase = 0;  }} @endif
     </button>
-
+ 
     <input type="hidden" id="modalParent{{$livewireObject}}{{$elementUpdate}}">
 
     @if ($livewireObject == "distributeur")
         <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <livewire:parametre.distributeur.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                <livewire:parametre.distributeur.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" 
+                :idBase="$idBase" />
                                 
             </div>
         </div>
     @elseif($livewireObject == "option")
         <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <livewire:parametre.option.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                <livewire:parametre.option.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"
+                :idBase="$idBase" />
                                 
             </div>
         </div>
     @elseif($livewireObject == "films")
         <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <livewire:films.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"/>
+                <livewire:films.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"
+                :idBase="$idBase" />
                                 
             </div>
         </div>
     @elseif ($livewireObject == "films_sceance")
         <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <livewire:films-sceance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"/>
+                <livewire:films-sceance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                :idBase="$idBase" />
                                 
             </div>
         </div>

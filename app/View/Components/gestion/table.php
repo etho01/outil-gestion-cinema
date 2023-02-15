@@ -19,7 +19,8 @@ class table extends Component
      *
      * @return void
      */
-    public function __construct($typesclient, $infostable, $route = null, $livewireObject = null, $elementUpdate = null, $idCinema = null, $canCreateDelete = true, $importOtherPopUp = [])
+    public function __construct($typesclient, $infostable, $route = null, $livewireObject = null, 
+    $elementUpdate = null, $idCinema = null, $canCreateDelete = true, $importOtherPopUp = [])
     {
         $this->typesclient = $typesclient;
         $this->route = $route;

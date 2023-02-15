@@ -25,7 +25,7 @@ class Element extends Component
     public $id_film_imdb = 0;
     public $nom_film_version = "";
 
-    public function mount($idElement, $idCinema, $typeElement = ''){
+    public function mount($idElement, $idCinema,$idBase , $typeElement = ''){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
@@ -39,6 +39,13 @@ class Element extends Component
             $this->filtreLangue = $filmSceance->option_langue;
             $this->idFilmVersion = $filmSceance->film_id;
             $film = Film::find($this->idFilmVersion);
+            $this->id_film_imdb = $film->id_imdb;
+            $this->nom_film_version = $film->nom;
+        }
+
+        if ($idBase != 0){
+            $this->idFilmVersion = $idBase;
+            $film = Film::find($idBase);
             $this->id_film_imdb = $film->id_imdb;
             $this->nom_film_version = $film->nom;
         }

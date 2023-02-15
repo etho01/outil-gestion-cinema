@@ -22,7 +22,7 @@
 <body class="vh-100 vh-100 d-flex flex-row">
 
     <x-liste-page :infosPage="$infosPage" />
-    <div class="w-100 overflow-auto">
+    <div class="w-100" style="overflow-y: auto">
         <header class="container-fluid menu d-flex w-100">
             <div class="d-flex flex-row justify-content-between me-2 ms-auto">
                     <div>
