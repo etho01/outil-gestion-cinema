@@ -7,12 +7,12 @@ use App\Models\cinema\Cinema;
 class InformationPage {
     private $request;
     private $cinema;
-    private $Page;
+    public $Page;
 
     function __construct ($page ,$request, $cinema){
         $this->request = $request;
         $this->cinema = $cinema;
-        $this->Page = $page;
+        $this->page = $page;
         if ($this->isGlobalPage()){
             $this->instanceCinema = null;
         } else {

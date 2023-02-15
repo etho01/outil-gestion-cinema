@@ -1,4 +1,4 @@
-<div class="bg-dark menu-slide d-flex flex-column menu-bar " style="width: 200px">
+<div class="bg-dark menu-slide d-flex flex-column menu-bar liste-page" style="width: 200px; height :100%; overflow-y: auto;">
     <div class="d-flex flex-columns justify-content-center p-2 bg-dark">
         <div class="fs-1 border-bottom text-white pb-2 text-center">{{ config('APP_NAME', 'Laravel') }}</div>
     </div>
@@ -7,7 +7,9 @@
         @foreach($TAB_CATEGORIES_PAGES as $key => $CATEGORIES_PAGES)
             @if ($CATEGORIES_PAGES->count() == 1)
                 <li>
-                    <a class="nav-link text-white p-3" href="{{$infosPage->getRoute($CATEGORIES_PAGES->get(0)->route) }}">
+                    <a class="nav-link text-white p-3
+                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) active @endif " 
+                    href="{{$infosPage->getRoute($CATEGORIES_PAGES->get(0)->route) }}">
                         <i class="{{ $CATEGORIES_PAGES->get(0)->icone_categorie }}">
                             {{ $key }}
                         </i>
@@ -15,16 +17,22 @@
                 </li>
             @elseif($CATEGORIES_PAGES->count() > 1)
                 <li class="">
-                    <a class="nav-link text-white p-3" href="#" data-bs-toggle="collapse" data-bs-target="#menu-{{ $key }}">
+                    <a class="nav-link text-white p-3 
+                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) active @endif " 
+                     href="#" data-bs-toggle="collapse" data-bs-target="#menu-{{ $key }}">
                         <i class="{{ $CATEGORIES_PAGES->get(0)->icone_categorie }}">
                             {{ $key }}
                         </i>
                     </a>
-                    <div class="collapse" id="menu-{{ $key }}">
+                    <div class="collapse
+                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) show @endif " 
+                     id="menu-{{ $key }}">
                         <ul class="nav nav-pills flex-column mb-auto">
                             @foreach($CATEGORIES_PAGES as $PAGE)
                                 <li class="w-100">
-                                    <a class="nav-link text-white w-100" href="{{ $infosPage->getRoute( $PAGE->route) }}">
+                                    <a class="nav-link text-white w-100
+                                    @if($PAGE->id == $infosPage->page->id) active @endif " 
+                                    " href="{{ $infosPage->getRoute( $PAGE->route) }}">
                                         {{ $PAGE->nom }}
                                     </a>
                                 </li>
