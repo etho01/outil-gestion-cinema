@@ -53,6 +53,9 @@ class Liste extends Component
                 'option_image' => ['nom_col' => 'Option de l\'image', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'option_langue' => ['nom_col' => 'Langue du film', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'option_dimention' => ['nom_col' => 'Dimmention de la sceance', 'datas' => OptionForm::getoptionClass(Option::all())],
+                '' => ['nom_col' => "", "class" => "text-end" , 'pop_up' => [
+                    ['type' => "kdm", 'icone' => "fa-solid fa-key", "title" => "Ajouter une KDM"]
+                ]]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre Son', 'name' => 'filtreSon' , 'elements' => Option::getElmentByType(3)],

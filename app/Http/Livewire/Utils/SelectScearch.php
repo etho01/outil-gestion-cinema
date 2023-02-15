@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Utils;
 
 use Livewire\Component;
 use App\Models\film\Film;
+use App\Models\film\filmSceance;
 
 class SelectScearch extends Component
 {
@@ -33,6 +34,8 @@ class SelectScearch extends Component
     {
         if ($this->type == 'films'){
             $elements_filtre = Film::where('nom','like', '%'.$this->filtre."%")->where('cinema_id', $this->idCinema)->get();
+        } else if ($this->type == 'films_sceance'){
+            $elements_filtre = filmSceance::where('nom','like', '%'.$this->filtre."%")->where('cinema_id', $this->idCinema)->get();
         }
         
         return view('livewire.utils.select-scearch',[

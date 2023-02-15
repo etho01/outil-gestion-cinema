@@ -4,7 +4,7 @@
     @endif
     <div class="input-group">
         @isset($inputGroupBefore) {{ $inputGroupBefore }} @endisset
-        <input type="text" class="form-control" 
+        <input type="@if(isset($type)){{$type}}@else text @endif" class="form-control" 
             name="{{$name}}" id="{{ $name }}"
             @isset($change)  wire:change="{{$change}}"    @endisset
             @isset($placeholder) placeholder="{{ $placeholder }}" @endisset

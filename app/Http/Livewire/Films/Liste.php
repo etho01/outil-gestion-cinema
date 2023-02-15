@@ -17,7 +17,6 @@ class Liste extends Component
     public $idCinema;
 
     public $livewireObject = "films";
-    public $elementUpdate = -1;
 
     public $filtreSalle;
 
@@ -30,7 +29,6 @@ class Liste extends Component
     ];
 
     public function saveElement(){
-        $this->elementUpdate = -1;
         $this->reset('elementUpdate');
     }
 
@@ -46,7 +44,6 @@ class Liste extends Component
         return view('livewire.films.liste', [
             'films' => $this->getPaginate(),
             'livewireObject' => $this->livewireObject,
-            'elementUpdate' => $this->elementUpdate,
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'Nom de la version' ],
                 'nom_film' => ['nom_col' => 'Nom du film'],
@@ -65,7 +62,6 @@ class Liste extends Component
     }
 
     public function update($id){
-        $this->elementUpdate = $id;
         $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
     }
 

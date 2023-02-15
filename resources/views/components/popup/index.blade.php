@@ -39,6 +39,14 @@
                                 
             </div>
         </div>
+        @elseif ($livewireObject == "kdm")
+        <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <livewire:kdm.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                :idBase="$idBase" />
+                                
+            </div>
+        </div>
     @endif
 
     <script>

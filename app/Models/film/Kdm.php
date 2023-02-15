@@ -2,8 +2,9 @@
 
 namespace App\Models\film;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kdm extends Model
 {
@@ -11,8 +12,13 @@ class Kdm extends Model
 
     protected $fillable = [
         'id',
-        'combinaison_option_id',
+        'film_sceance_id',
         'date_debut',
-        'date_fin'
+        'date_fin',
+        'salle_id'
    ];
+
+   function del(){
+    $this->delete();
+   }
 }

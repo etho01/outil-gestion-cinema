@@ -2,7 +2,6 @@
 
 namespace App\Models\cinema;
 
-use App\Models\cinema\Salle;
 use App\Models\cinema\Sceance;
 use App\Models\cinema\StockageElement;
 use Illuminate\Database\Eloquent\Model;

@@ -41,7 +41,9 @@
                                     </a>
                                     <x-popup.index elementUpdate="0" :livewireObject="$pop_up['type']" :idCinema="$idCinema" :idBase="$typeclient->id"/>
                                 @endforeach
-                            @else
+                            @elseif (isset($infos['date']))
+                                {{ $infos['carbon']::parse($typeclient->{$nom})->format($infos['format']) }}
+                            @else 
                                 {{ $typeclient->{$nom} == "" ? '-' : $typeclient->{$nom} }}
                             @endif
                             
