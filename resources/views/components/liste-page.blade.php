@@ -8,7 +8,8 @@
             @if ($CATEGORIES_PAGES->count() == 1)
                 <li>
                     <a class="nav-link text-white p-3
-                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) active @endif " 
+                    @if($infosPage->page != null)
+                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) active @endif @endif " 
                     href="{{$infosPage->getRoute($CATEGORIES_PAGES->get(0)->route) }}">
                         <i class="{{ $CATEGORIES_PAGES->get(0)->icone_categorie }}">
                             {{ $key }}
@@ -18,20 +19,23 @@
             @elseif($CATEGORIES_PAGES->count() > 1)
                 <li class="">
                     <a class="nav-link text-white p-3 
-                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) active @endif " 
+                   @if($infosPage->page != null)
+                     @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) active @endif @endif" 
                      href="#" data-bs-toggle="collapse" data-bs-target="#menu-{{ $key }}">
                         <i class="{{ $CATEGORIES_PAGES->get(0)->icone_categorie }}">
                             {{ $key }}
                         </i>
                     </a>
                     <div class="collapse
-                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) show @endif " 
+                    @if($infosPage->page != null)
+                    @if($CATEGORIES_PAGES->get(0)->categorie_page_id == $infosPage->page->categorie_page_id) show @endif @endif " 
                      id="menu-{{ $key }}">
                         <ul class="nav nav-pills flex-column mb-auto">
                             @foreach($CATEGORIES_PAGES as $PAGE)
                                 <li class="w-100">
                                     <a class="nav-link text-white w-100
-                                    @if($PAGE->id == $infosPage->page->id) active @endif " 
+                                    @if ($infosPage->page != null)
+                                    @if($PAGE->id == $infosPage->page->id) active @endif @endif" 
                                     " href="{{ $infosPage->getRoute( $PAGE->route) }}">
                                         {{ $PAGE->nom }}
                                     </a>

@@ -20,7 +20,8 @@ return [
         'PAGE_TYPE_CLIENT'=>15,
         'PAGE_LISTE_SCEANCE'=>16,
         'PAGE_LISTE_DISTRIBUTEUR'=>17,
-        'PAGE_LISTE_OPTION'=>18
+        'PAGE_LISTE_OPTION'=>18,
+        'PAGE_FILMS_SCEANCE'=>19
     ],
     'KEY_IMBD' => '2b0b1ca1a0d3e40fd594aba650646b0e'
     ];

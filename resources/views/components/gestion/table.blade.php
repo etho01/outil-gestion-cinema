@@ -74,7 +74,6 @@
         </tbody>
     </table>
     @isset($importOtherPopUp)
-    @json($importOtherPopUp)
         @foreach ($importOtherPopUp as $importPopUp)
             <x-popup.index elementUpdate="0" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
             @foreach ($importPopUp['ids'] as $element)
