@@ -12,13 +12,11 @@
                     <input type="hidden" name="id" value="{{ $infosPage->getInfosInstance('id') }}">
                 @endif
                 <x-layout.title-page title="Informations sur le type du client" />
-                <x-layout.sub-title title="Information generaux" />
-                <label for="nom" class="form-label">nom</label>
-                <input type="text" id="nom" name="nom" class="form-control" placeholder="nom" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}" required>
-                @error('nom')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <x-layout.sub-title title="gestion des pages" />
+                <x-layout.sub-title title="Informations généraux" />
+
+                
+                <x-input.text name="nom" placeholder="nom" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}" />
+                <x-layout.sub-title title="Gestion des pages" />
                 <x-gestion.gest-liste-page :listPageAutorized="$listPageAutorized" :listPagesEnable="$listPagesEnable" />
 
             </div>

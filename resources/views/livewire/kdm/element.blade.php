@@ -18,7 +18,7 @@
 
             <x-input.select name="cinemaId" :elements="$salles" label="Salle" champLivewire="idSalle" />
 
-                    <x-utils.select-scearch :baseType="$typeElement" type="films_sceance" :idElement="$idElement" texteBtn="Version de la sceance : {{$nomFilmSceance}}" 
+                    <x-utils.select-scearch :baseType="$typeElement" type="films_sceance" :idElement="$idElement" texteBtn="Version de la séance : {{$nomFilmSceance}}" 
                         fonctCall="updateFilmSceance" label="Nom de la version du filtre" ouverturePopUp="films_sceance" :idElementPopUp="$idFilmSceance"
                         :idCinema="$idCinema" texteBtnUpdate="une version de film"/>
 

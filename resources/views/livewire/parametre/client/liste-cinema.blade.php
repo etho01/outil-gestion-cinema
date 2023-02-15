@@ -30,9 +30,9 @@
                         </div>
                     </div>
                 @endforeach
-                <input type="button" class="btn w-100 btn-secondary my-3" value="ajouter un salle" wire:click="add_salle({{ $numberCinema }})">
+                <input type="button" class="btn w-100 btn-secondary my-3" value="Ajouter une salle" wire:click="add_salle({{ $numberCinema }})">
             </div>
         @endforeach
     </div>
-    <input type="button" class="btn w-100 btn-primary" value="ajouter un cinema" wire:click="add_cinema">
+    <input type="button" class="btn w-100 btn-primary" value="Ajouter un cinema" wire:click="add_cinema">
 </div>

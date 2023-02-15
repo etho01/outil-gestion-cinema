@@ -54,7 +54,7 @@ return new class extends Migration
         CategoriePage::insert([
             'id' => 1,
             'icone' => 'fa-solid fa-film',
-            'nom' => 'films',
+            'nom' => 'Film',
             'pos_categorie' => 1
         ]);
         CategoriePage::insert([
@@ -96,7 +96,7 @@ return new class extends Migration
         CategoriePage::insert([
             'id' => 8,
             'icone' => 'fa-solid fa-gear',
-            'nom' => 'Paramentre',
+            'nom' => 'Paramètre',
             'pos_categorie' => 9
         ]);
         CategoriePage::insert([

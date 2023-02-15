@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Parametre\Client;
 
 use Livewire\Component;
 use App\Models\client\Client;
+use App\utils\form\OptionForm;
 use App\Models\client\TypesClient;
 
 class Liste extends Component
@@ -17,12 +18,13 @@ class Liste extends Component
             'typesclient' => $this->getPaginate(),
             'route' => 'client',
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'nom du client' ],
+                'nom' =>  [ 'nom_col' => 'Nom du client' ],
+                'types_client_id' => ['nom_col' => 'Type du client', 'datas' => OptionForm::getoptionClass(TypesClient::all()->all())]
             ],
             'filtre' => [
-                ['type' => 'select', 'champLivewire' => 'filtreTypeClient', 'elements' => TypesClient::all(), 'label' => 'type de client', 'class' => 'col-2', 'name' => 'type_client',
+                ['type' => 'select', 'champLivewire' => 'filtreTypeClient', 'elements' => TypesClient::all(), 'label' => 'Type du client', 'class' => 'col-2', 'name' => 'type_client',
                 'defaultValue' => 0],
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-10'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du client', 'label' => 'Nom du client', 'name' => 'nom', 'class' => 'col-10'],
 
             ]
         ]);

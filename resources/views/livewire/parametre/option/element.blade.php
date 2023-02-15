@@ -9,7 +9,7 @@
         <div class="d-flex row m-3">
             <x-input.text name="nom" champLivewire="nom" label="Nom de l'option" placeholder="Nom de l'option"/>
 
-            <x-input.select name="visibilite" champLivewire="visibilite" change="changeType" label="visibilite de l'option" :elements="$visibiliteOption"/>
+            <x-input.select name="visibilite" champLivewire="visibilite" change="changeType" label="Visibilité de l'option" :elements="$visibiliteOption"/>
             @if ($visibilite != "")
                 <x-input.select name="type" champLivewire="type" label="Type de l'option" :elements="$typeOption"/>
             @endif

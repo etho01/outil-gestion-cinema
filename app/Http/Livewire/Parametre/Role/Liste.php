@@ -32,8 +32,8 @@ class Liste extends Component
             'roles' => $this->getPaginate(),
             'route' => 'role',
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'nom du role' ],
-                'is_admin' => [ 'nom_col' => 'est administrateur',
+                'nom' =>  [ 'nom_col' => 'Nom du role' ],
+                'is_admin' => [ 'nom_col' => 'Est administrateur',
                                 'datas' => OptionForm::getOptionOuiNon()->all()]
             ],
             'filtre' => [
@@ -47,7 +47,7 @@ class Liste extends Component
                  'label' => 'Est admin', 'class' => 'col-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-9'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du role', 'label' => 'Nom du role', 'name' => 'nom', 'class' => 'col-9'],
 
             ]
         ]);

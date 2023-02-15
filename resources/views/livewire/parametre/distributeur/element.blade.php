@@ -7,20 +7,11 @@
     </div>
     <div class="modal-body">
         <div class="d-flex row m-3">
-            <label for="nomDistrib"> nom du distributeur</label>
-                <input type="text" class="form-control col-12" @if (!$user->isSuperAdmin()) disabled @endif wire:model="nomDistrib"
-                 name="nomDistrib" id="nomDistrib" />
 
-                @error('nomDistrib')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+            <x-input.text label="Nom du distributeur" name="nomDistrib" champLivewire="nomDistrib" :disabled="!$user->isSuperAdmin()"/>
 
-                <label for="mailDistrib"> email du distributeur</label>
-                <input type="text" class="form-control col-12" wire:model="mailDistrib" name="mailDistrib" 
-                id="mailDistrib" />
-                @error('mailDistrib')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+            <x-input.text label="Email du distributeur" name="mailDistrib" champLivewire="mailDistrib"/>
+
         </div>
     </div>
     <div class="modal-footer">

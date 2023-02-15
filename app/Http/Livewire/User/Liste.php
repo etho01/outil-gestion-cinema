@@ -32,9 +32,9 @@ class Liste extends Component
             'users' => $this->getPaginate(),
             'route' => 'user',
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'nom du l\'utilisateur' ],
-                'email' =>  [ 'nom_col' => 'email de l\'utilisateur' ],
-                'is_validate' => ['nom_col' => 'est validé' , 'datas' => OptionForm::getOptionOuiNon()->all()]
+                'nom' =>  [ 'nom_col' => 'Nom du l\'utilisateur' ],
+                'email' =>  [ 'nom_col' => 'Email de l\'utilisateur' ],
+                'is_validate' => ['nom_col' => 'Est validé' , 'datas' => OptionForm::getOptionOuiNon()->all()]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreCinema', 
@@ -52,7 +52,7 @@ class Liste extends Component
                  'label' => 'Est valide', 'class' => 'col-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-8'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de l\'utilisateur', 'label' => 'Nom de l\'utilisateur', 'name' => 'nom', 'class' => 'col-8'],
 
             ]
         ]);

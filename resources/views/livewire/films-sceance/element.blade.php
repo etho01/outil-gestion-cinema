@@ -2,7 +2,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            {{ $idElement == 0 ? 'Créer une version d\'un film pour une sceance': 'Modifier une version d\'un film pour une sceance'}}</h5>
+            {{ $idElement == 0 ? 'Créer une version d\'un film pour une séance': 'Modifier une version d\'un film pour une séance'}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -12,14 +12,14 @@
                     <img class="img-fluid" src="{{$urlImage}}" alt="">
                 </div>
                 <div class="col-6">
-                    <x-input.text name="nomFilmSceance" champLivewire="nomFilmSceance" label="Nom du film pour la sceance" placeholder="Nom du film pour la sceance"/>
+                    <x-input.text name="nomFilmSceance" champLivewire="nomFilmSceance" label="Nom du film pour la séance" placeholder="Nom du film pour la séance"/>
 
                     <x-utils.select-scearch :baseType="$typeElement" type="films" :idElement="$idElement" texteBtn="Version du film : {{$nomFilmVersion}}" 
                         fonctCall="updateFilmBase" label="Nom de la version du filtre" ouverturePopUp="films" :idElementPopUp="$idFilmVersion"
                         :idCinema="$idCinema" texteBtnUpdate="une version de film" :idCinema="$idCinema"/>
 
                     <x-input.select champLivewire="filtreLangue" name="filtreLangue" label="Filtre sur la langue" :elements="$listeLangue"/>
-                    <x-input.select champLivewire="filtreDim" name="filtreDim" label="Dimention du film" :elements="$listeDim"/>
+                    <x-input.select champLivewire="filtreDim" name="filtreDim" label="Dimension du film" :elements="$listeDim"/>
                 </div>
             </div>
         </div>

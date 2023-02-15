@@ -7,6 +7,7 @@
         <input type="@if(isset($type)){{$type}}@else text @endif" class="form-control" 
             name="{{$name}}" id="{{ $name }}"
             @isset($change)  wire:change="{{$change}}"    @endisset
+            @isset($disabled) @if($disabled == true) disabled @endif   @endisset
             @isset($placeholder) placeholder="{{ $placeholder }}" @endisset
             @isset($champLivewire) wire:model="{{ $champLivewire }}" @endisset
             @isset($value) value="{{$value }}" @endisset>
