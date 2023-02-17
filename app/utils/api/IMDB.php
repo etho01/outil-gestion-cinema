@@ -70,8 +70,8 @@ class IMDB {
     public static function getUrlImage($id_imdb_film){
         if ($id_imdb_film != 0){
             $infos = IMDB::getInfosFilm($id_imdb_film);
-            if (isset($infos['backdrop_path'])){
-                return IMDB::getBaseUrlImage().$infos['backdrop_path'];
+            if (isset($infos['poster_path'])){
+                return IMDB::getBaseUrlImage().$infos['poster_path'];
             }
         }
         return "";

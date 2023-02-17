@@ -9,6 +9,7 @@ use App\Models\cinema\Cinema;
 use App\Models\cinema\Sceance;
 use App\Models\film\Film;
 use App\Models\film\filmSceance;
+use App\utils\form\OptionForm;
 
 class Element extends Component
 {
@@ -22,6 +23,8 @@ class Element extends Component
     public $dateSeance;
     public $heureSeance;
 
+    public $isVisibleSite;
+
     public $salleId;
 
     public function mount($idElement, $idCinema,$idBase , $typeElement = ''){
@@ -31,9 +34,12 @@ class Element extends Component
 
         if ($idElement > 0){
             $seance = Sceance::find($idElement);
-            $tab_date = explode(' ', $seance->date_sceance);
+            $tab_date = explode(' ', $seance->date_seance);
             $this->dateSeance = $tab_date[0];
             $this->heureSeance = $tab_date[1];
+
+            $this->isVisibleSite = $seance->is_visible_site;
+            $this->salleId = $seance->salle_id;
             
             $film = filmSceance::find($seance->film_sceance_id);
             $this->idFilmSceance = $film->id;
@@ -51,7 +57,8 @@ class Element extends Component
     protected $rules = [
         'dateSeance' => 'required|date',
         'heureSeance' => 'required',
-        'salleId' => 'required'
+        'salleId' => 'required',
+        'isVisibleSite' => 'required'
     ];
 
     function save(){
@@ -60,9 +67,10 @@ class Element extends Component
         $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
         $seance = Sceance::find($this->idElement);
         $seance->update([
-            'date_sceance' => $this->dateSeance.' '.$this->heureSeance,
+            'date_seance' => $this->dateSeance.' '.$this->heureSeance,
             'film_sceance_id' => $this->idFilmSceance,
-            'salle_id' => $this->salleId
+            'salle_id' => $this->salleId,
+            'is_visible_site' => $this->isVisibleSite
          ]);
     }
 
@@ -71,9 +79,10 @@ class Element extends Component
         $this->emit('saveElement');
         $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
         Sceance::create([
-           'date_sceance' => $this->dateSeance.' '.$this->heureSeance,
+           'date_seance' => $this->dateSeance.' '.$this->heureSeance,
            'film_sceance_id' => $this->idFilmSceance,
-           'salle_id' => $this->salleId
+           'salle_id' => $this->salleId,
+           'is_visible_site' => $this->isVisibleSite
         ]);
     }
 
@@ -99,6 +108,9 @@ class Element extends Component
             'idFilmSceance' => $this->idFilmSceance,
             'urlImage' => $urlImage,
             'salles' => Salle::where('cinema_id', $this->idCinema)->get(),
+            "salleActuel" => $this->salleId,
+            'OptionOuiNon' => OptionForm::getOptionOuiNon(),
+            'isVisibleSite' => $this->isVisibleSite,
             "salleActuel" => $this->salleId
         ]);
     }

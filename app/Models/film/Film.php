@@ -2,8 +2,10 @@
 
 namespace App\Models\film;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\utils\api\IMDB;
+use App\Models\cinema\Sceance;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Film extends Model
 {
@@ -21,4 +23,25 @@ class Film extends Model
         'option_image',
         'cinema_id',
    ];
+
+   public static function getFilmAffiche($idCinema, $hideNoShowSite = true){
+        $tabElementSup = ['adult', 'budget', 'homepage', 'original_language',
+        'original_title', 'status', 'video', 'spoken_languages', 'production_countries',
+        'production_companies', 'backdrop_path', 'getSeancesOrderByFilms', 'revenue',
+        'poster_path', 'belongs_to_collection'];
+
+        $urlImagePath = IMDB::getBaseUrlImage();
+
+        $listesFilm = Sceance::getBaseRqWithFilm($idCinema, $hideNoShowSite)->groupBy('films.id_imdb')->select('films.id_imdb')->get();
+        $tab = array();
+        foreach ($listesFilm as $film){
+            $infosFilm = IMDB::getInfosFilm($film->id_imdb);
+            $infosFilm['poster'] = $urlImagePath.$infosFilm['poster_path'];
+            foreach ($tabElementSup as $element){
+                unset($infosFilm[$element]);
+            }
+            $tab[] = $infosFilm;
+        }
+        return $tab;
+    }
 }

@@ -154,7 +154,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(filmSceance::class)->constrained();
             $table->foreignIdFor(Salle::class)->constrained();
-            $table->datetime('date_sceance');
+            $table->datetime('date_seance');
             $table->timestamps();
         });
         Schema::create('kdms', function (Blueprint $table) {

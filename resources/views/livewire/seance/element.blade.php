@@ -27,6 +27,8 @@
                         </div>
 
                         <x-input.select :elements="$salles" :defaultValue="$salleActuel" name="salleId" champLivewire="salleId" label="Salle" />
+
+                        <x-input.select :elements="$OptionOuiNon" :defaultValue="$isVisibleSite" name="isVisibleSite" champLivewire="isVisibleSite" label="Est visible sur le site" />
                         
                 </div>
             </div>

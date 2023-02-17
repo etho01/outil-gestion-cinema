@@ -49,8 +49,8 @@ class Liste extends Component
                 'option_langue' => ['nom_col' => 'Langue du film', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'option_dimention' => ['nom_col' => 'Dimmention de la séance', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'salle_id' => ['nom_col' => 'Salle', 'datas' => OptionForm::getoptionClass(Salle::all())],
-                'is_visible_site' => ['nom_col' => 'Est visible sur le site', 'datas' => OptionForm::getOptionOuiNon()],
-                'date_sceance' => ['nom_col' => 'Date de le séance', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y H:m"],
+                'is_visible_site' => ['nom_col' => 'Est visible sur le site', 'datas' => OptionForm::getOptionOuiNon()->all()],
+                'date_seance' => ['nom_col' => 'Date de le séance', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y H:m"],
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreSalle', 
