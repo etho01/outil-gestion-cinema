@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <livewire:sceance.liste :infosPage="$infosPage"/>
+    <livewire:seance.liste :infosPage="$infosPage"/>
 @endsection

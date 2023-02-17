@@ -29,7 +29,6 @@ class Liste extends Component
     ];
 
     public function saveElement(){
-        $this->reset('elementUpdate');
     }
 
     public function mount($infosPage){

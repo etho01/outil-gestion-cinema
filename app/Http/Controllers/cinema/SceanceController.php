@@ -12,7 +12,7 @@ class SceanceController extends Controller
     public function list(Request $request, $cinema){
         $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LISTE_SCEANCE')),$request, $cinema);
 
-        return view('page_app.sceance.list', [
+        return view('page_app.seance.list', [
             'infosPage' => $infosPage
         ]);
     }

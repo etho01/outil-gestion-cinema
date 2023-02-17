@@ -12,7 +12,7 @@ class Sceance extends Model
     protected $fillable = [
         'id',
         'salle_id',
-        'combinaison_option_id',
+        'film_sceance_id',
         'date_sceance'
     ];
 
