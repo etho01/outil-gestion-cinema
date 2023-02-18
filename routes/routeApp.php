@@ -38,7 +38,7 @@ Route::prefix('user')->name('User.')->controller(UserController::class)->group(f
     Route::get('/delete/{slug}', 'delete')->name('delete');
     Route::get('/{slug}', 'show')->name('show');
 });
-Route::prefix('sceance')->name('Sceance.')->controller(SceanceController::class)->group(function(){
+Route::prefix('seance')->name('Sceance.')->controller(SceanceController::class)->group(function(){
     Route::get('/', 'list')->name('list');
 });
 Route::prefix('nas')->name('Nas.')->controller(NasController::class)->group(function(){

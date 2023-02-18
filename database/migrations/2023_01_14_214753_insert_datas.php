@@ -102,7 +102,7 @@ return new class extends Migration
         CategoriePage::insert([
             'id' => 9,
             'icone' => 'fa-solid fa-circle-play',
-            'nom' => 'Sceance',
+            'nom' => 'Seance',
             'pos_categorie' => 2
         ]);
         Page::insert([
