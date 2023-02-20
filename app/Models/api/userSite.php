@@ -15,6 +15,7 @@ class userSite extends Model
         'email' ,
         'password',
         'cinema_id',
+        'api_token'
     ];
 
     protected $hidden = [

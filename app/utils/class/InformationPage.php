@@ -7,7 +7,7 @@ use App\Models\cinema\Cinema;
 class InformationPage {
     private $request;
     private $cinema;
-    public $Page;
+    public $page;
 
     function __construct ($page ,$request, $cinema){
         $this->request = $request;

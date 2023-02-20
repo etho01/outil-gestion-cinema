@@ -1,4 +1,4 @@
-<div>
+<div class="text-start">
 
     <button type="button" class="" data-bs-toggle="modal" data-bs-target="#modal{{$livewireObject}}{{$elementUpdate}}" style="display: none">
         Launch demo modal
@@ -51,6 +51,14 @@
         <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <livewire:seance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                :idBase="$idBase" />
+                                
+            </div>
+        </div>
+        @elseif ($livewireObject == "stockage")
+        <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <livewire:stockage.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase" />
                                 
             </div>

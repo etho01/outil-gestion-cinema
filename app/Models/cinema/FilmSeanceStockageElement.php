@@ -5,15 +5,15 @@ namespace App\Models\cinema;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CombinaisonOptions_stockageElement extends Model
+class FilmSeanceStockageElement extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
+        'film_sceance_id',
         'stockage_element_id',
-        'combinaison_option_id',
    ];
 
-   protected $table = 'combinaison_stockage_elements';
+   protected $table = 'film_sceances_elements';
 }

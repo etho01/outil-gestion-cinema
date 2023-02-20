@@ -26,7 +26,7 @@ class userController extends Controller
         }
 
 
-        userSite::create([
+        $usersite = userSite::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
@@ -36,7 +36,7 @@ class userController extends Controller
             'api_token' => Str::random(60),
         ]);
 
-        return ['message' => 'success'];
+        return $usersite->toJson();
 
     }
 
@@ -78,6 +78,7 @@ class userController extends Controller
 
             'password' => Hash::make($request->password),
         ]);
+        return $usersite->toJson();
     }
 
     function delete(Request $request, $idCinema, $tokenUser){

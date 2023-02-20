@@ -11,8 +11,8 @@ class StockageElement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'combinaison_option_id',
-        'stockage_element_id',
+        'salle_id',
+        'id',
         'type',
     ];
 
@@ -23,5 +23,40 @@ class StockageElement extends Model
     public function del(){
         $this->films()->detach();
         $this->delete;
+    }
+
+    public static function getIdElementStockage($type, $idSalle){
+        $stockage = StockageElement::where('type', 'type')->where('salle_id', $idSalle)->first();
+        if ($stockage == null){
+            $stockage = StockageElement::create([
+                'salle_id' => $idSalle,
+                'type' => $type
+            ]);
+        }
+        return $stockage->id;
+    }
+
+    public static function getTypeElementByPage($idPage){
+        if ($idPage == config('global.PAGES.PAGE_LIST_NAS')){
+            return config('cinema.TYPE_STOCKAGE.NAS');
+
+        } else if ($idPage == config('global.PAGES.PAGE_LIST_DCP')){
+            return config('cinema.TYPE_STOCKAGE.DCP');
+
+        } else if ($idPage == config('global.PAGES.PAGE_LIST_GLOBECAST')){
+            return config('cinema.TYPE_STOCKAGE.GLOBECAST');
+
+        } else if ($idPage == config('global.PAGES.PAGE_LIST_SERVEUR')){
+            return config('cinema.TYPE_STOCKAGE.SERVEUR');
+        }
+    }
+
+    public static function getListeTypeElementStockage(){
+        $tab_config = config('cinema.TYPE_STOCKAGE');
+        $tab_liste = [];
+        foreach ($tab_config as $nom => $key){
+            $tab_liste[$key] = $nom;
+        }
+        return $tab_liste;
     }
 }

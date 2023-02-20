@@ -41,6 +41,11 @@ Route::prefix('{idCinema}')->group(function(){
     });
 
     Route::get('searchMovie', [demandeController::class, 'getListFilm']);
+
+    Route::prefix('{tokenUser}')->group(function(){
+
+        Route::get('demande', [demandeController::class, 'demande']);
+    });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
