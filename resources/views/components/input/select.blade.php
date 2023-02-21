@@ -6,6 +6,7 @@
     @isset($champLivewire)  wire:model="{{ $champLivewire }}" @endisset 
     @isset($multiple) multiple @endisset
     @isset($change)  wire:change="{{$change}}"    @endisset
+    @isset($disable) @if ($disable == true) disabled  @endif @endisset
     >
 
         <option value="" selected>---</option>

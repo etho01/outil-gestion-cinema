@@ -42,6 +42,7 @@ class Liste extends Component
         return view('livewire.stockage.liste', [
             'stockage' => $this->getPaginate(),
             'livewireObject' => $this->livewireObject,
+            'option' => $this->idTypeStockage,
             'infostable' => [
                 'nom' =>  [ 'nom_col' => 'Nom de la version du film de la seance' ],
             ],

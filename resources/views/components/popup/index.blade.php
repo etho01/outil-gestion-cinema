@@ -3,6 +3,7 @@
     <button type="button" class="" data-bs-toggle="modal" data-bs-target="#modal{{$livewireObject}}{{$elementUpdate}}" style="display: none">
         Launch demo modal
         @if (!isset($idBase)) {{$idBase = 0;  }} @endif
+        <?php if(!isset($option)) $option = '' ?>
     </button>
  
     <input type="hidden" id="modalParent{{$livewireObject}}{{$elementUpdate}}">
@@ -59,7 +60,7 @@
         <div class="modal fade" id="modal{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <livewire:stockage.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
-                :idBase="$idBase" />
+                :idBase="$idBase"  :option="$option"/>
                                 
             </div>
         </div>

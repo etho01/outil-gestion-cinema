@@ -8,6 +8,7 @@ use App\Models\film\filmSceance;
 use App\Models\cinema\StockageElement;
 use App\Models\cinema\FilmSeanceStockageElement;
 use App\utils\form\OptionForm;
+use Illuminate\Routing\Route;
 
 class Element extends Component
 {
@@ -22,7 +23,9 @@ class Element extends Component
     public $idSalle;
     public $type;
 
-    public function mount($idElement, $idCinema,$idBase , $typeElement = ''){
+    public $disableType = false;
+
+    public function mount($idElement, $idCinema,$idBase , $typeElement = '', $option = ''){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
@@ -43,6 +46,10 @@ class Element extends Component
             $this->idFilmSceance = $film->id;
             $this->nomFilmSceance = $film->nom;
         }
+        if ($option != ''){
+            $this->type = $option;
+            $this->disableType = true;
+        } 
     }
 
     function updateFilmSceance($id){
@@ -85,7 +92,8 @@ class Element extends Component
             'nomFilmSceance' => $this->nomFilmSceance,
             'idFilmSceance' => $this->idFilmSceance,
             'salles' => Salle::where('cinema_id', $this->idCinema)->get(),
-            'Listetype' => OptionForm::getOption(StockageElement::getListeTypeElementStockage())
+            'Listetype' => OptionForm::getOption(StockageElement::getListeTypeElementStockage()),
+            'disableType' => $this->disableType
         ]);
     }
 }

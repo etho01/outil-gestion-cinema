@@ -68,7 +68,7 @@
                                     Supprimer
                                 </button>
                             @endif
-                            <x-popup.index :elementUpdate="$typeclient->id" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
+                            <x-popup.index :elementUpdate="$typeclient->id" :livewireObject="$livewireObject" :idCinema="$idCinema" :option="$option"/>
                         @endisset
                     </td>
                 </tr>
@@ -77,9 +77,9 @@
     </table>
     @isset($importOtherPopUp)
         @foreach ($importOtherPopUp as $importPopUp)
-            <x-popup.index elementUpdate="0" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
+            <x-popup.index elementUpdate="0" :livewireObject="$importPopUp['name']" :idCinema="$idCinema" option=""/>
             @foreach ($importPopUp['ids'] as $element)
-                <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema"/>
+                <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema" option=""/>
             @endforeach
         @endforeach
     @endisset
