@@ -1,5 +1,5 @@
 <div>
-    <x-gestion.filtre :filtre="$filtre"/>
+    <x-gestion.filtre :filtres="$filtre"/>
     <div class="card">
         <div class="card-body">
             <x-gestion.table :typesclient="$distributeur" :infostable="$infostable" 
