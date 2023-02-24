@@ -33,7 +33,7 @@ class gestListePage extends Component
         if (!is_array($this->listPagesEnable))$this->listPagesEnable = $this->listPagesEnable->pluck('id')->all();
         return view('components.gestion.gest-liste-page',[
             'listeCategoriePage' => $listeCategoriePage,
-            'listPageEnable' => $this->listPagesEnable,
+            'listPagesEnable' => $this->listPagesEnable,
             'idCliema' => $this->idCliema
         ]);
     }
