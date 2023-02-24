@@ -1,6 +1,6 @@
 <div class="w-100" style="overflow-x: auto">
     <?php 
-    if(!isset($canCreateDelete)) $canCreateDelete = true 
+    if(!isset($canCreateDelete)) $canCreateDelete = true ;
     if (!isset($option)) $option = "";
     ?>
     <table class="table">
