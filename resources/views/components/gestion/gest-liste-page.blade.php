@@ -4,6 +4,7 @@
         use App\Models\page\Page;
         $listeCategoriePage = Page::getPageAndCategorieWherePageIn($listPageAutorized, true);
         if (!is_array($listPagesEnable))$listPagesEnable = $listPagesEnable->pluck('id')->all();
+        if (!isset($idCliema)) $idCliema = "";
     ?>
         @foreach($listeCategoriePage as $nom_categorie => $listePages)
             <div class="w-50">
