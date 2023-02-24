@@ -12,9 +12,9 @@ class filtre extends Component
      *
      * @return void
      */
-    public function __construct($filtre)
+    public function __construct($filtres)
     {
-        $this->filtre = $filtre;
+        $this->filtre = $filtres;
     }
 
     /**
