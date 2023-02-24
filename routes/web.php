@@ -17,6 +17,7 @@ use App\Http\Controllers\cinema\GlobecastController;
 use App\Http\Controllers\cinema\FilmSceanceController;
 use App\Http\Controllers\gestion\TypeClientController;
 use App\Http\Controllers\cinema\DistributeurController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,11 +34,17 @@ Route::prefix('api')->group(
     base_path('routes/api.php')
 );
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('acceuil');
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+Route::get('', [AuthenticatedSessionController::class, 'create'])
+->name('login');
+
+
+Route::post('', [AuthenticatedSessionController::class, 'store']);
+
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+->name('logout');
 
 Route::get('/register/{slug}/{key}', [UserController::class, 'add_password'])->name('add_password');
 Route::post('/profile/update', [UserController::class, 'update'])->name('profile.change');
@@ -116,6 +123,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });*/
 
-require __DIR__.'/auth.php';
+//require __DIR__.'/auth.php';
 
-Auth::routes();
+//Auth::routes();

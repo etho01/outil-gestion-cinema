@@ -1,4 +1,10 @@
+
 <div class="p-4">
+    <?php 
+        use App\Models\page\Page;
+        $listeCategoriePage = Page::getPageAndCategorieWherePageIn($this->listPageAutorized, true);
+        if (!is_array($this->listPagesEnable))$this->listPagesEnable = $this->listPagesEnable->pluck('id')->all();
+    ?>
         @foreach($listeCategoriePage as $nom_categorie => $listePages)
             <div class="w-50">
                 <x-layout.part-title :title="$nom_categorie" />

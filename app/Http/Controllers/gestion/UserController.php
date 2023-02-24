@@ -51,7 +51,7 @@ class UserController extends Controller
 
     public function add_password(Request $request, $slug, $key){
         $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, null ,User::class ,$slug);
-        if ( !Hash::check($infosPage->getInfosInstance('email').$infosPage->getInfosInstance('nom'), $key) ) return redirect()->route('acceuil');
+        if ( !Hash::check($infosPage->getInfosInstance('email').$infosPage->getInfosInstance('nom'), $key) ) return redirect()->route('dashboard');
         if ($infosPage->getInfosInstance('is_validate') == 2) return redirect()->route('login');
 
         return view('page_app.user.new-profile', [
