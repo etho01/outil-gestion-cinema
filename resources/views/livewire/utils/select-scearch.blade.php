@@ -16,4 +16,19 @@
             {{ $element->nom }}
         </li>
         @endforeach
+    @if ($type == "films")
+    <script>
+        window.addEventListener('updateFilm{{$idSelect}}', e => {
+            document.getElementById('idBtnModal{{ $type }}{{$idElement}}').setAttribute('wire:click', '{{ $foncCall }}(\'{{$idSelect}}\')');
+            document.getElementById('idBtnModal{{ $type }}{{$idElement}}').click() 
+        });
+    </script>
+    @elseif($type == "films_sceance")
+    <script>
+        window.addEventListener('updateFilmSeance{{$idSelect}}', e => {
+            document.getElementById('idBtnModal{{ $type }}{{$idElement}}').setAttribute('wire:click', '{{ $foncCall }}(\'{{$idSelect}}\')');
+            document.getElementById('idBtnModal{{ $type }}{{$idElement}}').click() 
+        });
+    </script>
+    @endif
 </div>

@@ -63,6 +63,7 @@ class Element extends Component
         $this->validate();
         if ($this->isUpdated){
             $this->emit('updateFilm');
+            $this->dispatchBrowserEvent('updateFilm'.$this->idElement);
             $this->dispatchBrowserEvent('elementUpdated');
         } else {
             $this->emit('saveElement');

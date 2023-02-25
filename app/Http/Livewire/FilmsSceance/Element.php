@@ -32,6 +32,8 @@ class Element extends Component
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
 
+        $this->isUpdated = $isUpdated;
+
         $this->idClient = Cinema::find($idCinema)->client_id;
         if ($idElement > 0){
             $filmSceance = filmSceance::find($idElement);
@@ -62,6 +64,7 @@ class Element extends Component
 
     public function updateFilmBase($idFilmVersion){
         $this->idFilmVersion = $idFilmVersion;
+        $this->dispatchBrowserEvent('updateFilmSeance'.$this->idElement);
         if ($this->idFilmVersion != 0){
             $film = Film::find($idFilmVersion);
             $this->id_film_imdb = $film->id_imdb;
@@ -76,6 +79,7 @@ class Element extends Component
         $this->validate();
         if ($this->isUpdated){
             $this->emit('updateFilmSeance');
+            $this->dispatchBrowserEvent('updateFilmSeance'.$this->idElement);
             $this->dispatchBrowserEvent('elementUpdated');
         } else {
             $this->emit('saveElement');

@@ -18,6 +18,23 @@ class SelectScearch extends Component
     public $foncCall;
     public $label;
 
+    protected $listeners = [
+        "updateFilmSeance" => 'updateElementFilmSeance',
+        "updateFilm" => 'updateElementFilm'
+    ];
+
+    public function updateElementFilmSeance(){
+        if ($this->type == 'films_sceance'){ // si du selecteur d'une version de seance du film
+
+        }
+    }
+
+    public function updateElementFilm(){
+        if ($this->type == 'Film'){ // si du selecteur de version de seance du film
+
+        }
+    }
+
     public function mount($idElement, $type, $foncCall, $label, $idCinema, $idElementPopUp){
         $this->idElement = $idElement;
         $this->type = $type;
