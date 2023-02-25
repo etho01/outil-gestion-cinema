@@ -79,7 +79,9 @@
         });
 
         document.getElementById('modal{{$livewireObject}}{{$elementUpdate}}').addEventListener('hide.bs.modal', function (event) {
-            openOldModal('{{$livewireObject}}', {{$elementUpdate}});
+            setTimeout(() => {
+                 openOldModal('{{$livewireObject}}', {{$elementUpdate}});
+             }, 500);
         })
 
     </script>

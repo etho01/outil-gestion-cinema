@@ -66,8 +66,14 @@
         }
         
         function saveOldModal(oldType, oldIdelement, newType, newIdElement){
+            modalIsAnnimationOpen = true;
             document.getElementById('modalParent'+newType+newIdElement).value = "modal"+oldType+oldIdelement;
+            setTimeout(() => {
+                modalIsAnnimationOpen = false;
+            }, 1000);
         }
+
+        var modalIsAnnimationOpen = false;
 
         var elementUpdated = false;
 
@@ -76,11 +82,14 @@
         });
 
         function openOldModal(TypePopUpClose, idPopClose){
-            var modalOpen = document.querySelectorAll('[data-bs-target="#'+document.getElementById('modalParent'+TypePopUpClose+idPopClose).value+'"]');
-            if (modalOpen[0] != undefined){
-                modalOpen[0].click();
-            } else if (elementUpdated){
-                Livewire.emit('saveElement');
+            if (!modalIsAnnimationOpen){
+                var modalOpen = document.querySelectorAll('[data-bs-target="#'+document.getElementById('modalParent'+TypePopUpClose+idPopClose).value+'"]');
+                if (modalOpen[0] != undefined){
+                    modalOpen[0].click();
+                } else if (elementUpdated){
+                    console.log('reset');
+                    Livewire.emit('saveElement');
+                }
             }
         }
     </script>
