@@ -16,7 +16,7 @@ class Element extends Component
     public $typeElement;
 
     public $nomFilmSceance;
-    public $idFilmSceance = 0;
+    public $idFilmSceance;
 
     public $dateDebut;
     public $dateFin;
@@ -57,6 +57,17 @@ class Element extends Component
     protected $rules = [
         'dateDebut' => 'required|date',
         'dateFin' => 'required|date',
+        'idSalle' => 'required',
+        'idFilmSceance' => 'required'
+    ];
+
+    protected $messages = [
+        'dateDebut.required' => 'La date du debut de la KDM ne doit pas etre null',
+        'dateDebut.date' => 'La date du debut de la KDM doit etre une date',
+        'dateFin.required' => 'La date de fin de la KDM ne doit pas etre null',
+        'dateFin.date' => 'La date de fin de la KDM doit etre une date',
+        'idSalle.required' => 'La salle de la KDM ne doit pas etre null',
+        'idFilmSceance.required' => 'Le format de la seance ne doit pas etre null'
     ];
 
     function save(){

@@ -58,7 +58,16 @@ class Element extends Component
         'dateSeance' => 'required|date',
         'heureSeance' => 'required',
         'salleId' => 'required',
-        'isVisibleSite' => 'required'
+        'isVisibleSite' => 'required',
+        'idFilmSceance' => 'required'
+    ];
+
+    protected $messages = [
+        'dateSeance.required' => 'La date de la seance ne doit pas etre null',
+        'dateSeance.date' => 'La date de la seance doit etre une date',
+        'salleId.required' => 'La salle de la seance ne doit pas etre null',
+        'isVisibleSite.required' => 'La visibilite sur le site ne doit pa etre null',
+        'idFilmSceance' => 'Le type de la seance ne doit pas etre null'
     ];
 
     function save(){

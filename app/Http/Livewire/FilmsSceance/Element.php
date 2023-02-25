@@ -20,7 +20,7 @@ class Element extends Component
     public $filtreDim;
     public $filtreLangue;
 
-    public $idFilmVersion = 0;
+    public $idFilmVersion;
 
     public $id_film_imdb = 0;
     public $nom_film_version = "";
@@ -60,6 +60,14 @@ class Element extends Component
         'nomFilmSceance' => 'required',
         'filtreDim' => 'required',
         'filtreLangue' => 'required',
+        'idFilmVersion' => 'required'
+    ];
+
+    protected $messages = [
+        'nomFilmSceance.required' => 'Le nom du format de la séance ne doit pas etre null',
+        'filtreDim.required' => 'La dimmention de la seance ne doit pas etre null',
+        'filtreLangue.required' => 'La langue du film ne doit pas etre null',
+        'idFilmVersion.required' => "Le nom de la version du film ne doit pas etre null "
     ];
 
     public function updateFilmBase($idFilmVersion){

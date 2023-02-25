@@ -37,6 +37,12 @@ class Element extends Component
         'nomDistrib' => 'required',
     ];
 
+    protected $messages = [
+        'mailDistrib.required' => 'Le mail du distributeur ne doit pas etre null',
+        'mailDistrib.email' => 'Le mail du distributeur doit etre un mail',
+        'nomDistrib.required' => 'le nom du distributeur ne doit pas etre null'
+    ];
+
     public function save(){
         $this->validate();
         $this->emit('saveElement');

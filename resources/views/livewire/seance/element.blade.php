@@ -16,6 +16,10 @@
                     <x-utils.select-scearch :baseType="$typeElement" type="films_sceance" :idElement="$idElement" texteBtn="Version de la sceance : {{$nomFilmSceance}}" 
                         fonctCall="updateFilmSceance" label="Nom de la version du filtre" ouverturePopUp="films_sceance" :idElementPopUp="$idFilmSceance"
                         :idCinema="$idCinema" texteBtnUpdate="une version de film"/>
+                    
+                    @error('idFilmSceance')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
                         <div class="d-flex row">
                             <div class="col-6">

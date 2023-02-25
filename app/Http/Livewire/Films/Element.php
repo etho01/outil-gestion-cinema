@@ -54,6 +54,12 @@ class Element extends Component
         'distributeur' => 'required',
     ];
 
+    protected $messages = [
+        'nomFilm.required' => 'Le nom du film ne doit pas etre null',
+        'nomVersion.required' => 'The Email Address format is not valid.',
+        'distributeur.required' => 'Le nom de la version du film ne doit pas etre null',
+    ];
+
     public function changeFilm($id, $nomFilm){
         $this->id_film = $id;
         $this->nomFilm = htmlspecialchars_decode($nomFilm);

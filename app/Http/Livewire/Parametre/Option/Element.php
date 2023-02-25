@@ -39,6 +39,12 @@ class Element extends Component
         'visibilite' => 'required'
     ];
 
+    protected $messages = [
+        'nom.required' => 'Le nom de l\'option ne doit pas etre null',
+        'type.required' => 'Le tyoe de l\'option ne doit pas etre null',
+        'visibilite.required' => 'La visibilité de l\'option ne doit pas etre null'
+    ];
+
     public function save(){
         $this->validate();
         $this->emit('saveElement');

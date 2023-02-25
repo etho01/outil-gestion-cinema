@@ -18,7 +18,7 @@ class Element extends Component
     public $typeElement;
 
     public $nomFilmSceance;
-    public $idFilmSceance = 0;
+    public $idFilmSceance;
 
     public $idSalle;
     public $type;
@@ -60,7 +60,14 @@ class Element extends Component
 
     protected $rules = [
         'idSalle' => 'required',
-        'type' => 'required'
+        'type' => 'required',
+        'idFilmSceance' => 'required'
+    ];
+
+    protected $messages = [
+        'idSalle.required' => 'La salle doit etre defini',
+        'type.required' => 'Le type de stockage ne doit pas etre null',
+        'idFilmSceance' => 'Le type de la seance ne doit pas etre null'
     ];
 
     function save(){

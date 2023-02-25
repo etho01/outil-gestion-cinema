@@ -16,7 +16,11 @@
 
                     <x-utils.select-scearch :baseType="$typeElement" type="films" :idElement="$idElement" texteBtn="Version du film : {{$nomFilmVersion}}" 
                         fonctCall="updateFilmBase" label="Nom de la version du filtre" ouverturePopUp="films" :idElementPopUp="$idFilmVersion"
-                        :idCinema="$idCinema" texteBtnUpdate="une version de film" :idCinema="$idCinema"/>
+                        :idCinema="$idCinema" texteBtnUpdate="une version de film" :idCinema="$idCinema" nomError="idFilmVersion"/>
+
+                    @error('idFilmVersion')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
                     <x-input.select champLivewire="filtreLangue" name="filtreLangue" label="Filtre sur la langue" :elements="$listeLangue"/>
                     <x-input.select champLivewire="filtreDim" name="filtreDim" label="Dimention du film" :elements="$listeDim"/>

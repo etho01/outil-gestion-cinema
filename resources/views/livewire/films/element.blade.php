@@ -24,6 +24,9 @@
                         <ul class="dropdown-menu" aria-labelledby="dropDownSelectFilm">
                             <livewire:films.element.liste-film  :idElement="$idElement"/>
                         </ul>
+                        @error('nomFilm')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
                     <x-input.select champLivewire="formatSon" name="formatSon" label="Format du sons" :elements="$listeFormatSon"/>
                     <x-input.select champLivewire="formatImage" name="formatImage" label="Format de l'image" :elements="$listeFormatImage"/>
