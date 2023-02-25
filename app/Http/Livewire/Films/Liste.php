@@ -31,7 +31,7 @@ class Liste extends Component
     public function saveElement(){
     }
 
-    public function mount($infosPage, $isUpdated){
+    public function mount($infosPage){
         $this->infosPage = $infosPage;
         $this->slug_cinema = $infosPage->getSlugCinema();
         $this->idClient = $infosPage->instanceCinema()->client_id;
