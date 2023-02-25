@@ -56,15 +56,15 @@ class Liste extends Component
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreSalle', 
                 'elements' => Cinema::where('slug', $this->slug_cinema)->first()->salles()->get(),
-                 'label' => 'Salle', 'class' => 'col-2', 'name' => 'filtreSalle',
+                 'label' => 'Salle', 'class' => 'col-12 col-md-2', 'name' => 'filtreSalle',
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'filtreVisibilite', 
                 'elements' => OptionForm::getOptionOuiNon(),
-                 'label' => 'Est visible sur le site', 'class' => 'col-2', 'name' => 'filtreVisibilite',
+                 'label' => 'Est visible sur le site', 'class' => 'col-12 col-md-2', 'name' => 'filtreVisibilite',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom de la séance', 'label' => 'nom de la séance', 'name' => 'nom', 'class' => 'col-8'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom de la séance', 'label' => 'nom de la séance', 'name' => 'nom', 'class' => 'col-12 col-md-8'],
 
             ],
             'importOtherPopUp' => [

@@ -58,10 +58,10 @@ class Liste extends Component
                 ]]
             ],
             'filtre' => [
-                ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre Son', 'name' => 'filtreSon' , 'elements' => Option::getElmentByType(3)],
-                ['type' => 'select', 'champLivewire' => 'filtreImage','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre image', 'name' => 'filtreImage' , 'elements' => Option::getElmentByType(4)],
-                ['type' => 'select', 'champLivewire' => 'filtreLangue','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre Lanque', 'name' => 'filtreLangue' , 'elements' => Option::getElmentByType(1)],
-                ['type' => 'select', 'champLivewire' => 'filtreDim','defaultValue' => 0 , 'class' => 'col-3' , 'label' => 'filtre dimention', 'name' => 'filtreDim' , 'elements' => Option::getElmentByType(2)],
+                ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'filtre Son', 'name' => 'filtreSon' , 'elements' => Option::getElmentByType(3)],
+                ['type' => 'select', 'champLivewire' => 'filtreImage','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'filtre image', 'name' => 'filtreImage' , 'elements' => Option::getElmentByType(4)],
+                ['type' => 'select', 'champLivewire' => 'filtreLangue','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'filtre Lanque', 'name' => 'filtreLangue' , 'elements' => Option::getElmentByType(1)],
+                ['type' => 'select', 'champLivewire' => 'filtreDim','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'filtre dimention', 'name' => 'filtreDim' , 'elements' => Option::getElmentByType(2)],
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du films', 'name' => 'nom', 'class' => 'col-12'],
             ],
             'importOtherPopUp' => [

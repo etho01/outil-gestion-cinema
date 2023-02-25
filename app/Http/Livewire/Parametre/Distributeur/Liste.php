@@ -66,10 +66,10 @@ class Liste extends Component
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'isParam', 
                 'elements' => OptionForm::getOptionOuiNon(),
-                 'label' => 'Est parametré', 'class' => 'col-2', 'name' => 'cinema',
+                 'label' => 'Est parametré', 'class' => 'col-12 col-md-2', 'name' => 'cinema',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du type du client', 'label' => 'Nom du client', 'name' => 'nom', 'class' => 'col-9'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du type du client', 'label' => 'Nom du client', 'name' => 'nom', 'class' => 'col-12 col-md-9'],
 
             ]
         ]);

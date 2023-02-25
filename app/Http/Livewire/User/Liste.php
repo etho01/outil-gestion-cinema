@@ -39,20 +39,20 @@ class Liste extends Component
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreCinema', 
                 'elements' => Cinema::where('client_id', $this->idClient)->get(),
-                 'label' => 'Cinema accesible', 'class' => 'col-2', 'name' => 'cinema',
+                 'label' => 'Cinema accesible', 'class' => 'col-12 col-md-2', 'name' => 'cinema',
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'isAdmin', 
                 'elements' => OptionForm::getOptionOuiNon(),
-                 'label' => 'Est admin', 'class' => 'col-1', 'name' => 'cinema',
+                 'label' => 'Est admin', 'class' => 'col-12 col-md-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 
                 ['type' => 'select', 'champLivewire' => 'isValidate', 
                 'elements' => OptionForm::getOptionOuiNon(),
-                 'label' => 'Est valide', 'class' => 'col-1', 'name' => 'cinema',
+                 'label' => 'Est valide', 'class' => 'col-12 col-md-1', 'name' => 'cinema',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-8'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-12 col-md-8'],
 
             ]
         ]);

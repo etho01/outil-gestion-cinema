@@ -60,10 +60,10 @@ class Liste extends Component
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'typeOption', 
                 'elements' => OptionForm::getOption(config('cinema.OPTIONS.TYPE_OPTION')),
-                 'label' => 'Type option', 'class' => 'col-2', 'name' => 'option',
+                 'label' => 'Type option', 'class' => 'col-12 col-md-2', 'name' => 'option',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de l\'option', 'label' => 'Nom de l\'option', 'name' => 'nom', 'class' => 'col-10'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de l\'option', 'label' => 'Nom de l\'option', 'name' => 'nom', 'class' => 'col-12 col-md-10'],
 
             ]
         ]);
