@@ -1,4 +1,5 @@
 <div class="dropdown">
+    <?php  if ($idElementPopUp == null) $idElementPopUp = 0; ?>
     <a class="btn mt-2" href="#" role="button" id="dropDownSelectFilm{{ $type }}{{$idElement}}" data-bs-toggle="dropdown" aria-expanded="false" 
         style="border: 1px solid #ced4da; background-color: #f3f4f6;">
       {{ $texteBtn }} 

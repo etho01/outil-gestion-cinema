@@ -44,10 +44,10 @@ class Liste extends Component
             'livewireObject' => $this->livewireObject,
             'option' => $this->idTypeStockage,
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'Nom de la version du film de la seance' ],
+                'nom' =>  [ 'nom_col' => 'Nom de la version du film de la séance' ],
             ],
             'filtre' => [
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la scéance', 'label' => 'Nom de la scéance', 'name' => 'nom', 'class' => 'col-12'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la séance', 'label' => 'Nom de la séance', 'name' => 'nom', 'class' => 'col-12'],
             ],
             'importOtherPopUp' => [
                 ['name' => 'films', 'ids' => Film::where('cinema_id', $this->idCinema)->get()->pluck('id')],
