@@ -15,13 +15,13 @@
                     &nbsp;
                     @isset($route)
                         <a class="btn btn-secondary" href="{{ $route.'/new' }}">
-                            Crée un nouvel element
+                            Créer un nouvel element
                         </a>
                     @endisset
                     @isset ($livewireObject)
                         @if ($canCreateDelete == true)
                             <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-dimiss="modal" data-bs-target="#modal{{$livewireObject}}0">
-                                Crée un nouvel element
+                                Créer un nouvel element
                             </a>
                             <x-popup.index elementUpdate="0" :livewireObject="$livewireObject" :idCinema="$idCinema"/>
                         @endif
@@ -83,7 +83,7 @@
         @foreach ($importOtherPopUp as $importPopUp)
             <x-popup.index elementUpdate="0" :livewireObject="$importPopUp['name']" :idCinema="$idCinema" option=""/>
             @foreach ($importPopUp['ids'] as $element)
-                <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema" option=""/>
+                <x-popup.index :elementUpdate="$element" :livewireObject="$importPopUp['name']" :idCinema="$idCinema" option="" isUpdated="true"/>
             @endforeach
         @endforeach
     @endisset

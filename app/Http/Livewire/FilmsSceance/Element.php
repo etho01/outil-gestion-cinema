@@ -25,7 +25,9 @@ class Element extends Component
     public $id_film_imdb = 0;
     public $nom_film_version = "";
 
-    public function mount($idElement, $idCinema,$idBase , $typeElement = ''){
+    public $isUpdated;
+
+    public function mount($idElement, $idCinema,$idBase , $typeElement = '', $isUpdated = false){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
@@ -72,7 +74,12 @@ class Element extends Component
 
     public function save(){
         $this->validate();
-        $this->emit('saveElement');
+        if ($this->isUpdated){
+            $this->emit('updateFilmSeance');
+            $this->dispatchBrowserEvent('elementUpdated');
+        } else {
+            $this->emit('saveElement');
+        }
         $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
         $film = filmSceance::find($this->idElement);
         $film->update([
@@ -86,7 +93,12 @@ class Element extends Component
 
     public function create(){
         $this->validate();
-        $this->emit('saveElement');
+        if ($this->isUpdated){
+            $this->emit('updateFilmSeance');
+            $this->dispatchBrowserEvent('elementUpdated');
+        } else {
+            $this->emit('saveElement');
+        }
         $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
         filmSceance::create([
             'option_langue' => $this->filtreLangue,

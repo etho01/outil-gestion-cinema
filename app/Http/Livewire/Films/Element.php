@@ -26,11 +26,15 @@ class Element extends Component
 
     public $id_film = 0;
 
-    public function mount($idElement, $idCinema){
+    public $isUpdated;
+
+    public function mount($idElement, $idCinema, $isUpdated = false){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
+
+        $this->isUpdated = $isUpdated;
 
         if ($idElement != 0){ // si ne crée pas
             $film = Film::find($idElement);
@@ -57,7 +61,13 @@ class Element extends Component
 
     public function save(){
         $this->validate();
-        $this->emit('saveElement');
+        if ($this->isUpdated){
+            $this->emit('updateFilm');
+            $this->dispatchBrowserEvent('elementUpdated');
+        } else {
+            $this->emit('saveElement');
+        }
+        
         $this->dispatchBrowserEvent('hideModal'.'films'.$this->idElement);
         $film = Film::find($this->idElement);
         $film->update([
@@ -74,9 +84,13 @@ class Element extends Component
 
     public function create(){
         $this->validate();
-        $this->emit('saveElement');
+        if ($this->isUpdated){
+            $this->emit('updateFilm');
+            $this->dispatchBrowserEvent('elementUpdated');
+        } else {
+            $this->emit('saveElement');
+        }
         $this->dispatchBrowserEvent('hideModal'.'films'.$this->idElement);
-        $film = Film::find($this->idElement);
         Film::create([
             'option_image' => $this->formatImage,
             'option_son' => $this->formatSon,

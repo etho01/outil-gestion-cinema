@@ -69,10 +69,18 @@
             document.getElementById('modalParent'+newType+newIdElement).value = "modal"+oldType+oldIdelement;
         }
 
+        var elementUpdated = false;
+
+        window.addEventListener('elementUpdated', e => {
+            elementUpdated = true;
+        });
+
         function openOldModal(TypePopUpClose, idPopClose){
             var modalOpen = document.querySelectorAll('[data-bs-target="#'+document.getElementById('modalParent'+TypePopUpClose+idPopClose).value+'"]');
             if (modalOpen[0] != undefined){
                 modalOpen[0].click();
+            } else if (elementUpdated){
+                Livewire.emit('saveElement');
             }
         }
     </script>

@@ -31,7 +31,7 @@ class Liste extends Component
     public function saveElement(){
     }
 
-    public function mount($infosPage){
+    public function mount($infosPage, $isUpdated){
         $this->infosPage = $infosPage;
         $this->slug_cinema = $infosPage->getSlugCinema();
         $this->idClient = $infosPage->instanceCinema()->client_id;
@@ -58,10 +58,6 @@ class Liste extends Component
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du films', 'name' => 'nom', 'class' => 'col-6'],
             ]
         ]);
-    }
-
-    public function update($id){
-        $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
     }
 
     public function delete($id){
