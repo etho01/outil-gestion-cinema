@@ -18,6 +18,7 @@ use App\Http\Controllers\cinema\FilmSceanceController;
 use App\Http\Controllers\gestion\TypeClientController;
 use App\Http\Controllers\cinema\DistributeurController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\cinema\demandeFilmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +114,10 @@ Route::middleware('auth', 'cineExist', 'route')->prefix('{cinema}')->group(funct
     });
     
     Route::prefix('film_sceance')->name('FilmVersion.')->controller(FilmSceanceController::class)->group(function(){
+        Route::get('/', 'list')->name('list');
+    });
+
+    Route::prefix('demande_film')->name('demandeFilm.')->controller(demandeFilmController::class)->group(function(){
         Route::get('/', 'list')->name('list');
     });
 });

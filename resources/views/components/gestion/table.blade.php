@@ -35,8 +35,11 @@
                     @foreach($infostable as $nom => $infos)
                         <td class="@isset($infos['class']) {{$infos['class']}} @endisset">
                             @if (isset($infos['datas']))
-                            {{ isset($infos['datas'][$typeclient->{$nom}]) ? ucfirst(strtolower($infos['datas'][$typeclient->{$nom}]->nom)) : '-' }}
+
+                                {{ isset($infos['datas'][$typeclient->{$nom}]) ? ucfirst(strtolower($infos['datas'][$typeclient->{$nom}]->nom)) : '-' }}
+                           
                             @elseif (isset($infos['pop_up']))
+
                                 @foreach ($infos['pop_up'] as $key => $pop_up)
                                     <a href="#" class="btn @if ($key == 0)align-self-center @endif" 
                                     @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset 
@@ -45,10 +48,23 @@
                                     </a>
                                     <x-popup.index elementUpdate="0" :livewireObject="$pop_up['type']" :idCinema="$idCinema" :idBase="$typeclient->id"/>
                                 @endforeach
+
                             @elseif (isset($infos['date']))
+                                
                                 {{ $infos['carbon']::parse($typeclient->{$nom})->format($infos['format']) }}
-                            @else 
+                            
+                            @elseif (isset($infos['nomfilmDemande']))
+
+                                    {{ $typeclient->getNomFilm() }}
+
+                            @elseif (isset($infos['nombrefilmDemande']))
+
+                                    {{ $typeclient->getNombreDemande($idCinema) }}
+
+                            @else
+
                                 {{ $typeclient->{$nom} == "" ? '-' : $typeclient->{$nom} }}
+                            
                             @endif
                             
                         </td>
