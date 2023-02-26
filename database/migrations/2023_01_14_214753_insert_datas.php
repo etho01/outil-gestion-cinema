@@ -96,7 +96,7 @@ return new class extends Migration
         CategoriePage::insert([
             'id' => 8,
             'icone' => 'fa-solid fa-gear',
-            'nom' => 'Paramentre',
+            'nom' => 'Parametre',
             'pos_categorie' => 9
         ]);
         CategoriePage::insert([
