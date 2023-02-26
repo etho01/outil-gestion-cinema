@@ -27,9 +27,9 @@ class canGoPage
             } else {
                 $pageAuth = Auth::user()->getPageAutorized(Cinema::getCinemaSlug($request->route()->cinema ), false);
             }
-            //dd(!in_array($PAGE->id, $pageAuth->all()));
+         //   dd(!in_array($PAGE->id, $pageAuth->all()));
             if (!in_array($PAGE->id, $pageAuth->all())){
-           //     return redirect()->route('dashboard');
+                return redirect()->route('dashboard');
             }
         }
         return $next($request);
