@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" href="{{ Vite::asset('resources/images/logo.jpg') }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
     <script src="https://kit.fontawesome.com/1f8f01d002.js" crossorigin="anonymous"></script>
 

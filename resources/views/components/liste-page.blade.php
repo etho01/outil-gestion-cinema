@@ -1,6 +1,6 @@
 <div class="bg-dark menu-slide d-flex flex-column menu-bar liste-page" style="width: 200px; height :100%; overflow-y: auto;">
     <div class="d-flex flex-columns justify-content-center p-2 bg-dark">
-        <div class="fs-1 border-bottom text-white pb-2 text-center">{{ config('APP_NAME', 'Laravel') }}</div>
+        <div class="fs-1 border-bottom text-white pb-2 text-center">{{ config('app.name', 'Laravel') }}</div>
     </div>
 
     <ul class="nav nav-pills flex-column mb-auto">
