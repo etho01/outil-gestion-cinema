@@ -72,7 +72,7 @@ class Liste extends Component
     public function getPaginate(){
         $paginate = DB::table('options')->where(function ($query){
             $query->where('nom', 'like', '%'.$this->filtreNom.'%');
-        });
+        })->where('client_id', $this->idClient);
         if ($this->typeOption){
             $paginate->where('type', $this->typeOption);
         }

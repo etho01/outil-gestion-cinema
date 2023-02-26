@@ -76,7 +76,10 @@ class Liste extends Component
 
     public function getPaginate(){
         $paginate = Sceance::join('film_sceances', 'film_sceances.id', '=', 'sceances.film_sceance_id')
-        ->join('films' ,'film_sceances.film_id','=', 'films.id')->whereDate('sceances.date_seance', '>=', Carbon::today()->toDateString());
+        ->join('films' ,'film_sceances.film_id','=', 'films.id')
+        ->join('salles', 'salles.id', '=', 'sceances.salle_id')
+        ->where('salles.cinema_id', $this->idCinema)
+        ->whereDate('sceances.date_seance', '>=', Carbon::today()->toDateString());
         $paginate->select('sceances.*' , 'films.nom as film_nom', 'film_sceances.option_langue', 'film_sceances.option_dimention');
         if ($this->filtreSalle) $paginate->where('salle_id', $this->filtreSalle);
         if ($this->filtreVisibilite) $paginate->where('is_visible_site', $this->filtreVisibilite);

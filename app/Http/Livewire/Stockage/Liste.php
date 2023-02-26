@@ -60,7 +60,9 @@ class Liste extends Component
         $paginate = DB::table('stockage_elements')
         ->join('film_sceances_elements', 'film_sceances_elements.stockage_element_id', '=', 'stockage_elements.id')
         ->join('film_sceances', 'film_sceances.id', '=', 'film_sceances_elements.film_sceance_id')
+        ->join('salles', 'salles.id', '=', 'stockage_elements.salle_id')
         ->select('film_sceances_elements.*', 'film_sceances.nom')
+        ->where('salles.cinema_id', $this->idCinema)
         ->where('type', $this->idTypeStockage);
         return $paginate->paginate(30);
     }
