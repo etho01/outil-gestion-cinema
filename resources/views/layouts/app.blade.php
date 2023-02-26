@@ -32,7 +32,7 @@
                             {{ Auth::user()->nom }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropDownUser">
-                            <a href="{{ route('profile', ['slug' => Auth::user()->slug]) }}">
+                            <a href="{{ route('profile') }}">
                                 <li class="dropdown-item"  >
                                     profil
                                 </li>

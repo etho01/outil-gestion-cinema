@@ -43,13 +43,9 @@ class UserController extends Controller
         }
     }
 
-    public function viewProfile(Request $request, $slug){
+    public function viewProfile(Request $request){
         try {
-            $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, null ,User::class ,$slug);
-
-            if (Auth::user()->id != $infosPage->getInstanceWork()->id){
-                abort(404);
-            }
+            $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, null ,User::class , Auth::user()->slug);
 
             return view('page_app.user.profile', [
                 'infosPage' => $infosPage,

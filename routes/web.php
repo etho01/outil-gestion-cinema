@@ -50,7 +50,7 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::get('/register/{slug}/{key}', [UserController::class, 'add_password'])->name('add_password');
 Route::post('/profile/update', [UserController::class, 'update'])->name('profile.change');
 
-Route::get('profile/{slug}', [UserController::class, 'viewProfile'])->name('profile');
+Route::get('profile', [UserController::class, 'viewProfile'])->name('profile');
 
 Route::prefix('parametre')->middleware('route', 'auth')->group(function (){
     Route::prefix('client')->name('Client.')->controller(ClientController::class)->group(function (){
