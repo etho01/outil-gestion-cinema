@@ -59,11 +59,11 @@
             @endforeach
         @else
             @foreach($listCinema as $nomClient => $client)
-                <li class="dropdown-submenu">
+                <li class="dropdown">
                     <a class="nav-link text-white px-3" href="#">{{ $nomClient }}</a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-submenu dropdown-menu-dark">
                         @foreach ($client as $cinema)
-                            <li class=""  href="{{route('Film.list', ['cinema' => $cinema->slug])}}"> 
+                            <li class="dropdown-item"  href="{{route('Film.list', ['cinema' => $cinema->slug])}}"> 
                                 <a href="{{route('Film.list', ['cinema' => $cinema->slug])}}" class="nav-link text-white px-3">{{ $cinema->nom }}</a>
                             </li>
                         @endforeach
