@@ -16,11 +16,11 @@ class seanceContolleur extends Controller
     }
 
     public function getSeancesOrderByFilms(Request $request, $idCinema){
-        $tabFilm = Film::getFilmAffiche($idCinema);
+        $tabFilm = Film::getFilmAffiche($idCinema); // selectionne les films a l'affiche
         foreach($tabFilm as $key => $film){
             $infosSeance = 
             Sceance::getBaseRqWithFilm($idCinema)->where('films.id_imdb', $film['id'])
-            ->select('sceances.date_seance')->get();
+            ->select('sceances.date_seance')->get(); // ajoute les seance
             $tabFilm[$key]['seances'] = $infosSeance;
         }
         return $tabFilm;

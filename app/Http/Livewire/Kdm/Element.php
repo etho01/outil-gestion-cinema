@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Kdm;
-
+// meme modele que pour le filmSeance
 use Livewire\Component;
 use App\Models\film\Kdm;
 use App\Models\cinema\Salle;

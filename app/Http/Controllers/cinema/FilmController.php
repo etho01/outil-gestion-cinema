@@ -9,6 +9,7 @@ use App\utils\class\InformationPage;
 
 class FilmController extends Controller
 {
+     // affiche la vue de la page
     public function list(Request $request, $cinema){
         $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LISTE_FILM')),$request, $cinema);
 

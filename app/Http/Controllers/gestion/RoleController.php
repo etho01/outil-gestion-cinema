@@ -45,7 +45,7 @@ class RoleController extends Controller
             return view('page_app.parametre.role.show', [
                 'infosPage' => $infosPage,
                 'ListElementAdmin' => OptionForm::getOptionOuiNon(),
-                'listePageAutorized' => $infosPage->instanceCinema()->getClient()->getPageAutorized()->get()->pluck('id'),
+                'listePageAutorized' => $infosPage->instanceCinema()->getClient()->getPageAutorized()->get()->pluck('id'), // les pages accesible pour le client
                 'tabEnable' => $tabEnable
             ]);
         } catch (ModelNotFoundException $e){

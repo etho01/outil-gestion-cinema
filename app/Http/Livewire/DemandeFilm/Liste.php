@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\DemandeFilm;
-
+// meme modele que pour le filmSeance
 use Livewire\Component;
 use App\Models\api\demandeFilm;
 

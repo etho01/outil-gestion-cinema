@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ClientController extends Controller
 {
-
+     // affiche la vue de la page
     public function list(Request $request){
         $infosPage = new InformationPage(Page::find(12),$request, null);
 
@@ -27,6 +27,7 @@ class ClientController extends Controller
         ]);
     }
 
+    //affiche la page specifique a l'element
     public function show(Request $request, $slug){
         try {
             $infosPage = new informationPageFormulaire(Page::find(13),$request, null ,Client::class ,$slug);
@@ -40,6 +41,7 @@ class ClientController extends Controller
         }
     }
 
+    //suvegarde l'element
     public function store(ClientPostRequest $request){
         $infosPage = new InformationPage(Page::find(12),$request, null);
         $CLIENT = Client::find($request->input('id'));
@@ -52,7 +54,7 @@ class ClientController extends Controller
                 'email' => $request->input('email'),
                 'types_client_id' => $request->input('type_client')
             ]);
-        } else {
+        } else { // si c'est un elemet deja existant
             $CLIENT->update([
                 'nom' => $request->input('nom'),
                 'slug' => Str::of($request->input('nom'))->slug('-')->value(),
@@ -71,7 +73,7 @@ class ClientController extends Controller
                 $tab_liste_cinema[$nbCine]['nom'] = $value;
                 $tab_liste_cinema[$nbCine]['listeSalle'] = array();
                 $nbSalle = 0;
-                foreach ($tab_liste_query as $keyinputSalle => $valueSalle){
+                foreach ($tab_liste_query as $keyinputSalle => $valueSalle){ // creation des salle en fonction du cinema
                     if (str_contains($keyinputSalle, 'salle'.$id_cinema_app.'-')){
                         $id_salle_app = str_replace('salle'.$id_cinema_app.'-', '', $keyinputSalle);
                         $tab_liste_cinema[$nbCine]['listeSalle'][$nbSalle]['id'] = $id_salle_app;
@@ -82,7 +84,7 @@ class ClientController extends Controller
             }
             $nbCine++;
         }
-        $CLIENT->updateCinemaClient($tab_liste_cinema);
+        $CLIENT->updateCinemaClient($tab_liste_cinema); // mise a jour des salles et der cinemas
 
         return redirect()->route('Client.list', $infosPage->getinfosRoute())->withInput();
     }

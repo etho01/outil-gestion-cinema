@@ -9,6 +9,7 @@ use App\utils\class\InformationPage;
 
 class GlobecastController extends Controller
 {
+     // affiche la vue de la page
     public function list(Request $request, $cinema){
         $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LIST_GLOBECAST')),$request, $cinema);
 
