@@ -12,8 +12,8 @@
                 @endif
                 <x-layout.sub-title title="Nom" />
                 <div class="d-flex row">
-                    <x-input.text name="nom" label="nom du gestionnaire" class="col-12" placeholder="nom du gestionnaire" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}"/>
-                    <x-input.text name="email" label="email du gestionnaire" class="col-12" placeholder="email du gestionnaire" 
+                    <x-input.text name="nom" label="Nom du gestionnaire" class="col-12" placeholder="nom du gestionnaire" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}"/>
+                    <x-input.text name="email" label="Email du gestionnaire" class="col-12" placeholder="email du gestionnaire" 
                         value="{{ old('email') ?? $infosPage->getInfosInstance('email') }}"/>
                 </div>
 
@@ -22,7 +22,7 @@
             </div>
 
             <div class="card-footer d-flex justify-content-end">
-                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
+                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Créer' : 'Modifier' }}">
             </div>
         </form>
     </div>

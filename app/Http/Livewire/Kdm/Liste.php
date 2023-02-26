@@ -42,12 +42,12 @@ class Liste extends Component
             'kdm' => $this->getPaginate(),
             'livewireObject' => $this->livewireObject,
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'Nom de la scéance' ],
-                'date_debut' => ['nom_col' => 'date de debut', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y"],
-                'date_fin' => ['nom_col' => 'date de fin', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y"],
+                'nom' =>  [ 'nom_col' => 'Nom de la séance' ],
+                'date_debut' => ['nom_col' => 'Date de debut', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y"],
+                'date_fin' => ['nom_col' => 'Date de fin', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y"],
             ],
             'filtre' => [
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la scéance', 'label' => 'Nom de la scéance', 'name' => 'nom', 'class' => 'col-12'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la séance', 'label' => 'Nom de la séance', 'name' => 'nom', 'class' => 'col-12'],
             ],
             'importOtherPopUp' => [
                 ['name' => 'films', 'ids' => Film::where('cinema_id', $this->idCinema)->get()->pluck('id')],

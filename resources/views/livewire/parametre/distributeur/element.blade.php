@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
         <div class="d-flex row m-3">
-            <label for="nomDistrib"> nom du distributeur</label>
+            <label for="nomDistrib"> Nom du distributeur</label>
                 <input type="text" class="form-control col-12" @if (!$user->isSuperAdmin()) disabled @endif wire:model="nomDistrib"
                  name="nomDistrib" id="nomDistrib" />
 
@@ -15,7 +15,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
-                <label for="mailDistrib"> email du distributeur</label>
+                <label for="mailDistrib"> Email du distributeur</label>
                 <input type="text" class="form-control col-12" wire:model="mailDistrib" name="mailDistrib" 
                 id="mailDistrib" />
                 @error('mailDistrib')

@@ -14,12 +14,12 @@
             <x-layout.sub-title title="Information generaux" />
             <div class="d-flew row">
                 <x-input.text name="nom" label="Nom du role" placeholder="Nom" value="{{  old('nom') ?? $infosPage->getInfosInstance('nom') }}" class="col-10"/>
-                <x-input.select label="est admin" name="is_admin" 
+                <x-input.select label="Est admin" name="is_admin" 
                 :elements="$ListElementAdmin"
                 value="{{old('is_admin') ?? $infosPage->getInfosInstance('is_admin')}}" class="col-2"/>
             </div>
 
-            <x-layout.sub-title title="Page accessible" />
+            <x-layout.sub-title title="Pages accessibles" />
 
             <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
                 @foreach ($infosPage->instanceCinema()->getCinemaClient()->get() as $key => $cinema)
@@ -44,7 +44,7 @@
 
         </div>
         <div class="card-footer d-flex justify-content-end">
-            <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
+            <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Créer' : 'Modifier' }}">
         </div>
     </form>
 </div>

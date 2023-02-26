@@ -12,7 +12,7 @@
                     <img class="img-fluid" src="{{$urlImage}}" alt="">
                 </div>
                 <div class="col-6">
-                    <x-input.text name="nomFilmSceance" champLivewire="nomFilmSceance" label="Nom du film pour la sceance" placeholder="Nom du film pour la sceance"/>
+                    <x-input.text name="nomFilmSceance" champLivewire="nomFilmSceance" label="Nom du film pour la sceance" placeholder="Nom de la version de la seance"/>
 
                     <x-utils.select-scearch :baseType="$typeElement" type="films" :idElement="$idElement" texteBtn="Version du film : {{$nomFilmVersion}}" 
                         fonctCall="updateFilmBase" label="Nom de la version du filtre" ouverturePopUp="films" :idElementPopUp="$idFilmVersion"

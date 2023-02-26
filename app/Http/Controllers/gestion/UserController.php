@@ -32,12 +32,15 @@ class UserController extends Controller
     public function show(Request $request, $cinema, $slug){
         try {
             $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, $cinema ,User::class ,$slug);
-            if ($infosPage->instanceCinema()->client_id != $infosPage->getInstanceWork()->client_id){
-                abort(404);
+            if ($slug != 'new'){
+                if ($infosPage->instanceCinema()->client_id != $infosPage->getInstanceWork()->client_id){
+                    abort(404);
+                }
             }
             return view('page_app.user.show', [
                 'infosPage' => $infosPage,
             ]);
+            
         } catch (ModelNotFoundException $e){
             return redirect()->route('User.list', ['cinema' => $cinema]);
         }

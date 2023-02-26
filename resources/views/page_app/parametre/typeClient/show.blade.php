@@ -12,7 +12,7 @@
                     <input type="hidden" name="id" value="{{ $infosPage->getInfosInstance('id') }}">
                 @endif
                 <x-layout.title-page title="Informations sur le type du client" />
-                <x-layout.sub-title title="Information generaux" />
+                <x-layout.sub-title title="Informations généraux" />
                 <label for="nom" class="form-label">nom</label>
                 <input type="text" id="nom" name="nom" class="form-control" placeholder="nom" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}" required>
                 @error('nom')
@@ -23,7 +23,7 @@
 
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
+                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Créer' : 'Modifier' }}">
             </div>
         </form>
     </div>

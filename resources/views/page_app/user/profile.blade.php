@@ -12,8 +12,8 @@
                 @endif
                 <x-layout.sub-title title="Nom" />
                 <div class="d-flex row">
-                    <x-input.text name="nom" label="nom du gestionnaire" class="col-12" placeholder="nom du gestionnaire" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}"/>
-                    <x-input.text name="email" label="email du gestionnaire" class="col-12" placeholder="email du gestionnaire" 
+                    <x-input.text name="nom" label="Nom du gestionnaire" class="col-12" placeholder="nom du gestionnaire" value="{{ old('nom') ?? $infosPage->getInfosInstance('nom') }}"/>
+                    <x-input.text name="email" label="Email du gestionnaire" class="col-12" placeholder="email du gestionnaire" 
                         value="{{ old('email') ?? $infosPage->getInfosInstance('email') }}"/>
                 </div>
 
@@ -26,7 +26,7 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
-                    <label for="Checkpassword" class="mt-3">retaper le mot de passe </label>
+                    <label for="Checkpassword" class="mt-3">Retaper le mot de passe </label>
                     <input class="form-control" type="password" name="Checkpassword" id="Checkpassword" required placeholder="Mot de passe">
                     @error('Checkpassword')
                         <div class="px-5 text-danger">

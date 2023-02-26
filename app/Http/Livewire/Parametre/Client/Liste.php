@@ -17,12 +17,12 @@ class Liste extends Component
             'typesclient' => $this->getPaginate(),
             'route' => 'client',
             'infostable' => [
-                'nom' =>  [ 'nom_col' => 'nom du client' ],
+                'nom' =>  [ 'nom_col' => 'Nom du client' ],
             ],
             'filtre' => [
-                ['type' => 'select', 'champLivewire' => 'filtreTypeClient', 'elements' => TypesClient::all(), 'label' => 'type de client', 'class' => 'col-12 col-md-2', 'name' => 'type_client',
+                ['type' => 'select', 'champLivewire' => 'filtreTypeClient', 'elements' => TypesClient::all(), 'label' => 'Type de client', 'class' => 'col-12 col-md-2', 'name' => 'type_client',
                 'defaultValue' => 0],
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom du type du client', 'label' => 'nom du client', 'name' => 'nom', 'class' => 'col-12 col-md-10'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du type du client', 'label' => 'Nom du type du client', 'name' => 'nom', 'class' => 'col-12 col-md-10'],
 
             ]
         ]);

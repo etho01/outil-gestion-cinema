@@ -64,7 +64,7 @@ class Liste extends Component
                  'label' => 'Est visible sur le site', 'class' => 'col-12 col-md-2', 'name' => 'filtreVisibilite',
                 'defaultValue' => 0],
 
-                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'nom de la séance', 'label' => 'nom de la séance', 'name' => 'nom', 'class' => 'col-12 col-md-8'],
+                ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la séance', 'label' => 'Nom de la séance', 'name' => 'nom', 'class' => 'col-12 col-md-8'],
 
             ],
             'importOtherPopUp' => [

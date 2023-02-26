@@ -29,8 +29,10 @@ class RoleController extends Controller
         try {
             $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_ROLE')),$request, $cinema ,Role::class ,$slug);
 
-            if ($infosPage->instanceCinema()->client_id != $infosPage->getInstanceWork()->client_id){
-                abort(404);
+            if ($slug != 'new'){
+                if ($infosPage->instanceCinema()->client_id != $infosPage->getInstanceWork()->client_id){
+                    abort(404);
+                }
             }
 
             $cinemas = $infosPage->instanceCinema()->getCinemaClient()->get();

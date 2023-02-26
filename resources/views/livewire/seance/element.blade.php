@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-6">
 
-                    <x-utils.select-scearch :baseType="$typeElement" type="films_sceance" :idElement="$idElement" texteBtn="Version de la sceance : {{$nomFilmSceance}}" 
+                    <x-utils.select-scearch :baseType="$typeElement" type="films_sceance" :idElement="$idElement" texteBtn="Version de la séance : {{$nomFilmSceance}}" 
                         fonctCall="updateFilmSceance" label="Nom de la version du filtre" ouverturePopUp="films_sceance" :idElementPopUp="$idFilmSceance"
                         :idCinema="$idCinema" texteBtnUpdate="une version de film"/>
                     
@@ -23,10 +23,10 @@
 
                         <div class="d-flex row">
                             <div class="col-6">
-                                <x-input.text type="date" name="dateSeance" champLivewire="dateSeance" label="date du film" />
+                                <x-input.text type="date" name="dateSeance" champLivewire="dateSeance" label="Date du film" />
                             </div>
                             <div class="col-6">
-                                <x-input.text type="time" name="heureSeance" champLivewire="heureSeance" label="heure du film" />
+                                <x-input.text type="time" name="heureSeance" champLivewire="heureSeance" label="Heure du film" />
                             </div>
                         </div>
 

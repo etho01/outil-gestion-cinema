@@ -26,7 +26,7 @@ class Liste extends Component
             'demandes' => $this->getPaginate(),
             'infostable' => [
                 '' =>  [ 'nom_col' => 'Nom du film' , 'nomfilmDemande' => ''],
-                '-' => ['nom_col' => 'Nombre de demandes', 'nombrefilmDemande' => ''],
+                '-' => ['nom_col' => 'Nombre de demande', 'nombrefilmDemande' => ''],
             ],
         ]);
     }

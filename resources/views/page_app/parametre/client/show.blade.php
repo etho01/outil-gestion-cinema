@@ -25,7 +25,7 @@
                 <livewire:parametre.client.liste-cinema  :idClient="$infosPage->getInfosInstance('id')" :datasUpdateCine="old('datasUpdateCine') ?? ''"/>
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Crée' : 'Modifier' }}">
+                <input type="submit" class="btn btn-primary" value="{{ $infosPage->isNewElement() ? 'Créer' : 'Modifier' }}">
             </div>
         </form>
     </div>
