@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Stockage;
 
-use App\Models\cinema\StockageElement;
 use Livewire\Component;
 use App\Models\film\Film;
 use App\Models\film\filmSceance;
 use Illuminate\Support\Facades\DB;
+use App\Models\cinema\StockageElement;
+use App\Models\cinema\FilmSeanceStockageElement;
 
 class Liste extends Component
 {
@@ -54,6 +55,11 @@ class Liste extends Component
                 ['name' => 'films_sceance', 'ids' => filmSceance::where('cinema_id', $this->idCinema)->get()->pluck('id')]
             ]
         ]);
+    }
+
+
+    public function delete($id){
+        FilmSeanceStockageElement::find($id)->del();
     }
 
     public function getPaginate(){

@@ -31,4 +31,8 @@ class Sceance extends Model
         return $eloquent->where('is_visible_site', 2);
     }
 
+    public function del(){
+        $this->delete();
+    }
+
 }

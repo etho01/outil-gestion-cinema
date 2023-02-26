@@ -16,4 +16,8 @@ class FilmSeanceStockageElement extends Model
    ];
 
    protected $table = 'film_sceances_elements';
+
+   public function del(){
+    $this->delete();
+   }
 }

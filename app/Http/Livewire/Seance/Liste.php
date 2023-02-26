@@ -74,6 +74,10 @@ class Liste extends Component
         ]);
     }
 
+    public function delete($id){
+        Sceance::find($id)->del();
+    }
+
     public function getPaginate(){
         $paginate = Sceance::join('film_sceances', 'film_sceances.id', '=', 'sceances.film_sceance_id')
         ->join('films' ,'film_sceances.film_id','=', 'films.id')

@@ -15,7 +15,6 @@ class Film extends Model
         'id',
         'distributeur_id',
         'durree',
-        'slug',
         'nom',
         'nom_film',
         'id_imdb',
@@ -43,5 +42,13 @@ class Film extends Model
             $tab[] = $infosFilm;
         }
         return $tab;
+    }
+
+    public function del(){
+        $filmsSeance = filmSceance::where('film_id', $this->id)->get();
+        foreach ($filmsSeance as $filmSeance){
+            $filmSeance->del();
+        }
+        $this->delete();
     }
 }

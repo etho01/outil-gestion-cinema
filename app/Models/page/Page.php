@@ -7,6 +7,7 @@ use App\Models\client\TypesClient;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\cinema\StockageElement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -45,5 +46,13 @@ class Page extends Model
 
     public static function getPageByNameRoute($name){
         return Page::where('route', $name)->first();
+    }
+
+    public function del(){
+        $stockageElements = StockageElement::where('salle_id', $this->id)->get();
+        foreach ($stockageElements as $stockageElement){
+            $stockageElement->del();
+        }
+        $this->delete();
     }
 }

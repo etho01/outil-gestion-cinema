@@ -2,6 +2,7 @@
 
 namespace App\Models\cinema;
 
+use App\Models\film\filmSceance;
 use App\Models\film\CombinaisonOption;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +18,7 @@ class StockageElement extends Model
     ];
 
     public function films(){
-        return $this->hasMany(CombinaisonOption::class);
+        return $this->hasMany(filmSceance::class);
     }
 
     public function del(){
