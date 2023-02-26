@@ -13,6 +13,9 @@ use App\utils\class\InformationPage;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\createUserNotification;
 use App\utils\class\informationPageFormulaire;
+use App\Http\Requests\UserStoreTypePostRequest;
+use App\Http\Requests\UserUpdateTypePostRequest;
+use App\Http\Requests\ClientStoreTypePostRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
@@ -59,18 +62,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(Request $request, $cinema){
+    public function delete(Request $request, $cinema, $slug){
+        $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LIST_USER')),$request, $cinema);
+        $USER = User::where('slug', $slug)->first();
+        if ($USER != null) $USER->del();
+        return redirect()->route('User.list', $infosPage->getinfosRoute())->withInput();
+    }
+
+    public function store(UserStoreTypePostRequest $request, $cinema){
         $USER = User::find((int) $request->input('id'));
         $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LIST_USER')),$request, $cinema);
-        $request->validate([
-            'nom' => ['required',
-                    Rule::unique('users')->ignore($USER),
-                    'max:255',
-                    Rule::notIn(['new', 'create', 'update', 'delete']),],
-            'email' => ['required',
-                'max:255',
-                Rule::notIn(['new', 'create', 'update', 'delete']),]
-        ]);
         if ($request->input('id') == 0){ // si c'est un nouvel element
             $USER = User::create([
                 'nom' => $request->input('nom'),
@@ -98,27 +99,10 @@ class UserController extends Controller
         return redirect()->route('User.list', $infosPage->getinfosRoute())->withInput();
     }
 
-    public function delete(Request $request, $cinema, $slug){
-        $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LIST_USER')),$request, $cinema);
-        $USER = User::where('slug', $slug)->first();
-        if ($USER != null) $USER->del();
-        return redirect()->route('User.list', $infosPage->getinfosRoute())->withInput();
-    }
-
-    public function update(Request $request){
+    public function update(UserUpdateTypePostRequest $request){
         $USER = User::find((int) $request->input('id'));
         if ($request->input('id') == 0) return redirect()->route('login');
-        $request->validate([
-            'nom' => ['required',
-                    Rule::unique('users')->ignore($USER),
-                    'max:255',
-                    Rule::notIn(['new', 'create', 'update', 'delete']),],
-            'email' => ['required',
-                'max:255',
-                Rule::notIn(['new', 'create', 'update', 'delete']),],
-            'password' => ['required'],
-            'Checkpassword' => ['required', Rule::in([$request->input('password')])]
-        ]);
+
         $USER->update([
             'nom' => $request->input('nom'),
             'slug' => Str::of($request->input('nom'))->slug('-'),

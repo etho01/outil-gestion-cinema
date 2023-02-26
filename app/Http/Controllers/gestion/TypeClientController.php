@@ -10,6 +10,7 @@ use App\Models\client\TypesClient;
 use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
 use App\Models\page\TypesClients_page;
+use App\Http\Requests\ClientTypePostRequest;
 use App\utils\class\informationPageFormulaire;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -43,14 +44,9 @@ class TypeClientController extends Controller
         }
     }
 
-    public function store(Request $request){
+    public function store(ClientTypePostRequest $request){
         $TYPE_CLIENT = TypesClient::find((int) $request->input('id'));
-        $request->validate([
-            'nom' => ['required',
-                    Rule::unique('types_clients')->ignore($TYPE_CLIENT),
-                    'max:255',
-                    Rule::notIn(['new', 'create', 'update', 'delete']),]
-        ]);
+
         $infosPage = new InformationPage(Page::find(15), $request, null);
         if ($request->input('id') == 0){ // si c'est un nouvel element
             $TYPE_CLIENT = TypesClient::create([

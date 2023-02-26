@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Models\client\TypesClient;
 use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
+use App\Http\Requests\ClientPostRequest;
 use App\utils\class\informationPageFormulaire;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -39,18 +40,9 @@ class ClientController extends Controller
         }
     }
 
-    public function store(Request $request){
+    public function store(ClientPostRequest $request){
         $infosPage = new InformationPage(Page::find(12),$request, null);
         $CLIENT = Client::find($request->input('id'));
-
-        $request->validate([
-            'nom' => ['required',
-                    Rule::unique('clients')->ignore($CLIENT),
-                    'max:255',
-                    Rule::notIn(['new', 'create', 'update', 'delete'])],
-            'type_client' => ['required', 'exists:types_clients,id'],
-            'email' => ['required', 'email']
-        ]); 
 
         if ($request->input('id') == 0){ // si c'est un nouvel element
             $CLIENT = Client::create([

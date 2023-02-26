@@ -3,7 +3,6 @@
 namespace App\Models\client;
 
 use App\Models\page\Page;
-use App\Models\client\TypesClient;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

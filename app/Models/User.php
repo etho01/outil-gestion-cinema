@@ -102,5 +102,8 @@ class User extends Authenticatable
     public function getKey(){
         return Hash::make($this->email.$this->nom);
     }
+    public function getBySlug($slug){
+        return User::where('slug', $slug)->first();
+    }
 
 }

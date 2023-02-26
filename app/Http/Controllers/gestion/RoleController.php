@@ -11,6 +11,7 @@ use App\Models\user\Roles_page;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\utils\class\InformationPage;
+use App\Http\Requests\RolePostRequest;
 use App\utils\class\informationPageFormulaire;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -48,16 +49,9 @@ class RoleController extends Controller
         }
     }
 
-    public function store(Request $request, $cinema){
+    public function store(RolePostRequest $request, $cinema){
         $infosPage = new InformationPage(Page::find(config('global.PAGES.PAGE_LIST_ROLE')),$request, $cinema);
         $ROLE = Role::find($request->input('id'));
-        $request->validate([
-            'nom' => ['required',
-                    Rule::unique('roles')->ignore($ROLE),
-                    'max:255',
-                    Rule::notIn(['new', 'create', 'update', 'delete'])],
-            'is_admin' => ['required', Rule::In(['1', '2'])],
-        ]);
 
         if ($request->input('id') == 0){
             $ROLE = Role::create([

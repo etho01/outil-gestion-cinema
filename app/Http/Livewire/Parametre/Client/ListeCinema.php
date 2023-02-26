@@ -14,7 +14,7 @@ class ListeCinema extends Component
     public $valueSalle = array();
 
     public function mount($idClient, $datasUpdateCine){
-        if ($datasUpdateCine == ""){
+        if ($datasUpdateCine == "" || $datasUpdateCine == null){
             $this->idClient = $idClient;
             $LISTE_CINEMA = Cinema::where('client_id', $idClient)->get();
             foreach ($LISTE_CINEMA as $CINEMA){
@@ -28,6 +28,7 @@ class ListeCinema extends Component
             }
         } else {
             $tab_datasUpdateCine = json_decode($datasUpdateCine, true);
+          //  dd($datasUpdateCine);
             $this->ListeCinema = $tab_datasUpdateCine['ListeCinema'];
             $this->valueCinema = $tab_datasUpdateCine['valueCinema'];
             $this->valueSalle = $tab_datasUpdateCine['valueSalle'];

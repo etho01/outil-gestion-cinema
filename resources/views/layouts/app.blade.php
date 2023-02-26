@@ -87,7 +87,6 @@
                 if (modalOpen[0] != undefined){
                     modalOpen[0].click();
                 } else if (elementUpdated){
-                    console.log('reset');
                     Livewire.emit('saveElement');
                 }
             }
