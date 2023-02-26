@@ -17,6 +17,7 @@ use App\Http\Requests\UserStoreTypePostRequest;
 use App\Http\Requests\UserUpdateTypePostRequest;
 use App\Http\Requests\ClientStoreTypePostRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -31,7 +32,9 @@ class UserController extends Controller
     public function show(Request $request, $cinema, $slug){
         try {
             $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, $cinema ,User::class ,$slug);
-
+            if ($infosPage->instanceCinema()->client_id != $infosPage->getInstanceWork()->client_id){
+                abort(404);
+            }
             return view('page_app.user.show', [
                 'infosPage' => $infosPage,
             ]);
@@ -43,6 +46,10 @@ class UserController extends Controller
     public function viewProfile(Request $request, $slug){
         try {
             $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, null ,User::class ,$slug);
+
+            if (Auth::user()->id != $infosPage->getInstanceWork()->id){
+                abort(404);
+            }
 
             return view('page_app.user.profile', [
                 'infosPage' => $infosPage,
