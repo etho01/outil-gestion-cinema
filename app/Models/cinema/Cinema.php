@@ -70,4 +70,8 @@ class Cinema extends Model
         if (!Auth::user()->isSuperAdmin()) $eloquent->where('clients.id', Auth::user()->client_id);
         return $eloquent->get();
     }
+
+    public function getPageAcceuilCinema(){
+        return (Auth::user()->getPageAcceuilCinema($this)->route);
+    }
 }

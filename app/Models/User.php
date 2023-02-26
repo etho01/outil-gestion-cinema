@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -88,6 +89,16 @@ class User extends Authenticatable
                 return $this->getPageForRoleUser($hideShow);
             }
         }
+    }
+
+    public function getPageAcceuilCinema($cinema){
+        $user = Auth::user();
+        $tabPageAutorized = $user->getPageAutorized($cinema, true);
+        return DB::table('pages')
+        ->join('categorie_pages', 'categorie_pages.id', "=", 'pages.categorie_page_id')
+        ->whereIn('pages.id', $tabPageAutorized)
+        ->select('pages.route')
+        ->orderBy('categorie_pages.pos_categorie')->orderBy('pages.pos')->first();
     }
 
     public function roles(){

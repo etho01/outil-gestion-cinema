@@ -50,11 +50,12 @@
     <a href="#" class="nav-link text-white p-3" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
         <strong>Cinemas</strong>
     </a>
+
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" style="">
         @if ($listCinema->count() == 1)
             @foreach ($listCinema->first() as $cinema)
-                <li class=""  href="{{route('Film.list', ['cinema' => $cinema->slug])}}"> 
-                    <a href="{{route('Film.list', ['cinema' => $cinema->slug])}}" class="nav-link text-white px-3 py-1">{{ $cinema->nom }}</a>
+                <li class=""  href="{{route($cinema->getPageAcceuilCinema(), ['cinema' => $cinema->slug])}}"> 
+                    <a href="{{route($cinema->getPageAcceuilCinema(), ['cinema' => $cinema->slug])}}" class="nav-link text-white px-3 py-1">{{ $cinema->nom }}</a>
                 </li>
             @endforeach
         @else
@@ -63,8 +64,8 @@
                     <a class="nav-link text-white px-3" href="#">{{ $nomClient }}</a>
                     <ul class="dropdown-menu dropdown-submenu dropdown-menu-dark">
                         @foreach ($client as $cinema)
-                            <li class="dropdown-item"  href="{{route('Film.list', ['cinema' => $cinema->slug])}}"> 
-                                <a href="{{route('Film.list', ['cinema' => $cinema->slug])}}" class="nav-link text-white px-3">{{ $cinema->nom }}</a>
+                            <li class="dropdown-item"  href="{{route($cinema->getPageAcceuilCinema(), ['cinema' => $cinema->slug])}}"> 
+                                <a href="{{route($cinema->getPageAcceuilCinema(), ['cinema' => $cinema->slug])}}" class="nav-link text-white px-3">{{ $cinema->nom }}</a>
                             </li>
                         @endforeach
                     </ul>
