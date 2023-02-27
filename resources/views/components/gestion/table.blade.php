@@ -61,6 +61,14 @@
 
                                     {{ $typeclient->getNombreDemande($idCinema) }}
 
+                            @elseif (isset($infos['StatutFilm']))
+
+                                    {{ $typeclient->StatutFilm() }}
+
+                            @elseif (isset($infos['StatutKdm']))
+
+                                    {{ $typeclient->StatutKdm() }}
+
                             @else
 
                                 {{ $typeclient->{$nom} == "" ? '-' : $typeclient->{$nom} }}

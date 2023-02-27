@@ -20,4 +20,9 @@ class FilmSeanceStockageElement extends Model
    public function del(){
     $this->delete();
    }
+
+   public static function getJointureElementStockage(){
+    return FilmSeanceStockageElement::join('stockage_elements', 'stockage_elements.id', '=', 'film_sceances_elements.stockage_element_id');
+   }
+
 }

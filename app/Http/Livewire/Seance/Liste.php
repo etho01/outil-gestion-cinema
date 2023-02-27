@@ -52,6 +52,8 @@ class Liste extends Component
                 'salle_id' => ['nom_col' => 'Salle', 'datas' => OptionForm::getoptionClass(Salle::all())],
                 'is_visible_site' => ['nom_col' => 'Est visible sur le site', 'datas' => OptionForm::getOptionOuiNon()->all()],
                 'date_seance' => ['nom_col' => 'Date de le séance', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y H:m"],
+                '' => ['nom_col' => 'Statut du film', 'StatutFilm' => ''],
+                '-' => ['nom_col' => 'Statut de la KDM', 'StatutKdm' => '']
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreSalle', 

@@ -20,5 +20,12 @@ return [
         'DCP' => 2,
         'GLOBECAST' => 3,
         'SERVEUR' => 4
+    ],
+    'STATUT' => [
+        'FILM' => [
+            0 => 'FILM INDISOPNIBLE',
+            1 => 'NON CHARGER',
+            2 => 'CHARGER'
+        ]
     ]
 ];

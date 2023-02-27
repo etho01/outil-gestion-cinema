@@ -35,4 +35,29 @@ class Sceance extends Model
         $this->delete();
     }
 
+    public function StatutFilm(){
+        if ( FilmSeanceStockageElement::getJointureElementStockage()->where('stockage_elements.salle_id', $this->salle_id)
+        ->where('film_sceances_elements.film_sceance_id', $this->film_sceance_id)->where('stockage_elements.type', config('cinema.TYPE_STOCKAGE.SERVEUR'))->first() != null){
+            return config('cinema.STATUT.FILM.2');
+        } else if (
+            FilmSeanceStockageElement::getJointureElementStockage()
+        ->where('film_sceances_elements.film_sceance_id', $this->film_sceance_id)->first() != null
+        ){
+            return config('cinema.STATUT.FILM.1');
+        } else {
+            return config('cinema.STATUT.FILM.0');
+        }
+    }
+
+   public function StatutKdm(){
+    if (count( DB::select('SELECT * from sceances s 
+        join kdms k on k.film_sceance_id = s.film_sceance_id AND k.salle_id = s.salle_id
+        WHERE s.date_seance between k.date_debut and k.date_fin AND s.id = '.$this->id)) == 0){
+            return 'PAS DE KDM';
+        } else {
+            return 'KDM CHARGER';
+        }
+   }
+
+
 }
