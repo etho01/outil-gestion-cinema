@@ -81,6 +81,9 @@ class Element extends Component
             $this->id_film_imdb = 0;
             $this->nom_film_version = "";
         }
+        if ($this->idFilmVersion == 0){
+            $this->idFilmVersion = null;
+        }
     }
 
     public function save(){

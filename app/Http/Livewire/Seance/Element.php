@@ -95,10 +95,15 @@ class Element extends Component
         ]);
     }
 
-    public function updateFilmSceance($id){
-        $film = filmSceance::find($id);
-        $this->idFilmSceance = $film->id;
-        $this->nomFilmSceance = $film->nom;
+    function updateFilmSceance($id){
+        if ($id == 0){
+            $this->idFilmSceance = null;
+            $this->nomFilmSceance = '';
+        } else {
+            $film = filmSceance::find($id);
+            $this->idFilmSceance = $film->id;
+            $this->nomFilmSceance = $film->nom;
+        }
     }
 
     public function render()
