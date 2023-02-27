@@ -16,6 +16,7 @@ class Element extends Component
     public $idElement;
     public $idCinema;
     public $idClient;
+    public $typeElement;
 
     public $nomFilm;
     public $nomVersion;
@@ -28,9 +29,10 @@ class Element extends Component
 
     public $isUpdated;
 
-    public function mount($idElement, $idCinema, $isUpdated = false){
+    public function mount($idElement, $idCinema, $isUpdated = false, $typeElement = ''){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
+        $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
 
@@ -85,7 +87,8 @@ class Element extends Component
             'nom' => $this->nomVersion,
             'distributeur_id' => $this->distributeur,
             'cinema_id'=> $this->idCinema,
-            'slug' => Str::of($this->nomVersion)
+            'slug' => Str::of($this->nomVersion),
+            'typeElement' => $this->typeElement
         ]);
     }
 

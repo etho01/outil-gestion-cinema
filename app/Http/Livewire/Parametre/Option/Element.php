@@ -11,6 +11,7 @@ class Element extends Component
 {
     public $idElement;
     public $idCinema;
+    public $typeElement;
 
     public $idClient;
 
@@ -18,9 +19,10 @@ class Element extends Component
     public $type;
     public $visibilite;
 
-    public function mount($idElement, $idCinema){
+    public function mount($idElement, $idCinema, $typeElement = ''){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
+        $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
 
@@ -82,6 +84,7 @@ class Element extends Component
             'visibiliteOption' => OptionForm::getOption(config('cinema.OPTIONS.TYPE_OPTION')),
             'visibilite' => $this->visibilite,
             'typeOption' => OptionForm::getOption(Option::getTypeOptionByVisibilite($this->visibilite)),
+            'typeElement' => $this->typeElement
         ]);
     }
 }

@@ -12,15 +12,17 @@ class Element extends Component
     public $idElement;
     public $idCinema;
     public $idClient;
+    public $typeElement;
 
     public $nomDistrib;
     public $mailDistrib;
 
     private $distributeur;
 
-    public function mount($idElement, $idCinema){
+    public function mount($idElement, $idCinema, $typeElement = ''){
         $this->idElement = $idElement;
         $this->idCinema = $idCinema;
+        $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
 
@@ -72,7 +74,8 @@ class Element extends Component
     {
         return view('livewire.parametre.distributeur.element', [
             'idElement' => $this->idElement,
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'typeElement' => $this->typeElement
         ]);
     }
 }

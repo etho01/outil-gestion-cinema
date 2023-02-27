@@ -1,5 +1,5 @@
 
-<div class="modal-content">
+<div class="modal-content" wire:key="{{ $typeElement.$idElement }}">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
             {{ $idElement == 0 ? 'Créer une version d\'un film ': 'Modifier une version d\'un film'}}</h5>
