@@ -4,6 +4,7 @@ namespace App\Models\film;
 
 use App\utils\api\IMDB;
 use App\Models\cinema\Sceance;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,7 +32,9 @@ class Film extends Model
 
         $urlImagePath = IMDB::getBaseUrlImage();
 
-        $listesFilm = Sceance::getBaseRqWithFilm($idCinema, $hideNoShowSite)->groupBy('films.id_imdb')->select('films.id_imdb')->get();
+        $listesFilm = Sceance::getBaseRqWithFilm($idCinema, $hideNoShowSite)
+        ->whereDate('sceances.date_seance', '>=', Carbon::today()->toDateString())
+        ->groupBy('films.id_imdb')->select('films.id_imdb')->get();
         $tab = array();
         foreach ($listesFilm as $film){
             $infosFilm = IMDB::getInfosFilm($film->id_imdb);
