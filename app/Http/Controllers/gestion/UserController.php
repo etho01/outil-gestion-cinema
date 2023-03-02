@@ -58,9 +58,10 @@ class UserController extends Controller
         }
     }
 
-    public function add_password(Request $request, $slug, $key){ // page pour ajouter le mot de padde a la premeire connecion
-        $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, null ,User::class ,$slug);
-        if ( !Hash::check($infosPage->getInfosInstance('email').$infosPage->getInfosInstance('nom'), $key) ) return redirect()->route('dashboard');
+    public function add_password(Request $request, $user){ // page pour ajouter le mot de padde a la premeire connecion
+        
+        $infosPage = new informationPageFormulaire(Page::find(config('global.PAGES.PAGE_USER')),$request, null ,User::class ,$user);
+        if ( ! $request->hasValidSignature()) return redirect()->route('login');
         if ($infosPage->getInfosInstance('is_validate') == 2) return redirect()->route('login');
 
         return view('page_app.user.new-profile', [

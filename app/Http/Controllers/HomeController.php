@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\cinema\Cinema;
 use App\utils\class\InformationPage;
 
 class HomeController extends Controller
@@ -25,8 +26,11 @@ class HomeController extends Controller
     public function index(Request $request){
         $infosPage = new InformationPage(null,$request, null);
 
+        $listCinema = Cinema::getCinemaByClient()->groupBy('nom_client');
+
         return view('dashboard', [
-            'infosPage' => $infosPage
+            'infosPage' => $infosPage,
+            'listCinema' => $listCinema
         ]);
     }
 }

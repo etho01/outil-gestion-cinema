@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class mailCreateUser extends Mailable
 {
@@ -46,6 +47,9 @@ class mailCreateUser extends Mailable
     {
         return new Content(
             view: 'mail.create-user',
+            with: [
+                'url' => URL::signedRoute('add_password', ['user' => $this->user->slug])
+            ]
         );
     }
 

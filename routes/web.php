@@ -47,7 +47,7 @@ Route::post('', [AuthenticatedSessionController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('logout');
 
-Route::get('/register/{slug}/{key}', [UserController::class, 'add_password'])->name('add_password');
+Route::get('/register/{user}', [UserController::class, 'add_password'])->name('add_password');
 Route::post('/profile/update', [UserController::class, 'update'])->name('profile.change');
 
 Route::get('profile', [UserController::class, 'viewProfile'])->name('profile');
