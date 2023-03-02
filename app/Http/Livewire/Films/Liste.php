@@ -48,7 +48,7 @@ class Liste extends Component
                 'nom_film' => ['nom_col' => 'Nom du film'],
                 'option_son' => ['nom_col' => 'Option du son', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'option_image' => ['nom_col' => 'Option de l\'image', 'datas' => OptionForm::getoptionClass(Option::all())],
-                '' => ['nom_col' => "", "class" => "text-end" , 'pop_up' => [
+                '' => ['nom_col' => "", "class" => "text-end", 'col' => 'id' , 'pop_up' => [
                     ['type' => "films_sceance", 'icone' => "fa-solid fa-film", "title" => "Ajouter un film sceance"]
                 ]]
             ],

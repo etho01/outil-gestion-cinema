@@ -47,7 +47,7 @@ class Element extends Component
             $this->nom_film_version = $film->nom;
         }
 
-        if ($idBase != 0){
+        if ($idBase != ''){
             $this->idFilmVersion = $idBase;
             $film = Film::find($idBase);
             $this->id_film_imdb = $film->id_imdb;

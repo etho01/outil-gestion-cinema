@@ -53,8 +53,10 @@ class Liste extends Component
                 'option_image' => ['nom_col' => 'Option de l\'image', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'option_langue' => ['nom_col' => 'Langue du film', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'option_dimention' => ['nom_col' => 'Dimention de la séance', 'datas' => OptionForm::getoptionClass(Option::all())],
-                '' => ['nom_col' => "", "class" => "text-end" , 'pop_up' => [
-                    ['type' => "kdm", 'icone' => "fa-solid fa-key", "title" => "Ajouter une KDM"]
+                '' => ['nom_col' => "", "class" => "text-end", 'col' => 'id' , 'pop_up' => [
+                    ['type' => "kdm", 'icone' => "fa-solid fa-key", "title" => "Ajouter une KDM"],
+                    ['type' => "seance", 'icone' => "fa-solid fa-circle-play", "title" => "Ajouter une séance"],
+                    ['type' => "stockage", 'icone' => "fa-solid fa-server", "title" => "Ajouter dans un stockage"],
                 ]]
             ],
             'filtre' => [

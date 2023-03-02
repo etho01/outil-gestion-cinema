@@ -39,15 +39,16 @@
                                 {{ isset($infos['datas'][$typeclient->{$nom}]) ? ucfirst(strtolower($infos['datas'][$typeclient->{$nom}]->nom)) : '-' }}
                            
                             @elseif (isset($infos['pop_up']))
-
-                                @foreach ($infos['pop_up'] as $key => $pop_up)
-                                    <a href="#" class="btn @if ($key == 0)align-self-center @endif" 
-                                    @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset 
-                                    data-bs-toggle="modal" data-bs-target="#modal{{$pop_up['type']}}0">
-                                        <i class="{{$pop_up['icone']}}"></i>
-                                    </a>
-                                    <x-popup.index elementUpdate="0" :livewireObject="$pop_up['type']" :idCinema="$idCinema" :idBase="$typeclient->id"/>
-                                @endforeach
+                                <div class="d-flex d-row">
+                                    @foreach ($infos['pop_up'] as $key => $pop_up)
+                                        <a href="#" class="btn @if ($key == 0)align-self-center @endif" 
+                                        @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset 
+                                        data-bs-toggle="modal" data-bs-target="#modal{{ $typeclient->{ $infos['col'] } }}{{$pop_up['type']}}0">
+                                            <i class="{{$pop_up['icone']}}"></i>
+                                        </a>
+                                        <x-popup.index elementUpdate="0" :livewireObject="$pop_up['type']" :idCinema="$idCinema" :idBase="$typeclient->{ $infos['col'] }"/>
+                                    @endforeach
+                                </div>
 
                             @elseif (isset($infos['date']))
                                 

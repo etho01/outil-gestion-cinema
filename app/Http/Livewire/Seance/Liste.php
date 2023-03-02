@@ -51,9 +51,14 @@ class Liste extends Component
                 'option_dimention' => ['nom_col' => 'Dimmention de la séance', 'datas' => OptionForm::getoptionClass(Option::all())],
                 'salle_id' => ['nom_col' => 'Salle', 'datas' => OptionForm::getoptionClass(Salle::all())],
                 'is_visible_site' => ['nom_col' => 'Est visible sur le site', 'datas' => OptionForm::getOptionOuiNon()->all()],
-                'date_seance' => ['nom_col' => 'Date de le séance', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y H:m"],
+                'date_seance' => ['nom_col' => 'Date de la séance', 'date' => 'true', 'carbon' => CarbonImmutable::class, "format" => "d/m/Y H:i"],
                 '' => ['nom_col' => 'Statut du film', 'StatutFilm' => ''],
-                '-' => ['nom_col' => 'Statut de la KDM', 'StatutKdm' => '']
+                '-' => ['nom_col' => 'Statut de la KDM', 'StatutKdm' => ''],
+                '--' => ['nom_col' => "", "class" => "text-end", 'col' => 'id_film_seance' , 'pop_up' => [
+                    ['type' => "kdm", 'icone' => "fa-solid fa-key", "title" => "Ajouter une KDM"],
+                    ['type' => "seance", 'icone' => "fa-solid fa-circle-play", "title" => "Ajouter une séance"],
+                    ['type' => "stockage", 'icone' => "fa-solid fa-server", "title" => "Ajouter dans un stockage"],
+                ]]
             ],
             'filtre' => [
                 ['type' => 'select', 'champLivewire' => 'filtreSalle', 
@@ -87,7 +92,7 @@ class Liste extends Component
         ->where('salles.cinema_id', $this->idCinema)
         ->whereDate('sceances.date_seance', '>=', Carbon::today()->toDateString())
         ->orderby('sceances.date_seance');
-        $paginate->select('sceances.*' , 'films.nom as film_nom', 'film_sceances.option_langue', 'film_sceances.option_dimention');
+        $paginate->select('sceances.*' , 'films.nom as film_nom', 'film_sceances.option_langue', 'film_sceances.option_dimention', 'film_sceances.id as id_film_seance');
         if ($this->filtreSalle) $paginate->where('salle_id', $this->filtreSalle);
         if ($this->filtreVisibilite) $paginate->where('is_visible_site', $this->filtreVisibilite);
         $paginate->groupBy('sceances.id');

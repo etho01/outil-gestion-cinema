@@ -46,7 +46,7 @@ class Element extends Component
             $this->nomFilmSceance = $film->nom;
         }
 
-        if ($idBase != 0){
+        if ($idBase != ""){
             $this->idFilmSceance = $idBase;
             $film = filmSceance::find($idBase);
             $this->nomFilmSceance = $film->nom;
