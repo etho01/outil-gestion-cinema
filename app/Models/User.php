@@ -64,10 +64,11 @@ class User extends Authenticatable
         return $this->isAdmin() && $this->client_id == 1;
     }
 
-    public function getPageForRoleUser($hideShow){
+    public function getPageForRoleUser($hideShow, $idCinema = null){
         $eloquent = Page::join('roles_pages', 'roles_pages.page_id', '=', 'pages.id')
         ->join('users_roles', 'users_roles.role_id', '=', 'roles_pages.role_id')
         ->where('users_roles.user_id', $this->id);
+        if ($idCinema != null) $eloquent->where('roles_pages.cinema_id', $idCinema);
         if ($hideShow) $eloquent->whereNull('page_parent');
         return $eloquent->groupby('page_id')->get()->pluck('page_id');
     }
@@ -75,7 +76,19 @@ class User extends Authenticatable
     public function getPageAutorized( $CINEMA = null, $hideShow = null) {
         $basePageAutorized = collect();
         if ($this->isSuperAdmin()){ // si administrateur de l'entreprise gerant le site
-            $basePageAutorized = $basePageAutorized->merge(collect([config('global.PAGES.PAGE_LIST_CLIENT'), config('global.PAGES.PAGE_LIST_TYPE_CLIENT')]));
+            if ($hideShow){
+                $basePageAutorized = $basePageAutorized->merge(collect([
+                    config('global.PAGES.PAGE_LIST_CLIENT'),
+                     config('global.PAGES.PAGE_LIST_TYPE_CLIENT')
+                ]));
+            } else {            
+                $basePageAutorized = $basePageAutorized->merge(collect([
+                    config('global.PAGES.PAGE_LIST_CLIENT'),
+                    config('global.PAGES.PAGE_LIST_TYPE_CLIENT'),
+                    config('global.PAGES.PAGE_TYPE_CLIENT'),
+                    config('global.PAGES.PAGE_CLIENT'),
+            ]));
+            }
         }
         if ($CINEMA == null){// le cinema n'est pas selectionner donc page global
             return $basePageAutorized;
@@ -86,7 +99,7 @@ class User extends Authenticatable
                 if ($hideShow) $eloquent->whereNull('page_parent');
                 return $basePageAutorized->concat($eloquent->get()->pluck('id'));
             } else {
-                return $this->getPageForRoleUser($hideShow);
+                return $this->getPageForRoleUser($hideShow, $CINEMA->id);
             }
         }
     }

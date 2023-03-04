@@ -26,7 +26,7 @@ class Page extends Model
 
 
     public function getPageChildren(){
-        return Page::where('categorie_page_id', $this->categorie_page_id)->where('page_parent', $this->id)->get();
+        return Page::where('page_parent', $this->id)->get();
     }
 
     public static function getPageAndCategorieWherePageIn($array_pages, $getPageHide = false){

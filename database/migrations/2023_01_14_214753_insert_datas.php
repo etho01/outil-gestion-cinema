@@ -172,7 +172,7 @@ return new class extends Migration
             'id' => 9,
             'nom' => 'User',
             'route' => 'User.show',
-            'page_parent' => 9,
+            'page_parent' => 8,
             'categorie_page_id' => 7
         ]);
         Page::insert([

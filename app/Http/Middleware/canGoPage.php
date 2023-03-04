@@ -19,6 +19,7 @@ class canGoPage
      */
     public function handle(Request $request, Closure $next)
     {
+
         $nomPage = $request->route()->action["as"];
         $PAGE = Page::getPageByNameRoute($nomPage);
         if(Page::pageExist($nomPage)){
@@ -28,6 +29,7 @@ class canGoPage
                 $pageAuth = Auth::user()->getPageAutorized(Cinema::getCinemaSlug($request->route()->cinema ), false);
             }
          //   dd(!in_array($PAGE->id, $pageAuth->all()));
+    //     dd($PAGE->id, $pageAuth->all());
             if (!in_array($PAGE->id, $pageAuth->all())){
                 return redirect()->route('dashboard');
             }

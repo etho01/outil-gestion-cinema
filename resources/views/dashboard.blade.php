@@ -12,7 +12,9 @@
         <div class="ms-5 fs-3 pt-2 d-flex row">
             @foreach ($listCinema as $client)
                 @foreach ($client as $cinema)
-                    <a href="{{route($cinema->getPageAcceuilCinema(), ['cinema' => $cinema->slug])}}" class="text-black px-3">{{ $cinema->nom }}</a>
+                    @if ($cinema->canAcceesCinema())
+                        <a href="{{route($cinema->getPageAcceuilCinema(), ['cinema' => $cinema->slug])}}" class="text-black px-3">{{ $cinema->nom }}</a>
+                    @endif
                 @endforeach
             @endforeach
         </div>

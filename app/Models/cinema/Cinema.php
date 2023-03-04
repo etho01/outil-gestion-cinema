@@ -72,6 +72,14 @@ class Cinema extends Model
     }
 
     public function getPageAcceuilCinema(){
-        return (Auth::user()->getPageAcceuilCinema($this)->route);
+        if ($this->canAcceesCinema()){
+            return (Auth::user()->getPageAcceuilCinema($this)->route);
+        } else {
+            return 'dashboard';
+        }
+    }
+
+    public function canAcceesCinema(){
+        return Auth::user()->getPageAcceuilCinema($this) != null;
     }
 }
