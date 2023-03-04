@@ -14,7 +14,7 @@
     @if ($livewireObject == "distributeur")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <livewire:parametre.distributeur.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate"  :typeElement="$livewireObject"
+                <livewire:parametre.distributeur.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate"  :typeElement="$livewireObject"
                 :idBase="$idBase" />
                                 
             </div>
@@ -22,7 +22,7 @@
     @elseif($livewireObject == "option")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <livewire:parametre.option.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                <livewire:parametre.option.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase" />
                                 
             </div>
@@ -30,7 +30,7 @@
     @elseif($livewireObject == "films")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <livewire:films.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                <livewire:films.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase" :isUpdated="$isUpdated"/>
                                 
             </div>
@@ -38,7 +38,7 @@
     @elseif ($livewireObject == "films_sceance")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <livewire:films-sceance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                <livewire:films-sceance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase" :isUpdated="$isUpdated"/>
                                 
             </div>
@@ -46,7 +46,7 @@
         @elseif ($livewireObject == "kdm")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <livewire:kdm.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                <livewire:kdm.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase" />
                                 
             </div>
@@ -54,7 +54,7 @@
         @elseif ($livewireObject == "seance")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <livewire:seance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                <livewire:seance.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase" />
                                 
             </div>
@@ -62,7 +62,7 @@
         @elseif ($livewireObject == "stockage")
         <div class="modal fade" id="modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <livewire:stockage.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="$elementUpdate" :typeElement="$livewireObject"
+                <livewire:stockage.element :idElement="$elementUpdate" :idCinema="$idCinema" :key="time().$elementUpdate" :typeElement="$livewireObject"
                 :idBase="$idBase"  :option="$option"/>
                                 
             </div>
@@ -70,17 +70,17 @@
     @endif
 
     <script>
-        window.addEventListener('showModal{{$livewireObject.$elementUpdate}}', e => {
+        window.addEventListener('showModal{{ $idBase }}{{$livewireObject.$elementUpdate}}', e => {
             toggleModal('{{$livewireObject}}', {{$elementUpdate}});
         });
 
-        window.addEventListener('hideModal{{$livewireObject.$elementUpdate}}', e => {
+        window.addEventListener('hideModal{{ $idBase }}{{$livewireObject.$elementUpdate}}', e => {
             toggleModal('{{$livewireObject}}', {{$elementUpdate}});
         });
 
-        document.getElementById('modal{{$livewireObject}}{{$elementUpdate}}').addEventListener('hide.bs.modal', function (event) {
+        document.getElementById('modal{{ $idBase }}{{$livewireObject}}{{$elementUpdate}}').addEventListener('hide.bs.modal', function (event) {
             setTimeout(() => {
-                 openOldModal('{{$livewireObject}}', {{$elementUpdate}});
+                 openOldModal('{{ $idBase }}{{$livewireObject}}', {{$elementUpdate}});
              }, 500);
         })
 
