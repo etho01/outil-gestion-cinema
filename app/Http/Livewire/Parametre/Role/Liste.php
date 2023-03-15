@@ -4,10 +4,11 @@ namespace App\Http\Livewire\Parametre\Role;
 
 use Livewire\Component;
 use App\Models\user\Role;
-use App\utils\form\OptionForm;
 use App\Models\cinema\Salle;
+use Livewire\WithPagination;
 use App\Models\cinema\Cinema;
 use App\Models\client\Client;
+use App\utils\form\OptionForm;
 use App\Models\client\TypesClient;
 
 class Liste extends Component
@@ -19,6 +20,9 @@ class Liste extends Component
     public $isAdmin;
     public $slug_cinema;
     public $idClient;
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function mount($infosPage){
         $this->infosPage = $infosPage;

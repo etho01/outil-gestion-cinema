@@ -3,11 +3,12 @@
 namespace App\Http\Livewire\Parametre\Distributeur;
 
 use Livewire\Component;
-use App\utils\form\OptionForm;
+use Livewire\WithPagination;
 use App\Models\cinema\Cinema;
+use App\utils\form\OptionForm;
 use App\Models\film\Distributeur;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Liste extends Component
 {
@@ -22,6 +23,9 @@ class Liste extends Component
     public $idCinema;
 
     public $elementUpdate = -1;
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
         "saveElement" => 'saveElement'

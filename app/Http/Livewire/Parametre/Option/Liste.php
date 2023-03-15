@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Parametre\Option;
 
-use App\Models\film\Option;
-use App\utils\form\OptionForm;
 use Livewire\Component;
+use App\Models\film\Option;
+use Livewire\WithPagination;
+use App\utils\form\OptionForm;
 use Illuminate\Support\Facades\DB;
 
 class Liste extends Component
@@ -20,6 +21,9 @@ class Liste extends Component
 
     public $filtreNom;
     public $typeOption;
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function mount($infosPage){
         $this->infosPage = $infosPage;

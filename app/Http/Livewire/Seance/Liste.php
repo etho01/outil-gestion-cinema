@@ -7,6 +7,7 @@ use App\Models\film\Film;
 use App\Models\film\Option;
 use Carbon\CarbonImmutable;
 use App\Models\cinema\Salle;
+use Livewire\WithPagination;
 use App\Models\cinema\Cinema;
 use App\Models\cinema\Sceance;
 use App\utils\form\OptionForm;
@@ -29,6 +30,9 @@ class Liste extends Component
     protected $listeners = [
         "saveElement" => 'saveElement'
     ];
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function saveElement(){
     }

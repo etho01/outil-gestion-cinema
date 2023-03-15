@@ -7,6 +7,7 @@ use App\Models\film\Kdm;
 use App\Models\film\Film;
 use App\Models\film\Option;
 use Carbon\CarbonImmutable;
+use Livewire\WithPagination;
 use App\utils\form\OptionForm;
 use App\Models\film\filmSceance;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,9 @@ class Liste extends Component
     public function saveElement(){
     }
 
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    
     public function mount($infosPage){
         $this->infosPage = $infosPage;
         $this->slug_cinema = $infosPage->getSlugCinema();

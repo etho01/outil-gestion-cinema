@@ -72,7 +72,7 @@
             document.getElementById('modalParent'+newType+newIdElement).value = "modal"+oldType+oldIdelement;
             setTimeout(() => {
                 modalIsAnnimationOpen = false;
-            }, 1000);
+            }, 250);
         }
 
         var modalIsAnnimationOpen = false;

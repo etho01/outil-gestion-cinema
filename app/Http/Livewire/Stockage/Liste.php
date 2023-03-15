@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Stockage;
 
 use Livewire\Component;
 use App\Models\film\Film;
+use Livewire\WithPagination;
 use App\Models\film\filmSceance;
 use Illuminate\Support\Facades\DB;
 use App\Models\cinema\StockageElement;
@@ -37,6 +38,9 @@ class Liste extends Component
         $this->idPage = $infosPage->page->id;
         $this->idTypeStockage = StockageElement::getTypeElementByPage($this->idPage);
     }
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {

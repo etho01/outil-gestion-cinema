@@ -4,8 +4,9 @@ namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
-use App\utils\form\OptionForm;
+use Livewire\WithPagination;
 use App\Models\cinema\Cinema;
+use App\utils\form\OptionForm;
 
 class Liste extends Component
 {
@@ -18,6 +19,9 @@ class Liste extends Component
     public $isValidate;
 
     public $filtreNom;
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function mount($infosPage){
         $this->infosPage = $infosPage;

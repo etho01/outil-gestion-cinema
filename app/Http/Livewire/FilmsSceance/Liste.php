@@ -8,6 +8,7 @@ use App\Models\film\filmSceance;
 use App\Models\film\Option;
 use App\utils\form\OptionForm;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class Liste extends Component
 {
@@ -23,6 +24,8 @@ class Liste extends Component
     public $filtreLangue;
     public $filtreDim;
 
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
         "saveElement" => 'saveElement'

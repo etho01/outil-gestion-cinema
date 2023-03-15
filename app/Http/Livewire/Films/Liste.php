@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Films;
 // meme modele que pour le filmSeance
-use App\Models\film\Film;
-use App\Models\film\filmSceance;
-use App\Models\film\Option;
-use App\utils\form\OptionForm;
 use Livewire\Component;
+use App\Models\film\Film;
+use App\Models\film\Option;
+use Livewire\WithPagination;
+use App\utils\form\OptionForm;
+use App\Models\film\filmSceance;
 use Illuminate\Support\Facades\DB;
 
 class Liste extends Component
@@ -27,6 +28,9 @@ class Liste extends Component
     protected $listeners = [
         "saveElement" => 'saveElement'
     ];
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function saveElement(){
     }

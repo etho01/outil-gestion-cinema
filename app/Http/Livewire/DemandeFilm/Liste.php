@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\DemandeFilm;
 // meme modele que pour le filmSeance
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\api\demandeFilm;
 
 class Liste extends Component
@@ -11,6 +12,9 @@ class Liste extends Component
     public $slug_cinema;
     public $idClient;
     public $idCinema;
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
 
     public function mount($infosPage){

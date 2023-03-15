@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Parametre\Client;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\client\Client;
 use App\Models\client\TypesClient;
 
@@ -10,6 +11,9 @@ class Liste extends Component
 {
     public $filtreNom;
     public $filtreTypeClient = '';
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
