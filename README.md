@@ -1,6 +1,4 @@
-
-
-## Cinegest
+# Cinegest
 
 Cinegest est un CRM qui permet aux projectionnistes de gérer les ressources nécessaire à la diffusion d'un film.
 
@@ -11,6 +9,14 @@ url du projet : http://cinegest.nicolasbarbey.fr/
 Voici des codes pour se connecter
 email : test@test.fr
 mot de passe : testtest
+
+## modification systeme de modals en cours
+
+je suis en train de modifier le systeme de pop up afin qu'il n'y ait q'une seule modal de chaque type par page.
+L'ors de l'ouveture de la modal, le javascript va envoyer un emit indiquant l'id de l'element à afficher (0 pour crée un nouvel element). 
+Le composant livewire va alors charger les données depuis la base de donnée et mettre à jour son affichage
+
+Ces modifications vont permetre d'amelioer le temps de chargement necessaire aux chargement de la page.
 
 ## Les fonctionnalités
 
