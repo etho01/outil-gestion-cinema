@@ -75,6 +75,9 @@ class Liste extends Component
 
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du type du client', 'label' => 'Nom du client', 'name' => 'nom', 'class' => 'col-12 col-md-9'],
 
+            ],
+            'useModal' => [
+                $this->livewireObject,
             ]
         ]);
     }

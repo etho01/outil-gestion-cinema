@@ -69,8 +69,12 @@ class Liste extends Component
                 ['type' => 'select', 'champLivewire' => 'filtreDim','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre dimention', 'name' => 'filtreDim' , 'elements' => Option::getElmentByType(2)],
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du film', 'name' => 'nom', 'class' => 'col-12'],
             ],
-            'importOtherPopUp' => [
-                ['name' => 'films', 'ids' => Film::where('cinema_id', $this->idCinema)->get()->pluck('id')]
+            'useModal' => [
+                $this->livewireObject,
+                'films',
+                'kdm',
+                'seance',
+                'stockage'
             ]
         ]);
     }

@@ -27,14 +27,23 @@ class Element extends Component
 
     public $isUpdated;
 
-    public function mount($idElement, $idCinema,$idBase , $typeElement = '', $isUpdated = false){
-        $this->idElement = $idElement;
+    public function mount($idCinema, $typeElement = '', $isUpdated = false){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
 
         $this->isUpdated = $isUpdated;
 
-        $this->idClient = Cinema::find($idCinema)->client_id;
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
+        $this->nomFilmSceance = null;
+        $this->filtreDim = null;
+        $this->filtreLangue = null;
+        $this->idFilmVersion = null;
+        $this->id_film_imdb = null;
+        $this->nom_film_version = null;
         if ($idElement > 0){
             $filmSceance = filmSceance::find($idElement);
 
@@ -47,13 +56,12 @@ class Element extends Component
             $this->nom_film_version = $film->nom;
         }
 
-        if ($idBase != ''){
+        if ($idBase != '' && $idBase != 0){
             $this->idFilmVersion = $idBase;
             $film = Film::find($idBase);
             $this->id_film_imdb = $film->id_imdb;
             $this->nom_film_version = $film->nom;
         }
-
     }
 
     protected $rules = [
@@ -69,6 +77,8 @@ class Element extends Component
         'filtreLangue.required' => 'La langue du film ne doit pas etre null',
         'idFilmVersion.required' => "Le nom de la version du film ne doit pas etre null "
     ];
+
+    protected $listeners = ['showElementfilms_sceance' => 'setValueElement'];
 
     public function updateFilmBase($idFilmVersion){
         $this->idFilmVersion = $idFilmVersion;
@@ -95,7 +105,7 @@ class Element extends Component
         } else {
             $this->emit('saveElement');
         }
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         $film = filmSceance::find($this->idElement);
         $film->update([
             'option_langue' => $this->filtreLangue,
@@ -114,7 +124,7 @@ class Element extends Component
         } else {
             $this->emit('saveElement');
         }
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         filmSceance::create([
             'option_langue' => $this->filtreLangue,
             'option_dimention' => $this->filtreDim,

@@ -19,13 +19,20 @@ class Element extends Component
     public $type;
     public $visibilite;
 
-    public function mount($idElement, $idCinema, $typeElement = ''){
-        $this->idElement = $idElement;
+    public function mount($idCinema, $typeElement = ''){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
 
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
+        $this->nom = null;
+        $this->type = null;
+        $this->visibilite = null;
 
         if ($idElement != 0){ // si ne crée pas
             $option = Option::find($idElement);
@@ -47,10 +54,12 @@ class Element extends Component
         'visibilite.required' => 'La visibilité de l\'option ne doit pas etre null'
     ];
 
+    protected $listeners = ['showElementoption' => 'setValueElement'];
+
     public function save(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.'option'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.'option');
         $option = Option::find($this->idElement);
         $option->update([
             'nom' => $this->nom,
@@ -62,7 +71,7 @@ class Element extends Component
     public function create(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.'option'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.'option');
         Option::create([
             'nom' => $this->nom,
             'client_id' => $this->idClient,

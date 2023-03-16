@@ -54,9 +54,8 @@ class Liste extends Component
             'filtre' => [
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la séance', 'label' => 'Nom de la séance', 'name' => 'nom', 'class' => 'col-12'],
             ],
-            'importOtherPopUp' => [
-                ['name' => 'films', 'ids' => Film::where('cinema_id', $this->idCinema)->get()->pluck('id')],
-                ['name' => 'films_sceance', 'ids' => filmSceance::where('cinema_id', $this->idCinema)->get()->pluck('id')]
+            'useModal' => [
+                $this->livewireObject,
             ]
         ]);
     }

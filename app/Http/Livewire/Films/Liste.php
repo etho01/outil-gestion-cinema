@@ -60,6 +60,10 @@ class Liste extends Component
                 ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre son', 'name' => 'filtreSom' , 'elements' => Option::getElmentByType(3)],
                 ['type' => 'select', 'champLivewire' => 'filtreImage','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre image', 'name' => 'filtreImage' , 'elements' => Option::getElmentByType(4)],
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du film', 'name' => 'nom', 'class' => 'col-12 col-md-6'],
+            ],
+            'useModal' => [
+                $this->livewireObject,
+                'films_sceance'
             ]
         ]);
     }

@@ -29,8 +29,7 @@ class Element extends Component
 
     public $isUpdated;
 
-    public function mount($idElement, $idCinema, $isUpdated = false, $typeElement = ''){
-        $this->idElement = $idElement;
+    public function mount($idCinema, $isUpdated = false, $typeElement = ''){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
 
@@ -38,6 +37,11 @@ class Element extends Component
 
         $this->isUpdated = $isUpdated;
 
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
         if ($idElement != 0){ // si ne crée pas
             $film = Film::find($idElement);
 
@@ -47,6 +51,13 @@ class Element extends Component
             $this->nomVersion = $film->nom;
             $this->distributeur = $film->distributeur_id;
             $this->id_film = $film->id_imdb;
+        } else {
+            $this->formatImage = null;
+            $this->formatSon = null;
+            $this->nomFilm = null;
+            $this->nomVersion = null;
+            $this->distributeur = null;
+            $this->id_film = null;
         }
     }
 
@@ -61,6 +72,8 @@ class Element extends Component
         'nomVersion.required' => 'The Email Address format is not valid.',
         'distributeur.required' => 'Le nom de la version du film ne doit pas etre null',
     ];
+
+    protected $listeners = ['showElementfilms' => 'setValueElement'];
 
     public function changeFilm($id, $nomFilm){
         $this->id_film = $id;
@@ -77,7 +90,7 @@ class Element extends Component
             $this->emit('saveElement');
         }
         
-        $this->dispatchBrowserEvent('hideModal'.'films'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.'films');
         $film = Film::find($this->idElement);
         $film->update([
             'option_image' => $this->formatImage,
@@ -100,7 +113,7 @@ class Element extends Component
         } else {
             $this->emit('saveElement');
         }
-        $this->dispatchBrowserEvent('hideModal'.'films'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.'films');
         Film::create([
             'option_image' => $this->formatImage,
             'option_son' => $this->formatSon,

@@ -61,8 +61,9 @@
     </div>
     @livewireScripts
     <script>
-        function toggleModal(type, idElement){
-            var modals = document.querySelectorAll('[data-bs-target="#modal'+type+idElement+'"]');
+        function toggleModal(type){
+            console.log('[data-bs-target="#modal'+type+'"]');
+            var modals = document.querySelectorAll('[data-bs-target="#modal'+type+'"]');
             modals[0].click();
             
         }

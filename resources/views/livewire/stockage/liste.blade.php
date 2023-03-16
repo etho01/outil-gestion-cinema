@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-body">
-            <x-gestion.table :typesclient="$stockage" :infostable="$infostable" :livewireObject="$livewireObject" :idCinema="$idCinema" :importOtherPopUp="$importOtherPopUp"
+            <x-gestion.table :typesclient="$stockage" :infostable="$infostable" :livewireObject="$livewireObject" :idCinema="$idCinema" :useModal="$useModal"
             :option="$option"
             />
         </div>

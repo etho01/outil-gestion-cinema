@@ -22,12 +22,23 @@ class Element extends Component
     public $dateFin;
     public $idSalle;
 
-    public function mount($idElement, $idCinema,$idBase , $typeElement = ''){
-        $this->idElement = $idElement;
+    public function mount($idCinema, $typeElement = ''){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
+
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
+        $this->dateDebut = null;
+        $this->dateFin = null;
+        $this->idSalle = null;
+        $this->idFilmSceance = null;
+        $this->nomFilmSceance = null;
+
         if ($idElement > 0){
             $kdm = Kdm::find($idElement);
 
@@ -40,12 +51,11 @@ class Element extends Component
             $this->nomFilmSceance = $film->nom;
         }
 
-        if ($idBase != ""){
+        if ($idBase != "" && $idBase != 0){
             $this->idFilmSceance = $idBase;
             $film = filmSceance::find($idBase);
             $this->nomFilmSceance = $film->nom;
         }
-
     }
 
     function updateFilmSceance($id){
@@ -75,10 +85,12 @@ class Element extends Component
         'idFilmSceance.required' => 'Le format de la seance ne doit pas etre null'
     ];
 
+    protected $listeners = ['showElementkdm' => 'setValueElement'];
+
     function save(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         $kdm = Kdm::find($this->idElement);
         $kdm->update([
             'date_debut' =>  $this->dateDebut,
@@ -91,7 +103,7 @@ class Element extends Component
     function create(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         Kdm::create([
            'date_debut' =>  $this->dateDebut,
            'date_fin' => $this->dateFin,

@@ -25,10 +25,24 @@ class Element extends Component
 
     public $disableType = false;
 
-    public function mount($idElement, $idCinema,$idBase , $typeElement = '', $option = ''){
-        $this->idElement = $idElement;
+    public function mount($idCinema , $typeElement = '', $option = ''){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
+
+        if ($option != ''){
+            $this->type = $option;
+            $this->disableType = true;
+        }
+
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
+        $this->type = null;
+        $this->idSalle = null;
+        $this->idFilmSceance = null;
+        $this->nomFilmSceance = null;
 
         if ($idElement != 0){
             $stockage = FilmSeanceStockageElement::find($this->idElement);
@@ -41,15 +55,11 @@ class Element extends Component
             $this->idFilmSceance = $film->id;
             $this->nomFilmSceance = $film->nom;
         }
-        if ($idBase != ""){
+        if ($idBase != "" && $idBase != 0){
             $film = filmSceance::find($idBase);
             $this->idFilmSceance = $film->id;
             $this->nomFilmSceance = $film->nom;
         }
-        if ($option != ''){
-            $this->type = $option;
-            $this->disableType = true;
-        } 
     }
 
     function updateFilmSceance($id){
@@ -75,10 +85,12 @@ class Element extends Component
         'idFilmSceance' => 'Le type de la seance ne doit pas etre null'
     ];
 
+    protected $listeners = ['showElementstockage' => 'setValueElement'];
+
     function save(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         $stockage = FilmSeanceStockageElement::find($this->idElement);
         $stockage->update([
             'film_sceance_id' => $this->idFilmSceance,
@@ -89,7 +101,7 @@ class Element extends Component
     function create(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         FilmSeanceStockageElement::create([
            'film_sceance_id' => $this->idFilmSceance,
            'stockage_element_id' =>  StockageElement::getIdElementStockage($this->type, $this->idSalle)

@@ -27,10 +27,22 @@ class Element extends Component
 
     public $salleId;
 
-    public function mount($idElement, $idCinema,$idBase , $typeElement = ''){
-        $this->idElement = $idElement;
+    public function mount($idCinema, $typeElement = ''){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
+
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
+        $this->dateSeance = null;
+        $this->heureSeance = null;
+        $this->isVisibleSite = null;
+
+        $this->salleId = null;
+        $this->idFilmSceance = null;
+        $this->nomFilmSceance = null;
 
         if ($idElement > 0){
             $seance = Sceance::find($idElement);
@@ -46,12 +58,11 @@ class Element extends Component
             $this->nomFilmSceance = $film->nom;
         }
 
-        if ($idBase != ""){
+        if ($idBase != "" && $idBase != 0){
             $this->idFilmSceance = $idBase;
             $film = filmSceance::find($idBase);
             $this->nomFilmSceance = $film->nom;
         }
-
     }
 
     protected $rules = [
@@ -70,10 +81,12 @@ class Element extends Component
         'idFilmSceance' => 'Le type de la seance ne doit pas etre null'
     ];
 
+    protected $listeners = ['showElementseance' => 'setValueElement'];
+
     function save(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         $seance = Sceance::find($this->idElement);
         $seance->update([
             'date_seance' => $this->dateSeance.' '.$this->heureSeance,
@@ -86,7 +99,7 @@ class Element extends Component
     function create(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.$this->typeElement.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.$this->typeElement);
         Sceance::create([
            'date_seance' => $this->dateSeance.' '.$this->heureSeance,
            'film_sceance_id' => $this->idFilmSceance,

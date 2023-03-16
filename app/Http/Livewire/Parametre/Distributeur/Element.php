@@ -19,12 +19,20 @@ class Element extends Component
 
     private $distributeur;
 
-    public function mount($idElement, $idCinema, $typeElement = ''){
-        $this->idElement = $idElement;
+    public function mount( $idCinema, $typeElement = ''){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
 
         $this->idClient = Cinema::find($idCinema)->client_id;
+
+        $this->setValueElement(0,0);
+    }
+
+    public function setValueElement($idElement, $idBase){
+        $this->idElement = $idElement;
+        $this->distributeur = null;
+        $this->nomDistrib = null;
+        $this->mailDistrib = null;
 
         if ($idElement != 0){ // si ne crée pas
             $this->distributeur = Distributeur::find($this->idElement);
@@ -45,10 +53,12 @@ class Element extends Component
         'nomDistrib.required' => 'le nom du distributeur ne doit pas etre null'
     ];
 
+    protected $listeners = ['showElementdistributeur' => 'setValueElement'];
+
     public function save(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.'distributeur'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.'distributeur');
         $distributeur = Distributeur::find($this->idElement);
         if (Auth::user()->isSuperAdmin()){
             $distributeur->nom = $this->nomDistrib;
@@ -60,7 +70,7 @@ class Element extends Component
     public function create(){
         $this->validate();
         $this->emit('saveElement');
-        $this->dispatchBrowserEvent('hideModal'.'distributeur'.$this->idElement);
+        $this->dispatchBrowserEvent('hideModal'.'distributeur');
         $distributeur = Distributeur::create([
             'nom' => $this->nomDistrib,
         ]);

@@ -60,7 +60,6 @@ class Liste extends Component
                 '-' => ['nom_col' => 'Statut de la KDM', 'StatutKdm' => ''],
                 '--' => ['nom_col' => "", "class" => "text-end", 'col' => 'id_film_seance' , 'pop_up' => [
                     ['type' => "kdm", 'icone' => "fa-solid fa-key", "title" => "Ajouter une KDM"],
-                    ['type' => "seance", 'icone' => "fa-solid fa-circle-play", "title" => "Ajouter une séance"],
                     ['type' => "stockage", 'icone' => "fa-solid fa-server", "title" => "Ajouter dans un stockage"],
                 ]]
             ],
@@ -78,9 +77,12 @@ class Liste extends Component
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de la séance', 'label' => 'Nom de la séance', 'name' => 'nom', 'class' => 'col-12 col-md-8'],
 
             ],
-            'importOtherPopUp' => [
-                ['name' => 'films', 'ids' => Film::where('cinema_id', $this->idCinema)->get()->pluck('id')],
-                ['name' => 'films_sceance', 'ids' => filmSceance::where('cinema_id', $this->idCinema)->get()->pluck('id')]
+            'useModal' => [
+                $this->livewireObject,
+                'films',
+                'films_sceance',
+                'kdm',
+                'stockage'
             ]
         ]);
     }

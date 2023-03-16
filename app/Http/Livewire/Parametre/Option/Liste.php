@@ -69,6 +69,9 @@ class Liste extends Component
 
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom de l\'option', 'label' => 'Nom de l\'option', 'name' => 'nom', 'class' => 'col-12 col-md-10'],
 
+            ],
+            'useModal' => [
+                $this->livewireObject,
             ]
         ]);
     }
