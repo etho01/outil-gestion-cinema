@@ -20,7 +20,7 @@
                     @endisset
                     @isset ($livewireObject)
                         @if ($canCreateDelete == true)
-                            <a class="btn btn-secondary" onclick="showModal{{ $livewireObject }}(0, 0 )">
+                            <a class="btn btn-secondary" onclick="showModal('{{ $livewireObject }}',0, 0 )">
                                 Créer un nouvel element
                             </a>
                         @endif
@@ -44,7 +44,7 @@
                                         @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset 
                                         data-bs-toggle="modal" data-bs-target="#modal{{ $typeclient->{ $infos['col'] } }}{{$pop_up['type']}}0"
                                         
-                                        onclick="showModal{{ $pop_up['type'] }}(0, {{$typeclient->{ $infos['col']} }})">
+                                        onclick="showModal('{{ $pop_up['type'] }}', 0, {{$typeclient->{ $infos['col']} }})">
                                             <i class="{{$pop_up['icone']}}"></i>
                                         </a>
                                     @endforeach
@@ -89,7 +89,7 @@
                             </a>
                         @endisset
                         @isset ($livewireObject)
-                            <button class="btn btn-secondary" type="button" onclick="showModal{{ $livewireObject }}({{$typeclient->id}}, 0)" >
+                            <button class="btn btn-secondary" type="button" onclick="showModal('{{ $livewireObject }}', {{$typeclient->id}}, 0)" >
                                 Modifier
                             </button>
                             @if ($canCreateDelete == true)

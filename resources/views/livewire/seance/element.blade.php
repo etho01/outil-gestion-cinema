@@ -2,7 +2,7 @@
 <div class="modal-content" wire:key="{{ $typeElement.$idElement }}">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            {{ $idElement == 0 ? 'Créer une version d\'un film pour une sceance': 'Modifier une version d\'un film pour une sceance'}}</h5>
+            {{ $idElement == 0 ? 'Créer une une séance': 'Modifier une séance'}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">

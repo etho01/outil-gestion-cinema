@@ -62,15 +62,14 @@
     @livewireScripts
     <script>
         function toggleModal(type){
-            console.log('[data-bs-target="#modal'+type+'"]');
             var modals = document.querySelectorAll('[data-bs-target="#modal'+type+'"]');
             modals[0].click();
             
         }
         
-        function saveOldModal(oldType, oldIdelement, newType, newIdElement){
+        function saveOldModal(oldType, oldIdelement, newType){
             modalIsAnnimationOpen = true;
-            document.getElementById('modalParent'+newType+newIdElement).value = "modal"+oldType+oldIdelement;
+            document.getElementById('modalParent'+newType).value = oldType+"|"+oldIdelement;
             setTimeout(() => {
                 modalIsAnnimationOpen = false;
             }, 250);
@@ -84,14 +83,17 @@
             elementUpdated = true;
         });
 
-        function openOldModal(TypePopUpClose, idPopClose){
+        function openOldModal(TypePopUpClose){
             if (!modalIsAnnimationOpen){
-                var modalOpen = document.querySelectorAll('[data-bs-target="#'+document.getElementById('modalParent'+TypePopUpClose+idPopClose).value+'"]');
-                if (modalOpen[0] != undefined){
-                    modalOpen[0].click();
-                } else if (elementUpdated){
+                modalOpen = document.getElementById('modalParent'+TypePopUpClose).value;
+                if (modalOpen != ""){
+                    tabPopUpOpen = modalOpen.split('|')
+                    showModal(tabPopUpOpen[0], tabPopUpOpen[1], 0)
+                } else {
+                    console.log('save')
                     Livewire.emit('saveElement');
                 }
+
             }
         }
     </script>

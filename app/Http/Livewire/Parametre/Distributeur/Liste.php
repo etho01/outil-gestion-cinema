@@ -43,13 +43,6 @@ class Liste extends Component
         $this->idCinema = $infosPage->getIdcinema();
     }
 
-    public function update($id){
-        if (Auth::user()->isSuperAdmin()){
-            $this->elementUpdate = $id;
-            $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
-        }
-    }
-
     public function delete($id){
         if (Auth::user()->isSuperAdmin()){
             Distributeur::find($id)->del();

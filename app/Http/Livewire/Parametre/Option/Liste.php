@@ -41,11 +41,6 @@ class Liste extends Component
         $this->reset('elementUpdate');
     }
 
-    public function update($id){
-        $this->elementUpdate = $id;
-        $this->dispatchBrowserEvent('showModal'.$this->livewireObject.$id);
-    }
-
     public function delete($id){
         Option::find($id)->del();
     }

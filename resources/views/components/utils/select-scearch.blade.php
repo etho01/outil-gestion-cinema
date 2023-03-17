@@ -6,8 +6,11 @@
     </a>
     @isset($ouverturePopUp)
         <button type="button" class="btn mt-2" style="border: 1px solid #ced4da; background-color: #f3f4f6;" 
-        type="button" data-bs-toggle="modal" data-bs-target="#modal{{$ouverturePopUp}}{{$idElementPopUp}}" 
-        onclick="saveOldModal('{{$baseType}}', {{$idElement}}, '{{$type}}', {{$idElementPopUp}})">
+        type="button" 
+        onclick="
+        showModal('{{ $ouverturePopUp }}', {{$idElementPopUp}}, 0);
+        saveOldModal('{{$baseType}}', {{$idElement}}, '{{$type}}')
+        ">
             @if ($idElementPopUp == 0)
                 Créer {{$texteBtnUpdate}}
             @else

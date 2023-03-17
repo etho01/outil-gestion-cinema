@@ -69,23 +69,19 @@
     @endif
 
     <script>
-        window.addEventListener('showModal{{$livewireObject}}', e => {
-            toggleModal('{{$livewireObject}}');
-        });
-
         window.addEventListener('hideModal{{$livewireObject}}', e => {
             toggleModal('{{$livewireObject}}');
         });
 
-        function showModal{{ $livewireObject }}(idElement, idBase){
-            toggleModal('{{$livewireObject}}')
-            Livewire.emit('showElement{{ $livewireObject }}', idElement, idBase)
+        function showModal(type, idElement, idBase){
+            toggleModal(type)
+            Livewire.emit('showElement'+type, idElement, idBase)
         }
 
         document.getElementById('modal{{$livewireObject}}').addEventListener('hide.bs.modal', function (event) {
             setTimeout(() => {
                  openOldModal('{{$livewireObject}}');
-             }, 500);
+             }, 125);
         })
 
     </script>

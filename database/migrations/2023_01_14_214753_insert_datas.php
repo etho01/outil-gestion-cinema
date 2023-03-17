@@ -107,7 +107,7 @@ return new class extends Migration
         ]);
         Page::insert([
             'id' => 16,
-            'nom' => 'Liste sceance',
+            'nom' => 'Liste séance',
             'route' => 'Sceance.list',
             'pos' => 1,
             'categorie_page_id' => 9,
