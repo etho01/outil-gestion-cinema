@@ -41,9 +41,7 @@
                                 <div class="d-flex d-row">
                                     @foreach ($infos['pop_up'] as $key => $pop_up)
                                         <a href="#" class="btn @if ($key == 0)align-self-center @endif" 
-                                        @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset 
-                                        data-bs-toggle="modal" data-bs-target="#modal{{ $typeclient->{ $infos['col'] } }}{{$pop_up['type']}}0"
-                                        
+                                        @isset($pop_up['title']) data-bs-placement="top" title="{{$pop_up['title']}}" @endisset                                         
                                         onclick="showModal('{{ $pop_up['type'] }}', 0, {{$typeclient->{ $infos['col']} }})">
                                             <i class="{{$pop_up['icone']}}"></i>
                                         </a>

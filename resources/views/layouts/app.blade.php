@@ -90,7 +90,6 @@
                     tabPopUpOpen = modalOpen.split('|')
                     showModal(tabPopUpOpen[0], tabPopUpOpen[1], 0)
                 } else {
-                    console.log('save')
                     Livewire.emit('saveElement');
                 }
 
