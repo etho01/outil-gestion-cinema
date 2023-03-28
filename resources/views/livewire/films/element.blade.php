@@ -20,7 +20,7 @@
                         <a class="btn " href="#" role="button" id="dropDownSelectFilm" data-bs-toggle="dropdown" aria-expanded="false">
                           Film {{ $nomFilm }}
                         </a>
-                        <button wire:click="changeFilm" id="idBtnModal{{$idElement}}" style="display: none"></button>
+                        <button wire:click="changeFilm" id="idBtnModal" style="display: none"></button>
                         <ul class="dropdown-menu" aria-labelledby="dropDownSelectFilm">
                             <livewire:films.element.liste-film  :idElement="$idElement"/>
                         </ul>

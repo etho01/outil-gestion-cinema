@@ -8,8 +8,8 @@
         </li>
     @else
         @foreach ($films as $film)
-        <li class="dropdown-item" wire:click="refresh({{$film['id']}})" onclick="document.getElementById('idBtnModal{{$idElement}}').setAttribute('wire:click', 'changeFilm({{$film['id']}}, \'{{htmlspecialchars( $film['title'])}}\')');
-            document.getElementById('idBtnModal{{$idElement}}').click() ">
+        <li class="dropdown-item" wire:click="refresh({{$film['id']}})" onclick="document.getElementById('idBtnModal').setAttribute('wire:click', 'changeFilm({{$film['id']}}, \'{{htmlspecialchars( $film['title'])}}\')');
+            document.getElementById('idBtnModal').click() ">
             {{ $film['title'] }}
         </li>
         @endforeach

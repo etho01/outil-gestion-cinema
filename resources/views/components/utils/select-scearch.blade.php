@@ -19,8 +19,8 @@
         </button>
         
     @endisset
-    <button wire:click="changeFilm" id="idBtnModal{{ $type }}{{$idElement}}" style="display: none"></button>
-    <ul class="dropdown-menu" aria-labelledby="dropDownSelectFilm{{ $type }}{{$idElement}}" >
+    <button wire:click="changeFilm" id="idBtnModal{{ $type }}" style="display: none"></button>
+    <ul class="dropdown-menu" aria-labelledby="dropDownSelectFilm{{ $type }}" >
         <livewire:utils.select-scearch  :type="$type" :idElement="$idElement" :foncCall="$fonctCall" 
             :label="$label" :idCinema="$idCinema" :idElementPopUp="$idElementPopUp"/>
     </ul>
