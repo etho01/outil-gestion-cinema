@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\User;
-
+// meme modele que pour le filmSeance
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;

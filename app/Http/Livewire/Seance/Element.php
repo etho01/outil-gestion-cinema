@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Seance;
-
+// meme modele que pour le filmSeance
 use App\utils\api\IMDB;
 use Livewire\Component;
 use App\Models\cinema\Salle;

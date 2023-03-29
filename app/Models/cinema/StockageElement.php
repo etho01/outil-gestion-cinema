@@ -26,8 +26,9 @@ class StockageElement extends Model
         $this->delete;
     }
 
+    // recupere l'id de l'element de stockage si n'exite pas alors je le crée
     public static function getIdElementStockage($type, $idSalle){
-        $stockage = StockageElement::where('type', 'type')->where('salle_id', $idSalle)->first();
+        $stockage = StockageElement::where('type', $type)->where('salle_id', $idSalle)->first();
         if ($stockage == null){
             $stockage = StockageElement::create([
                 'salle_id' => $idSalle,
@@ -37,6 +38,7 @@ class StockageElement extends Model
         return $stockage->id;
     }
 
+    // get le type en fonction de la page
     public static function getTypeElementByPage($idPage){
         if ($idPage == config('global.PAGES.PAGE_LIST_NAS')){
             return config('cinema.TYPE_STOCKAGE.NAS');

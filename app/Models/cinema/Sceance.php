@@ -19,6 +19,7 @@ class Sceance extends Model
         'is_visible_site'
     ];
 
+    // get mes films sur le site
     public static function getBaseRqWithFilm($idCinema ,$hideNoShowSite = true){
         $baseEloquent = DB::table('films')->join('film_sceances', 'films.id', '=' , 'film_sceances.film_id')
         ->join('sceances', 'sceances.film_sceance_id' ,'=' ,'film_sceances.id')->where('films.cinema_id', $idCinema)->orderBy('sceances.date_seance')

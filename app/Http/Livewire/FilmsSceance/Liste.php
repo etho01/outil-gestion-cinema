@@ -12,43 +12,47 @@ use Livewire\WithPagination;
 
 class Liste extends Component
 {
+    // varialbe sur la page
     protected $infosPage;
     public $slug_cinema;
     public $idClient;
     public $idCinema;
 
-    public $livewireObject = "films_sceance";
+    public $livewireObject = "films_sceance"; // objet livewire
 
     public $filtreSon;
     public $filtreImage;
     public $filtreLangue;
     public $filtreDim;
+    public $filtreNom;
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
+    // ecoute l'evenement pour raffraichir la liste
     protected $listeners = [
         "saveElement" => 'saveElement'
     ];
 
-    public $filtreNom;
-
+    // fonction qui a pour unique but de render le composant
     public function saveElement(){
     }
 
     public function mount($infosPage){
+        // set les variables de pages
         $this->infosPage = $infosPage;
         $this->slug_cinema = $infosPage->getSlugCinema();
         $this->idClient = $infosPage->instanceCinema()->client_id;
         $this->idCinema = $infosPage->instanceCinema()->id;
     }
 
+    // rend 
     public function render()
     {
         return view('livewire.films-sceance.liste', [
-            'films' => $this->getPaginate(),
+            'films' => $this->getPaginate(), // liste d'element
             'livewireObject' => $this->livewireObject,
-            'infostable' => [
+            'infostable' => [ // colonne du tableau
                 'nom' =>  [ 'nom_col' => 'Nom de la version pour la séance' ],
                 'nom_version' =>  [ 'nom_col' => 'Nom de la version' ],
                 'nom_film' => ['nom_col' => 'Nom du film'],
@@ -62,14 +66,14 @@ class Liste extends Component
                     ['type' => "stockage", 'icone' => "fa-solid fa-server", "title" => "Ajouter dans un stockage"],
                 ]]
             ],
-            'filtre' => [
+            'filtre' => [ // filtre
                 ['type' => 'select', 'champLivewire' => 'filtreSon','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre son', 'name' => 'filtreSon' , 'elements' => Option::getElmentByType(3)],
                 ['type' => 'select', 'champLivewire' => 'filtreImage','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre image', 'name' => 'filtreImage' , 'elements' => Option::getElmentByType(4)],
                 ['type' => 'select', 'champLivewire' => 'filtreLangue','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre Lanque', 'name' => 'filtreLangue' , 'elements' => Option::getElmentByType(1)],
                 ['type' => 'select', 'champLivewire' => 'filtreDim','defaultValue' => 0 , 'class' => 'col-12 col-md-3' , 'label' => 'Filtre dimention', 'name' => 'filtreDim' , 'elements' => Option::getElmentByType(2)],
                 ['type' => 'text', 'champLivewire' => 'filtreNom', 'placeholder' => 'Nom du film ou de la version', 'label' => 'Nom du film', 'name' => 'nom', 'class' => 'col-12'],
             ],
-            'useModal' => [
+            'useModal' => [ // modal load
                 $this->livewireObject,
                 'films',
                 'kdm',
@@ -79,10 +83,12 @@ class Liste extends Component
         ]);
     }
 
+    // supprimer le composant
     public function delete($id){
         filmSceance::find($id)->del();
     }
 
+    // methode pour avoir les donnée
     public function getPaginate(){
         $paginate = DB::table('film_sceances');
         $paginate->join('films', 'film_sceances.film_id', '=', 'films.id');

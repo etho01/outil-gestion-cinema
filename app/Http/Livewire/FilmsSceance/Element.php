@@ -11,11 +11,13 @@ use App\Models\film\filmSceance;
 
 class Element extends Component
 {
+    // variables sur la page
     public $idElement;
     public $idCinema;
     public $idClient;
     public $typeElement;
 
+    // variable sur l'element
     public $nomFilmSceance;
     public $filtreDim;
     public $filtreLangue;
@@ -27,6 +29,7 @@ class Element extends Component
 
     public $isUpdated;
 
+    // initisalisation de l'element
     public function mount($idCinema, $typeElement = '', $isUpdated = false){
         $this->idCinema = $idCinema;
         $this->typeElement = $typeElement;
@@ -36,7 +39,9 @@ class Element extends Component
         $this->setValueElement(0,0);
     }
 
+    // change les valeurs en fonction de l'element chargé
     public function setValueElement($idElement, $idBase){
+        // initialise les variable a null
         $this->idElement = $idElement;
         $this->nomFilmSceance = null;
         $this->filtreDim = null;
@@ -44,7 +49,8 @@ class Element extends Component
         $this->idFilmVersion = null;
         $this->id_film_imdb = null;
         $this->nom_film_version = null;
-        if ($idElement > 0){
+
+        if ($idElement > 0){ // si element existe deja recuperation des infos
             $filmSceance = filmSceance::find($idElement);
 
             $this->nomFilmSceance = $filmSceance->nom;
@@ -56,6 +62,7 @@ class Element extends Component
             $this->nom_film_version = $film->nom;
         }
 
+        // set les information si ajout depuis un element enfant
         if ($idBase != '' && $idBase != 0){
             $this->idFilmVersion = $idBase;
             $film = Film::find($idBase);
@@ -64,6 +71,7 @@ class Element extends Component
         }
     }
 
+    // rules sur les champs
     protected $rules = [
         'nomFilmSceance' => 'required',
         'filtreDim' => 'required',
@@ -71,6 +79,7 @@ class Element extends Component
         'idFilmVersion' => 'required'
     ];
 
+    // message d'erreur
     protected $messages = [
         'nomFilmSceance.required' => 'Le nom du format de la séance ne doit pas etre null',
         'filtreDim.required' => 'La dimmention de la seance ne doit pas etre null',
@@ -78,8 +87,10 @@ class Element extends Component
         'idFilmVersion.required' => "Le nom de la version du film ne doit pas etre null "
     ];
 
+    // ecoute l'event showElement pour charger un autre element
     protected $listeners = ['showElementfilms_sceance' => 'setValueElement'];
 
+    // fonction change la version du film
     public function updateFilmBase($idFilmVersion){
         $this->idFilmVersion = $idFilmVersion;
         $this->dispatchBrowserEvent('updateFilmSeance'.$this->idElement);
@@ -96,6 +107,7 @@ class Element extends Component
         }
     }
 
+    // save les modifications
     public function save(){
         $this->validate();
         if ($this->isUpdated){
@@ -116,6 +128,7 @@ class Element extends Component
 
     }
 
+    // crée l'element
     public function create(){
         $this->validate();
         if ($this->isUpdated){
@@ -134,6 +147,7 @@ class Element extends Component
         ]);
     }
 
+    //rendu 
     public function render()
     {
         return view('livewire.films-sceance.element',[

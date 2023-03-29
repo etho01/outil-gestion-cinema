@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Parametre\Distributeur;
-
+// meme modele que pour le filmSeance
 use App\Models\cinema\Cinema;
 use Livewire\Component;
 use App\Models\film\Distributeur;

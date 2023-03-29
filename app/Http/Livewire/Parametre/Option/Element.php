@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Parametre\Option;
-
+// meme modele que pour le filmSeance
 use Livewire\Component;
 use App\Models\film\Option;
 use App\Models\cinema\Cinema;

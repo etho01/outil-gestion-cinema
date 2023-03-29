@@ -64,6 +64,7 @@ class User extends Authenticatable
         return $this->isAdmin() && $this->client_id == 1;
     }
 
+    // get les pages autoriser par role 
     public function getPageForRoleUser($hideShow, $idCinema = null){
         $eloquent = Page::join('roles_pages', 'roles_pages.page_id', '=', 'pages.id')
         ->join('users_roles', 'users_roles.role_id', '=', 'roles_pages.role_id')
@@ -75,14 +76,14 @@ class User extends Authenticatable
 
     public function getPageAutorized( $CINEMA = null, $hideShow = null) {
         $basePageAutorized = collect();
-        if ($this->isSuperAdmin()){ // si administrateur de l'entreprise gerant le site
+        if ($this->isSuperAdmin()){ // si administrateur de l'entreprise gerant le site alors affiche les page de config
             if ($hideShow){
-                $basePageAutorized = $basePageAutorized->merge(collect([
+                $basePageAutorized = $basePageAutorized->merge(collect([ // pour la liste
                     config('global.PAGES.PAGE_LIST_CLIENT'),
                      config('global.PAGES.PAGE_LIST_TYPE_CLIENT')
                 ]));
             } else {            
-                $basePageAutorized = $basePageAutorized->merge(collect([
+                $basePageAutorized = $basePageAutorized->merge(collect([ // pour la verification des accées
                     config('global.PAGES.PAGE_LIST_CLIENT'),
                     config('global.PAGES.PAGE_LIST_TYPE_CLIENT'),
                     config('global.PAGES.PAGE_TYPE_CLIENT'),
@@ -93,7 +94,7 @@ class User extends Authenticatable
         if ($CINEMA == null){// le cinema n'est pas selectionner donc page global
             return $basePageAutorized;
         } else {
-            if ($this->isAdmin()){
+            if ($this->isAdmin()){ // si admin de son espace alors accée a toutes les pages accesible pour ce client
                 $CLIENT = Client::find($CINEMA->client_id);
                 $eloquent = TypesClient::find($CLIENT->types_client_id)->pages();
                 if ($hideShow) $eloquent->whereNull('page_parent');
@@ -123,9 +124,6 @@ class User extends Authenticatable
         $this->delete(); 
     }
 
-    public function getKey(){
-        return Hash::make($this->email.$this->nom);
-    }
     public function getBySlug($slug){
         return User::where('slug', $slug)->first();
     }

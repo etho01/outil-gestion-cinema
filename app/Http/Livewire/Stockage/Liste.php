@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Stockage;
-
+// meme modele que pour le filmSeance
 use Livewire\Component;
 use App\Models\film\Film;
 use Livewire\WithPagination;

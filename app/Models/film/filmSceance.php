@@ -21,18 +21,18 @@ class filmSceance extends Model
    ];
 
    public function del(){
-    $Kdms = Kdm::where('film_sceance_id', $this->id)->get();
-    foreach ($Kdms as $Kdm){
-        $Kdm->del();
+        $Kdms = Kdm::where('film_sceance_id', $this->id)->get();
+        foreach ($Kdms as $Kdm){
+            $Kdm->del();
+        }
+        $Sceances = Sceance::where('film_sceance_id', $this->id)->get();
+        foreach ($Sceances as $Sceance){
+            $Sceance->del();
+        }
+        $FilmSeanceStockageElements = FilmSeanceStockageElement::where('film_sceance_id', $this->id)->get();
+        foreach ($FilmSeanceStockageElements as $FilmSeanceStockageElement){
+            $FilmSeanceStockageElement->del();
+        }
+        $this->delete();
     }
-    $Sceances = Sceance::where('film_sceance_id', $this->id)->get();
-    foreach ($Sceances as $Sceance){
-        $Sceance->del();
-    }
-    $FilmSeanceStockageElements = FilmSeanceStockageElement::where('film_sceance_id', $this->id)->get();
-    foreach ($FilmSeanceStockageElements as $FilmSeanceStockageElement){
-        $FilmSeanceStockageElement->del();
-    }
-    $this->delete();
-}
 }

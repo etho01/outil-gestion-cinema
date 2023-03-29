@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Parametre\Distributeur;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\cinema\Cinema;
 use App\utils\form\OptionForm;
 use App\Models\film\Distributeur;
 use Illuminate\Support\Facades\DB;

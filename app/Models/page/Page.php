@@ -29,6 +29,7 @@ class Page extends Model
         return Page::where('page_parent', $this->id)->get();
     }
 
+    // trie les pages par categorie
     public static function getPageAndCategorieWherePageIn($array_pages, $getPageHide = false){
         $request = Page::join('categorie_pages', 'pages.categorie_page_id', '=', 'categorie_pages.id')->
         select('pages.*', 'categorie_pages.nom as nom_categorie', "categorie_pages.icone as icone_categorie");
